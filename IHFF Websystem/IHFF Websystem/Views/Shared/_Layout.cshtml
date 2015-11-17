@@ -1,0 +1,99 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - International Haarlem Film Festival</title>
+    <meta name="viewport" content="width=device-width" />
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+
+<body>
+    <header></header>
+    <nav>
+        <ul id="navigatie">
+            <li>
+                <a href="index.html">
+                    <p class="navtext">
+                        Home
+                    </p>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <p class="navtext">
+                        Programma
+                    </p>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <p class="navtext">
+                        Locaties
+                    </p>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <p class="navtext">
+                        Dineren
+                    </p>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <p class="navtext">
+                        Over ons
+                    </p>
+                </a>
+            </li>
+    </nav>
+    <section id="banner"></section>
+    <section id="nav2">
+        <ul id="navigatie2">
+            <li>
+                <a href="index.html">
+                    <p class="navtext">
+                        Woensdag
+                    </p>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <p class="navtext">
+                        Donderdag
+                    </p>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <p class="navtext">
+                        Vrijdag
+                    </p>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <p class="navtext">
+                        Zaterdag
+                    </p>
+                </a>
+            </li>
+            <li>
+                <a href="index.html">
+                    <p class="navtext">
+                        Zondag
+                    </p>
+                </a>
+            </li>
+    </section>
+    <section id="main">
+        @RenderSection("featured", required: false)
+        <section class="content-wrapper main-content clear-fix">
+            @RenderBody()
+        </section>
+    </section>
+    <footer></footer>
+</body>
+</html>
+
