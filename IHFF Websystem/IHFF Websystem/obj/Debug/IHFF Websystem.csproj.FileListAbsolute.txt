@@ -84,3 +84,83 @@ c:\users\camille\documents\visual studio 2013\Projects\IHFF Websystem\IHFF Websy
 c:\users\camille\documents\visual studio 2013\Projects\IHFF Websystem\IHFF Websystem\obj\Debug\IHFF Websystem.csprojResolveAssemblyReference.cache
 c:\users\camille\documents\visual studio 2013\Projects\IHFF Websystem\IHFF Websystem\obj\Debug\IHFF Websystem.dll
 c:\users\camille\documents\visual studio 2013\Projects\IHFF Websystem\IHFF Websystem\obj\Debug\IHFF Websystem.pdb
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\IHFF Websystem.dll.config
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\IHFF Websystem.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\IHFF Websystem.pdb
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\Antlr3.Runtime.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\DotNetOpenAuth.AspNet.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\DotNetOpenAuth.Core.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\DotNetOpenAuth.OAuth.Consumer.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\DotNetOpenAuth.OAuth.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\DotNetOpenAuth.OpenId.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\DotNetOpenAuth.OpenId.RelyingParty.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\EntityFramework.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\Microsoft.Data.Edm.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\Microsoft.Data.OData.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\Microsoft.Web.Infrastructure.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\Microsoft.Web.Mvc.FixedDisplayModes.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\Microsoft.Web.WebPages.OAuth.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\Newtonsoft.Json.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Spatial.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Web.Helpers.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Web.Http.OData.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Web.Mvc.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Web.Optimization.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Web.Razor.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Web.WebPages.Deployment.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Web.WebPages.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Web.WebPages.Razor.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\WebGrease.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\WebMatrix.Data.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\WebMatrix.WebData.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\EntityFramework.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\Newtonsoft.Json.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Web.Helpers.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Web.Mvc.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Web.Razor.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Web.WebPages.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Web.WebPages.Deployment.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Web.WebPages.Razor.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\WebMatrix.Data.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\Microsoft.Web.WebPages.OAuth.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\WebMatrix.WebData.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\DotNetOpenAuth.AspNet.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\DotNetOpenAuth.Core.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\DotNetOpenAuth.OAuth.Consumer.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\DotNetOpenAuth.OAuth.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\DotNetOpenAuth.OpenId.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\DotNetOpenAuth.OpenId.RelyingParty.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Web.Http.OData.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\Microsoft.Data.Edm.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\Microsoft.Data.OData.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\System.Spatial.xml
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\de\Microsoft.Data.Edm.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\es\Microsoft.Data.Edm.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\fr\Microsoft.Data.Edm.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\it\Microsoft.Data.Edm.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\ja\Microsoft.Data.Edm.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\ko\Microsoft.Data.Edm.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\ru\Microsoft.Data.Edm.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\zh-Hans\Microsoft.Data.Edm.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\zh-Hant\Microsoft.Data.Edm.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\de\Microsoft.Data.OData.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\es\Microsoft.Data.OData.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\fr\Microsoft.Data.OData.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\it\Microsoft.Data.OData.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\ja\Microsoft.Data.OData.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\ko\Microsoft.Data.OData.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\ru\Microsoft.Data.OData.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\zh-Hans\Microsoft.Data.OData.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\zh-Hant\Microsoft.Data.OData.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\de\System.Spatial.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\es\System.Spatial.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\fr\System.Spatial.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\it\System.Spatial.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\ja\System.Spatial.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\ko\System.Spatial.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\ru\System.Spatial.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\zh-Hans\System.Spatial.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\obj\Debug\IHFF Websystem.csprojResolveAssemblyReference.cache
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\obj\Debug\IHFF Websystem.dll
+C:\Users\r44\Github\IHFF\IHFF Websystem\IHFF Websystem\obj\Debug\IHFF Websystem.pdb
