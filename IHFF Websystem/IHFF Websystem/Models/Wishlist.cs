@@ -6,7 +6,7 @@ using System.Web;
 
 namespace IHFF_Websystem.Models
 {
-    public class wishlist
+    public class Wishlist
     {
         [Required]
         public int wishlistID { get; set; }
@@ -24,12 +24,12 @@ namespace IHFF_Websystem.Models
         [Required]
         public double totaalPrijs { get; set; }
 
-        public wishlist()
+        public Wishlist()
         {
 
         }
 
-        public wishlist(int wishlistID, string codeWoord, bool isBetaald, bool isOpgehaald, string eMail, double totaalPrijs)
+        public Wishlist(int wishlistID, string codeWoord, bool isBetaald, bool isOpgehaald, string eMail, double totaalPrijs)
         {
             this.wishlistID = wishlistID;
             this.codeWoord = codeWoord;

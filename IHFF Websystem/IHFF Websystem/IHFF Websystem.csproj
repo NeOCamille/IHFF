@@ -194,7 +194,7 @@
     <Compile Include="Models\Locatie.cs" />
     <Compile Include="Models\Medewerker.cs" />
     <Compile Include="Models\Special.cs" />
-    <Compile Include="Models\wishlist.cs" />
+    <Compile Include="Models\Wishlist.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
