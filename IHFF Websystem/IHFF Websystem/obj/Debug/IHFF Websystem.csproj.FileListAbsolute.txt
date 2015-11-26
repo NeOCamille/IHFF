@@ -249,3 +249,4 @@ C:\Users\Camille\Documents\GitHub\IHFF\IHFF Websystem\IHFF Websystem\bin\ko\Syst
 C:\Users\Camille\Documents\GitHub\IHFF\IHFF Websystem\IHFF Websystem\bin\ru\System.Spatial.resources.dll
 C:\Users\Camille\Documents\GitHub\IHFF\IHFF Websystem\IHFF Websystem\bin\zh-Hans\System.Spatial.resources.dll
 C:\Users\Camille\Documents\GitHub\IHFF\IHFF Websystem\IHFF Websystem\bin\zh-Hant\System.Spatial.resources.dll
+C:\Users\Camille\Documents\GitHub\IHFF\IHFF Websystem\IHFF Websystem\obj\Debug\IHFF Websystem.csprojResolveAssemblyReference.cache
