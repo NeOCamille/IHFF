@@ -11,7 +11,7 @@ namespace IHFF_Websystem.Models
         public IHFFContext()
             : base("IHFFConnection")
         {
-            //Database.SetInitializer<IHFFContext>(null);
+            Database.SetInitializer<IHFFContext>(null);
         }
 
         public DbSet<Diner> Diners { get; set; }
