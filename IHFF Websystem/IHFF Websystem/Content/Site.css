@@ -13,7 +13,7 @@ nav {
     width: 1200px;
     height: 50px;
     margin: 0 auto;
-    background-image: url(../images/menubar2.png);
+    background-image: url(../images/menubartop.png);
 }
 
 #navigatie {
@@ -35,7 +35,7 @@ nav {
     width: 1200px;
     height: 50px;
     margin: 0 auto;
-    background-image: url(../images/menubar2.png);
+    background-image: url(../images/menubarbottom.png);
 }
 
 #navigatie2 {
