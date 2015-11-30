@@ -54,10 +54,19 @@ nav {
 }
 
 #banner {
+    margin: 0 auto; 
+    position: relative; 
+    padding: 0px; 
     width: 1200px;
     height: 250px;
-    margin: 0 auto;
-    background-color: yellow;
+}
+
+#banner > div {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    bottom: 0px;
+    right: 0px;
 }
 
 #main {
