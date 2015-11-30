@@ -183,15 +183,19 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LayoutController.cs" />
+    <Compile Include="Controllers\MedewerkerController.cs" />
     <Compile Include="Controllers\ProgrammaController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DbMedewerkerRepository.cs" />
     <Compile Include="Models\Diner.cs" />
     <Compile Include="Models\Evenement.cs" />
     <Compile Include="Models\Film.cs" />
     <Compile Include="Models\IHFFContext.cs" />
+    <Compile Include="Models\IMedewerkerRepository.cs" />
     <Compile Include="Models\Locatie.cs" />
+    <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Medewerker.cs" />
     <Compile Include="Models\Special.cs" />
     <Compile Include="Models\Wishlist.cs" />
@@ -301,6 +305,8 @@
     <Content Include="Views\Home\Locaties.cshtml" />
     <Content Include="Views\Home\Overons.cshtml" />
     <Content Include="Views\Home\Programma.cshtml" />
+    <Content Include="Views\Medewerker\Index.cshtml" />
+    <Content Include="Views\Medewerker\AddMedewerker.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

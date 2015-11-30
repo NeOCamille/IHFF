@@ -1,0 +1,27 @@
+﻿@model IHFF_Websystem.Models.Medewerker
+
+@{
+    ViewBag.Title = "AddMedewerker";
+}
+
+<h2>Registreer</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.LabelFor(m => m.gebruikersNaam)
+    @Html.TextBoxFor(m => m.gebruikersNaam)
+    @Html.ValidationMessageFor(m => m.gebruikersNaam)
+    <br /><br />
+    
+    @Html.LabelFor(m => m.passWord)
+    @Html.TextBoxFor(m => m.passWord)
+    @Html.ValidationMessageFor(m => m.passWord)
+    <br /><br />
+    
+    @Html.LabelFor(m => m.relevantie)
+    @Html.TextBoxFor(m => m.relevantie)
+    @Html.ValidationMessageFor(m => m.relevantie)
+  
+    <input type="submit" value="Registreer" />
+    
+}
