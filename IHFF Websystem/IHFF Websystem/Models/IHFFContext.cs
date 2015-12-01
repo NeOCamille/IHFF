@@ -21,6 +21,7 @@ namespace IHFF_Websystem.Models
         public DbSet<Medewerker> Medewerkers { get; set; }
         public DbSet<Special> Specials { get; set; }
         public DbSet<Wishlist> Wishlists { get; set; }
+        public DbSet<WishlistEvenement> WishlistEvenements { get; set; }
 
     }
 }
