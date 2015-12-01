@@ -19,7 +19,7 @@ namespace IHFF_Websystem.Models
 
         public WishlistEvenement()
         {
-            //..
+            //..HAllo
         }
 
         public WishlistEvenement(int wishlistID, int evenementID)
