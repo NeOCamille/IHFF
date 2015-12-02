@@ -8,7 +8,7 @@ namespace IHFF_Websystem.Models
 {
     public class WishlistEvenement
     {
-        // blijkbaar moet er een ID gebruikt worden die als  [Key] dient.
+        // blijkbaar moet er een ID gebruikt worden die als  [Key] dient
         public int ID { get; set; }
 
         [Required]
@@ -19,7 +19,8 @@ namespace IHFF_Websystem.Models
 
         public WishlistEvenement()
         {
-            //
+            //..HAllo
+            //Test
         }
 
         public WishlistEvenement(int wishlistID, int evenementID)
