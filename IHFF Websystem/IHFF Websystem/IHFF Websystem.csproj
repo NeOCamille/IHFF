@@ -262,9 +262,13 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
+    <Content Include="Images\background.jpg" />
+    <Content Include="Images\footer.png" />
     <Content Include="Images\haarlem1.jpg" />
     <Content Include="Images\haarlem2.jpg" />
     <Content Include="Images\haarlem3.jpg" />
+    <Content Include="Images\haarlem4.png" />
+    <Content Include="Images\header.png" />
     <Content Include="Images\menubarbottom.png" />
     <Content Include="Images\menubartop.png" />
     <Content Include="Scripts\jquery-1.8.2.js" />
