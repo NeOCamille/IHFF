@@ -85,3 +85,30 @@ footer {
     margin: 0 auto;
     background-image: url(../Images/footer.png);
 }
+
+/*-Matthijs-*/
+#program {
+    height: 365px;
+    background-image: url('../Images/programmaTemplate.png');
+    background-size:  1178px 365px;
+    background-repeat: no-repeat;
+}
+#program button {
+    position: relative;
+    top: 23px;
+    left: 120px;
+}
+
+#program button {
+    left: 259px;
+    top: 34px;
+    height: 80px;
+    width: 207px;
+    background-color: #3283BC;
+    border: none;
+}
+
+#program butten button:hover {
+    background-color: #dad6cd;
+}
+/*Einde -Matthijs-*/
