@@ -6,6 +6,7 @@ using System.Web;
 
 namespace IHFF_Websystem.Models
 {
+    // test comment
     public class Diner
     {
         [Required]
