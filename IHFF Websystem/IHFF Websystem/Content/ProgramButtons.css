@@ -1,0 +1,223 @@
+﻿/*Program buttons -Matthijs-*/
+#program {
+    height: 365px;
+    background-image: url('../Images/programmaTemplate.png');
+    background-size:  1178px 365px;
+    background-repeat: no-repeat;
+    position: relative;
+}
+#program button {
+    position: absolute;
+    background-color: #3283BC;
+    border: none;
+}
+#program button:hover {
+    background-color: #dad6cd;
+}
+#eID1 {
+    left: 212px;
+    top: 115px;
+    height: 77px;
+    width: 138px;
+}
+#eID2 {
+    left: 582px;
+    top: 193px;
+    height: 89px;
+    width: 91px;
+}
+#eID3 {
+    left: 259px;
+    top: 34px;
+    height: 40px;
+    width: 206px;
+}
+#eID4 {
+    left: 305px;
+    top: 74px;
+    height: 40px;
+    width: 230px;
+}
+#eID5 {
+    left: 305px;
+    top: 283px;
+    height: 82px;
+    width: 277px;
+}
+#eID6 {
+    left: 120px;
+    top: 194px;
+    height: 88px;
+    width: 230px;
+}
+#eID7 {
+    left: 674px;
+    top: 34px;
+    height: 40px;
+    width: 184px;
+}
+#eID8 {
+    left: 721px;
+    top: 74px;
+    height: 40px;
+    width: 230px;
+}
+#eID9 {
+    left: 674px;
+    top: 283px;
+    height: 82px;
+    width: 323px;
+}
+#eID10 {
+    left: 581px;
+    top: 115px;
+    height: 77px;
+    width: 139px;
+}
+#eID11 {
+    left: 952px;
+    top: 194px;
+    height: 88px;
+    width: 90px;
+}
+#eID12 {
+    left: 305px;
+    top: 87px;
+    height: 27px;
+    width: 230px;
+}
+#eID13 {
+    left: 490px;
+    top: 194px;
+    height: 88px;
+    width: 276px;
+}
+#eID14 {
+    left: 581px;
+    top: 87px;
+    height: 27px;
+    width: 231px;
+}
+#eID15 {
+    left: 259px;
+    top: 60px;
+    height: 27px;
+    width: 183px;
+}
+#eID16 {
+    left: 397px;
+    top: 34px;
+    height: 27px;
+    width: 46px;
+}
+#eID17 {
+    left: 536px;
+    top: 60px;
+    height: 27px;
+    width: 276px;
+}
+#eID18 {
+    left: 444px;
+    top: 34px;
+    height: 27px;
+    width: 183px;
+}
+#eID19 {
+    left: 905px;
+    top: 34px;
+    height: 80px;
+    width: 184px;
+}
+#eID20 {
+    left: 212px;
+    top: 284px;
+    height: 80px;
+    width: 369px;
+}
+#eID21 {
+    left: 767px;
+    top: 324px;
+    height: 40px;
+    width: 230px;
+}
+#eID22 {
+    left: 674px;
+    top: 284px;
+    height: 40px;
+    width: 323px;
+}
+#eID23 {
+    left: 490px;
+    top: 194px;
+    height: 44px;
+    width: 137px;
+}
+#eID24 {
+    left: 305px;
+    top: 115px;
+    height: 77px;
+    width: 137px;
+}
+#eID25 {
+    left: 305px;
+    top: 238px;
+    height: 44px;
+    width: 230px;
+}
+#eID26 {
+    left: 628px;
+    top: 194px;
+    height: 88px;
+    width: 230px;
+}
+#eID27 {
+    left: 212px;
+    top: 34px;
+    height: 40px;
+    width: 230px;
+}
+#eID28 {
+    left: 813px;
+    top: 34px;
+    height: 80px;
+    width: 276px;
+}
+#eID29 {
+    left: 212px;
+    top: 74px;
+    height: 40px;
+    width: 277px;
+}
+#eID30 {
+    left: 582px;
+    top: 74px;
+    height: 40px;
+    width: 230px;
+}
+#eID31 {
+    left: 443px;
+    top: 34px;
+    height: 40px;
+    width: 277px;
+}
+#eID32 {
+    left: 905px;
+    top: 283px;
+    height: 40px;
+    width: 184px;
+}
+#eID33 {
+    left: 582px;
+    top: 283px;
+    height: 81px;
+    width: 184px;
+}
+#eID34 {
+    left: 859px;
+    top: 323px;
+    height: 41px;
+    width: 184px;
+}
+
+
+/*Einde Buttons  -Matthijs-*/
