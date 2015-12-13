@@ -8,23 +8,23 @@ namespace IHFF_Websystem.Models
 {
     public class Login
     {
-        [Required(ErrorMessage = "Emailadres moet worden ingevuld!")]
-        [Display(Name = "Emailadres")]
-        public string EmailAdres { get; set; }
+        [Required(ErrorMessage = "Gebruikersnaam moet worden ingevuld!")]
+        [Display(Name = "Gebruikersnaam")]
+        public string gebruikersNaam { get; set; }
 
         [Required(ErrorMessage = "Wachtwoord moet worden ingevuld!")]
         [Display(Name = "Wachtwoord")]
-        public string Password { get; set; }
+        public string passWord { get; set; }
 
         public Login()
         {
 
         }
 
-        public Login(string EmailAdres, string Password)
+        public Login(string gebruikersNaam, string passWord)
         {
-            this.EmailAdres = EmailAdres;
-            this.Password = Password;
+            this.gebruikersNaam = gebruikersNaam;
+            this.passWord = passWord;
         }
     }
 }

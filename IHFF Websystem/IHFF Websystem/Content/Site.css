@@ -12,6 +12,16 @@ header {
     background-image: url(../Images/header.png);
 }
 
+a.navvtext {
+    text-decoration: none;
+    color: white;
+    font-family: Verdana;
+    display: block;
+    width: 240px;
+    height: 50px;
+    text-align: center;
+}
+
 nav {
     width: 1200px;
     height: 50px;
@@ -22,16 +32,15 @@ nav {
 #navigatie {
     list-style: none;
     width: 1200px;
-    position: relative;
-    left: 25px;
     margin: 0;
+    position: relative;
+    left: -60px;
 }
 
 #navigatie li {
     float: left;
     width: 240px;
     height: 50px;
-    display: block;
 }
 
 #nav2 {
@@ -45,7 +54,7 @@ nav {
     list-style: none;
     width: 1200px;
     position: relative;
-    left: 25px;
+    left: -40px;
     margin: 0 auto;
 }
 
