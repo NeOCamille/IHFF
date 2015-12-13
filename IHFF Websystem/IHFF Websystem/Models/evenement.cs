@@ -6,7 +6,7 @@ using System.Web;
 
 namespace IHFF_Websystem.Models
 {
-    public class Evenement
+    public abstract class Evenement
     {
         [Required]
         public int evenementID { get; set; }
@@ -23,11 +23,13 @@ namespace IHFF_Websystem.Models
         [Required]
         public double prijs { get; set; }
 
+        public int locatieID { get; set; }
+
         public Evenement()
         {
 
         }
-
+        /*
         public Evenement(int evenementID, string evenementNaam, DateTime startTijd, string beschrijving, double prijs)
         {
             this.evenementID = evenementID;
@@ -36,5 +38,6 @@ namespace IHFF_Websystem.Models
             this.beschrijving = beschrijving;
             this.prijs = prijs;
         }
+         */
     }
 }

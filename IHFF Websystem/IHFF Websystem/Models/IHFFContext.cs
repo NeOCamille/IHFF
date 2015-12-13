@@ -6,12 +6,16 @@ using System.Data.Entity;
 
 namespace IHFF_Websystem.Models
 {
+    public class InheritanceMappingContext : DbContext
+    {
+        public DbSet<Evenement> Evenementen { get; set; }
+    }
     public class IHFFContext : DbContext
     {
         public IHFFContext()
             : base("IHFFConnection")
         {
-            Database.SetInitializer<IHFFContext>(null);
+           // Database.SetInitializer<IHFFContext>(null);
         }
 
         public DbSet<Diner> Diners { get; set; }

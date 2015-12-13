@@ -14,6 +14,34 @@ namespace IHFF_Websystem.Controllers
 
         public ActionResult Index()
         {
+            //check if excist or create list
+            if (Session["wishlistEvenementList"] == null)
+            {
+                Session["wishlistEvenementList"] = new List<int>();
+            }
+            //Evenement MyEvent = new WishlistRepository().GetEvent(film.evenementID);
+
+            //retrieve wishlist
+            List<int> Mywishlist = Session["wishlistEvenementList"] as List<int>;
+            
+            List<ViewWishlist> MyList = new List<ViewWishlist>();
+
+            foreach (int id in Mywishlist)
+            {
+                ViewWishlist item = new ViewWishlist();
+                
+                Evenement MyEvent = new WishlistRepository().GetEvent(id);
+                item.name = MyEvent.evenementNaam;
+                item.starttijd = MyEvent.startTijd.ToString("dd MM yyyy HH:mm");
+                item.prijs = MyEvent.prijs.ToString();
+                item.beschrijving = MyEvent.beschrijving;
+                item.locatie = new WishlistRepository().GetLocatie(MyEvent.locatieID).locatieNaam;
+                item.regiseur = new WishlistRepository().GetFilm(MyEvent.evenementID).regisseur;
+                MyList.Add(item);
+            }
+
+            ViewBag.Mylist = MyList;
+
             return View();
         }
         public ActionResult Create()
@@ -58,6 +86,23 @@ namespace IHFF_Websystem.Controllers
         public ActionResult AddFilmToWishlist(Film film)
         {
             return View();
+        }
+        [HttpPost]
+        public ActionResult AddEvenementToWishlist(int id)
+        {
+            //check if excist or create list
+            if (Session["wishlistEvenementList"] == null) {
+                Session["wishlistEvenementList"] = new List<int>();
+            }
+            //Evenement MyEvent = new WishlistRepository().GetEvent(film.evenementID);
+
+            //add id to list
+            List<int> Mylist = Session["wishlistEvenementList"] as List<int>;
+            Mylist.Add(id);
+            Session["wishlistEvenementList"] = Mylist;
+
+            //return home
+            return RedirectToAction("Index", "Home");
         }
         [HttpPost]
         public ActionResult AddEvenementToWishlist(Evenement evenement)

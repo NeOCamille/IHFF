@@ -18,12 +18,12 @@ namespace IHFF_Websystem.Models
         {
 
         }
-
+        /*
         public Special(int evenementID, string evenementNaam, DateTime startTijd, string beschrijving, double prijs, string onderwerp, string spreker)
             : base(evenementID, evenementNaam, startTijd, beschrijving, prijs)
         {
             this.onderwerp = onderwerp;
             this.spreker = spreker;
-        }
+        }*/
     }
 }

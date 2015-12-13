@@ -16,5 +16,17 @@ namespace IHFF_Websystem.Models
             ctx.Diners.Add(diner);
             ctx.SaveChanges();
         }
+        public Evenement GetEvent(int ID)
+        {
+            return ctx.Evenementen.SingleOrDefault(c => c.evenementID == ID);   
+        }
+        public Locatie GetLocatie(int ID)
+        {
+            return ctx.Locaties.SingleOrDefault(c => c.locatieID == ID);
+        }
+        public Film GetFilm(int ID)
+        {
+            return ctx.Films.SingleOrDefault(c => c.evenementID == ID);
+        }
     }
 }

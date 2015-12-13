@@ -13,6 +13,7 @@
     alert();
     */
 
+    /* ### WHISLIST ### */
     /* Hide wishlist basket */
     $('#wishlistbasket').hide();
 
@@ -24,5 +25,11 @@
             $('#wishlistbasket').hide();
         }
         wishlistbasket_toggel = !wishlistbasket_toggel
+    });
+
+    $('.addToWishlist').click(function () {
+        myValue = $(this).attr('name');
+        if ($('#wishlistbasket ul').text() == myValue) 
+        $('#wishlistbasket ul').append('<li>'+myValue+'</li>');
     });
 });

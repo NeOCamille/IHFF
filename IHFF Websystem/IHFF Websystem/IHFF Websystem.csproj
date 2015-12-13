@@ -199,6 +199,7 @@
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Medewerker.cs" />
     <Compile Include="Models\Special.cs" />
+    <Compile Include="Models\ViewWishlist.cs" />
     <Compile Include="Models\Wishlist.cs" />
     <Compile Include="Models\WishlistEvenement.cs" />
     <Compile Include="Models\WishlistRepository.cs" />
