@@ -322,6 +322,7 @@
     <Content Include="Views\Medewerker\AddMedewerker.cshtml" />
     <Content Include="Views\Wishlist\Create.cshtml" />
     <Content Include="Views\Medewerker\Login.cshtml" />
+    <Content Include="Views\Medewerker\ShowData.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

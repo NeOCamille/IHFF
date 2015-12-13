@@ -1,0 +1,46 @@
+﻿@using IHFF_Websystem.Models
+
+@{
+    ViewBag.Title = "ShowData";
+}
+
+<h2>ShowData</h2>
+<table>
+    <tr>
+        <th>
+        </th>
+        <th>
+            ID
+        </th>
+        <th>
+            Code woord
+        </th>
+        <th>
+            Betaald
+        </th>
+        <th>
+            Opgehaald
+        </th>
+        <th>
+            Email Adres
+        </th>
+        <th>
+            Totaalprijs order
+        </th>
+    </tr>
+@foreach (var entry in Model)
+{
+    <tr style="border-bottom: 1px solid #ddd;">
+        <td>
+            @Html.ActionLink("Edit", "EditWishlist", new { ID = entry.wishlistID }); |
+            @Html.ActionLink("Delete", "DeleteWishlist", new { ID = entry.wishlistID });
+        </td>
+        <td>@entry.wishlistID</td>
+        <td>@entry.codeWoord</td>
+        <td>@entry.isBetaald</td>
+        <td>@entry.isOpgehaald</td>
+        <td>@entry.eMail</td>
+        <td>@entry.totaalPrijs</td>
+    </tr>
+}
+</table>

@@ -38,5 +38,35 @@ namespace IHFF_Websystem.Controllers
         {
             return View();
         }
+
+        [HttpPost]
+        public ActionResult Login(Login loginMedewerker)
+        {
+            if (ModelState.IsValid)
+            {
+                Medewerker medewerker = medewerkerRepository.GetMedewerker(loginMedewerker.gebruikersNaam, loginMedewerker.passWord);
+
+                if (medewerker != null)
+                {
+                    FormsAuthentication.SetAuthCookie(medewerker.gebruikersNaam, false);
+                    Session["IngelogdeMedewerker"] = medewerker;
+                    return RedirectToAction("ShowData", "Medewerker");
+                }
+                else
+                {
+                    ModelState.AddModelError("loginError", "Gebruikersnaam en wachtwoordcombinatie is fout");
+                }
+            }
+            return View(loginMedewerker);
+        }
+
+        public ActionResult ShowData()
+        {
+            Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
+
+            List<Wishlist>wishlistList = medewerkerRepository.ShowData(ingelogdeMedewerker);
+
+            return View(wishlistList);
+        }
     }
 }
