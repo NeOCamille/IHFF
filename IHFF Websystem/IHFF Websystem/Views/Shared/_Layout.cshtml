@@ -7,38 +7,9 @@
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
-    <!--<script type="text/javascript" src="@Url.Content("Scripts/jquery-1.8.2.js")"></script>-->
-    <!--<script type="text/javascript" src="@Url.Content("Scripts/slideshow.js")"></script>-->
+    @Scripts.Render("~/Content/JavaScript01.js")
     <script>
-        $(document).ready(function () {
-            $("#banner > div:gt(0)").hide();
-
-            setInterval(function () {
-                $('#banner > div:first')
-                  .fadeOut(1000)
-                  .next()
-                  .fadeIn(1000)
-                  .end()
-                  .appendTo('#banner');
-            }, 3000);
-            /* oke js werkt nu weg met deze stomme melding
-            alert();
-            */
-
-            /* Hide wishlist basket */
-            $('#wishlistbasket').hide();
-
-
-            wishlistbasket_toggel = false;
-            $('#whishlistlink').click(function () {
-                if (wishlistbasket_toggel == true) {
-                    $('#wishlistbasket').show();
-                } else {
-                    $('#wishlistbasket').hide();
-                }
-                wishlistbasket_toggel = !wishlistbasket_toggel
-            });
-        });
+        
     </script>
     @RenderSection("JavaScript", required: false)
     
@@ -47,7 +18,9 @@
 <body>
     <header style="margin-top:0; padding-top:1px;"><div style="display:block; text-align:right; margin-right:100px; font-size:20px; font-family:Arial; color:white; font-weight:bold; margin-bottom:0; padding:0 0 0 0; margin-top: 10px; margin-left: auto;" id="whishlistlink">Wishlist</div></header>
     <div id="wishlistbasket">
-        <p style="background-color:#fff; width:250px; height:500px; float:right; z-index:3;">Hello from the other side</p>
+        <ul>
+            <li></li>
+        </ul>
     </div>
     <nav>
         <ul id="navigatie">
