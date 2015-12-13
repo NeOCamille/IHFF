@@ -8,7 +8,6 @@ namespace IHFF_Websystem.Models
 {
     public class Medewerker
     {
-
         [Required]
         public int medewerkerID { get; set; }
 
@@ -18,6 +17,7 @@ namespace IHFF_Websystem.Models
         [Required]
         public string passWord { get; set; }
 
+        [Required]
         public string relevantie { get; set; }
 
         public Medewerker()

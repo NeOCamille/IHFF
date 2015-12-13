@@ -34,5 +34,9 @@ namespace IHFF_Websystem.Controllers
             return View(medewerker);
         }
 
+        public ActionResult Login()
+        {
+            return View();
+        }
     }
 }
