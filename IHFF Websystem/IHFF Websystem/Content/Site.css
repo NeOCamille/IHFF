@@ -95,3 +95,15 @@ footer {
     background-image: url(../Images/footer.png);
 }
 
+#wishlistbasket {
+    position:absolute;
+    float:right;
+    right:0;
+
+    z-index:100;
+
+    background-color:#fff;
+    border: 3px black solid;
+    width:250px;
+    height:500px;
+}
