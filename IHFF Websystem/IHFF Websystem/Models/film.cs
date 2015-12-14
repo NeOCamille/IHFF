@@ -16,11 +16,11 @@ namespace IHFF_Websystem.Models
 
         }
 
-        /*public Film(int evenementID, string evenementNaam, DateTime startTijd, string beschrijving, double prijs, string regisseur)
-            : base(evenementID, evenementNaam, startTijd, beschrijving, prijs)
+        public Film(int evenementID, string evenementNaam, DateTime startTijd, string beschrijving, double prijs, string regisseur, int locatieID)
+            : base(evenementID, evenementNaam, startTijd, beschrijving, prijs, locatieID)
         {
             this.regisseur = regisseur;
-        } */
+        }
 
     }
 }
