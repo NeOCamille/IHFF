@@ -10,5 +10,8 @@ namespace IHFF_Websystem.Models
         void AddMedewerker(Medewerker medewerker);
         Medewerker GetMedewerker(string gebruikersNaam, string passWord);
         List<Wishlist> ShowData(Medewerker medewerker);
+        void DeleteWishlist(int? wishlistID);
+        Wishlist EditWishlistID(int? wishlistID);
+        void EditWishlist(Wishlist newWishlist);
     }
 }

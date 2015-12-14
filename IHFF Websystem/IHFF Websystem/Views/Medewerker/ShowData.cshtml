@@ -3,8 +3,8 @@
 @{
     ViewBag.Title = "ShowData";
 }
-
-<h2>ShowData</h2>
+    <link href="@Url.Content("~/Content/showData.css")" rel="stylesheet" type="text/css" />
+<h2>Alle wishlists</h2>
 <table>
     <tr>
         <th>
@@ -30,10 +30,10 @@
     </tr>
 @foreach (var entry in Model)
 {
-    <tr style="border-bottom: 1px solid #ddd;">
+    <tr>
         <td>
-            @Html.ActionLink("Edit", "EditWishlist", new { ID = entry.wishlistID }); |
-            @Html.ActionLink("Delete", "DeleteWishlist", new { ID = entry.wishlistID });
+            @Html.ActionLink("Edit", "EditWishlist", new { wishlistID = entry.wishlistID }, new { @class = "link" }) |
+            @Html.ActionLink("Delete", "DeleteWishlist", new { wishlistID = entry.wishlistID }, new { @class = "link" })
         </td>
         <td>@entry.wishlistID</td>
         <td>@entry.codeWoord</td>

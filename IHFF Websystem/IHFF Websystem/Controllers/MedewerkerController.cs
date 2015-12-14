@@ -68,5 +68,33 @@ namespace IHFF_Websystem.Controllers
 
             return View(wishlistList);
         }
+
+        public ActionResult DeleteWishlist(int? wishlistID)
+        {
+            if (ModelState.IsValid)
+            {
+                medewerkerRepository.DeleteWishlist(wishlistID);
+                return RedirectToAction("ShowData", "Medewerker");
+            }
+            return View();
+        }
+
+        public ActionResult EditWishlist(int? wishlistID)
+        {
+            Wishlist wishlist = medewerkerRepository.EditWishlistID(wishlistID);
+            return View(wishlist);
+        }
+        
+        [HttpPost]
+        public ActionResult EditWishlist(Wishlist newWishlist)
+        {
+            if (ModelState.IsValid)
+            {
+                medewerkerRepository.EditWishlist(newWishlist);
+                return RedirectToAction("ShowData", "Medewerker");
+            }
+
+            return View();
+        }
     }
 }

@@ -1,0 +1,37 @@
+﻿@model IHFF_Websystem.Models.Wishlist
+
+@{
+    ViewBag.Title = "EditWishlist";
+}
+
+<h2>EditWishlist ID: @Model.wishlistID</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.HiddenFor(w => w.wishlistID)
+    @Html.HiddenFor(w => w.wishlistID)
+
+    @Html.LabelFor(w => w.codeWoord)
+    @Html.TextBoxFor(w => w.codeWoord)
+    @Html.ValidationMessageFor(w => w.codeWoord)
+    <br /><br />
+    
+    @Html.HiddenFor(w => w.isBetaald)
+    @Html.HiddenFor(w => w.isBetaald)
+    
+    @Html.HiddenFor(w => w.isOpgehaald)
+    @Html.HiddenFor(w => w.isOpgehaald)
+
+    @Html.LabelFor(w => w.eMail)
+    @Html.TextBoxFor(w => w.eMail)
+    @Html.ValidationMessageFor(w => w.eMail)
+    <br /><br />
+    
+    @Html.LabelFor(w => w.totaalPrijs)
+    @Html.TextBoxFor(w => w.totaalPrijs)
+    @Html.ValidationMessageFor(w => w.totaalPrijs)
+    <br /><br />
+
+    <input type="submit" value="Wijzig contact" />
+}
+
