@@ -325,6 +325,7 @@
     <Content Include="Views\Wishlist\Create.cshtml" />
     <Content Include="Views\Medewerker\Login.cshtml" />
     <Content Include="Views\Medewerker\ShowData.cshtml" />
+    <Content Include="Views\Wishlist\WishlistPopUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

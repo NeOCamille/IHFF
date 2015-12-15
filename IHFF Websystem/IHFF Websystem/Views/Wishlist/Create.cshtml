@@ -6,10 +6,10 @@
 <h2>Create</h2>
 @using IHFF_Websystem.Models
 @model IEnumerable<Film>
-@foreach (var contact in Model)
+@foreach (var film in Model)
 {
-    <strong>@contact.evenementNaam</strong><br />
-    <span>@contact.beschrijving</span>
+    <strong>(@film.evenementID) @film.evenementNaam</strong><br />
+    <span>@film.beschrijving</span>
     <br />
     <br />
     

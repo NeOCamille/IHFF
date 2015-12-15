@@ -39,6 +39,16 @@ namespace IHFF_Websystem.Models
             IEnumerable<Film> films = ctx.Films;
             return films;
         }
+        public IEnumerable<Film> GetAllWishlistFilms(int wishlistID)
+        {
+            List<Film> films = new List<Film>();
+            IEnumerable<WishlistEvenement> wishlistevents = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID);
+            foreach (WishlistEvenement wishlistevent in wishlistevents) {
+                //quick fix
+                films.Add(new WishlistRepository().ctx.Films.SingleOrDefault(f => f.evenementID == wishlistevent.evenementID));
+            }
+            return films;
+        }
         public void CreateFilm(string evenementNaam, DateTime startTijd, string beschrijving, double prijs, string regisseur, int locatieID)
         {
             int evenementID = 1;

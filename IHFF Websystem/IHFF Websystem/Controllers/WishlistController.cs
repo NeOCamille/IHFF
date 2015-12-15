@@ -66,7 +66,9 @@ namespace IHFF_Websystem.Controllers
                 Session["CurrentWishlist"] = WishlistID;
             }
 
-            IEnumerable<Film> films = new WishlistRepository().GetAllFilms();
+            int wishlistID = (int)Session["CurrentWishlist"];
+
+            IEnumerable<Film> films = new WishlistRepository().GetAllWishlistFilms(wishlistID);
 
             return View(films);
         }
