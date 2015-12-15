@@ -1,10 +1,45 @@
-﻿@model IHFF_Websystem.Models.Diner
-@{
+﻿@{
     
     ViewBag.Title = "Create";
 }
 
 <h2>Create</h2>
+@using IHFF_Websystem.Models
+@model IEnumerable<Film>
+@foreach (var contact in Model)
+{
+    <strong>@contact.evenementNaam</strong><br />
+    <span>@contact.beschrijving</span>
+    <br />
+    <br />
+    
+}
+<hr />
+<strong>Create Film</strong>
+@using (Html.BeginForm("CreateFilm", "Wishlist"))
+{
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <span>evenementNaam</span>
+    <input type="text" value="1234" name="evenementNaam" /><br />
+    <span>startTijd</span>
+    <input type="text" value="1234" name="startTijd" /><br />
+    <span>beschrijving</span>
+    <input type="text" value="1234" name="beschrijving" /><br />
+    <span>prijs</span>
+    <input type="text" value="1234" name="prijs" /><br />
+    <span>regisseur</span>
+    <input type="text" value="1234" name="regisseur" /><br />
+    <span>locatieID</span>
+    <input type="text" value="1234" name="locatieID" /><br />
+    <input type="submit" value="UpdateDB">
+}
+<hr />
+@Html.ActionLink("AddEvenementToWishlist", "AddEvenementToWishlist")
+<br />
+<input type="text" id="idTextarea" />
+<button name="1" class="addToWishlistDB">addToDB</button>
+<hr />
 <button name="Video1" class="addToWishlist">Add video1</button>
 <button name="Video2" class="addToWishlist">Add video2</button>
 <button name="Video3" class="addToWishlist">Add video3</button>

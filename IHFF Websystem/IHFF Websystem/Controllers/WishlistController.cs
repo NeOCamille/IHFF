@@ -49,10 +49,26 @@ namespace IHFF_Websystem.Controllers
             if (Session["CurrentWishlist"] == null)
             {
                 //test line
-                int WishlistID = new Random().Next();
+                int WishlistID = new Random().Next(0,100000);
                 Session["CurrentWishlist"] = WishlistID;
             }
-            return View();
+
+            IEnumerable<Film> films = new WishlistRepository().GetAllFilms();
+
+            return View(films);
+        }
+        public ActionResult WishlistPopUp()
+        {
+            if (Session["CurrentWishlist"] == null)
+            {
+                //test line
+                int WishlistID = new Random().Next(0, 100000);
+                Session["CurrentWishlist"] = WishlistID;
+            }
+
+            IEnumerable<Film> films = new WishlistRepository().GetAllFilms();
+
+            return View(films);
         }
         
 
@@ -85,26 +101,33 @@ namespace IHFF_Websystem.Controllers
         [HttpPost]
         public ActionResult AddFilmToWishlist(Film film)
         {
-            return View();
+
+            return RedirectToAction("Index", "Home");
         }
         [HttpPost]
         public ActionResult AddEvenementToWishlist(int id)
         {
-            //check if excist or create list
-            if (Session["wishlistEvenementList"] == null) {
-                Session["wishlistEvenementList"] = new List<int>();
-            }
-            //Evenement MyEvent = new WishlistRepository().GetEvent(film.evenementID);
+            // get current wishlist ID
+            int wishlistID = (int)Session["CurrentWishlist"];
+            // get evenementID form postdata
+            int evenementID = id;
 
-            //add id to list
-            List<int> Mylist = Session["wishlistEvenementList"] as List<int>;
-            Mylist.Add(id);
-            Session["wishlistEvenementList"] = Mylist;
+            //save event to wishlist in DB
+            new WishlistRepository().AddEvenement(wishlistID, evenementID);
 
-            //return home
-            return RedirectToAction("Index", "Home");
+            //don't return anyting because a background post handles this
+            return new EmptyResult();
         }
+
+        //test to add events
         [HttpPost]
+        public ActionResult CreateFilm(string evenementNaam, DateTime startTijd, string beschrijving, double prijs, string regisseur, int locatieID)
+        {
+            //save event to wishlist in DB
+            new WishlistRepository().CreateFilm(evenementNaam, startTijd, beschrijving, prijs, regisseur, locatieID);
+            //don't return anyting because a background post handles this
+            return new EmptyResult();
+        }
         public ActionResult AddEvenementToWishlist(Evenement evenement)
         {
             return View();

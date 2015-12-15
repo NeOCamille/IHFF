@@ -32,4 +32,16 @@
         if ($('#wishlistbasket ul').text() == myValue) 
         $('#wishlistbasket ul').append('<li>'+myValue+'</li>');
     });
+
+    /* test function */
+    $('.addToWishlistDB').click(function () {
+        myValue = $('#idTextarea').val();
+        $.post("/Wishlist/AddEvenementToWishlist", { id: myValue })
+        .done(function (msg) {
+            alert("Data Saved: " + msg);
+        })
+        .fail(function () {
+            alert("Failed");
+        });
+    });
 });
