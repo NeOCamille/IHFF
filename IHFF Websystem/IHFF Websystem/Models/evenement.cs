@@ -29,15 +29,14 @@ namespace IHFF_Websystem.Models
         {
 
         }
-        /*
-        public Evenement(int evenementID, string evenementNaam, DateTime startTijd, string beschrijving, double prijs)
+        public Evenement(int evenementID, string evenementNaam, DateTime startTijd, string beschrijving, double prijs, int locatieID)
         {
             this.evenementID = evenementID;
             this.evenementNaam = evenementNaam;
             this.startTijd = startTijd;
             this.beschrijving = beschrijving;
             this.prijs = prijs;
+            this.locatieID = locatieID;
         }
-         */
     }
 }

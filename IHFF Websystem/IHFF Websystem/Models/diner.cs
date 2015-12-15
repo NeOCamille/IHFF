@@ -27,8 +27,10 @@ namespace IHFF_Websystem.Models
         [Required]
         public double prijs { get; set; }
 
+        //Foreign Key
         public int wishlistID { get; set; }
 
+        //Foreign Key
         public int locatieID { get; set; }
 
         public Diner()
