@@ -198,6 +198,7 @@
     <Compile Include="Models\Locatie.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Medewerker.cs" />
+    <Compile Include="Models\Popup.cs" />
     <Compile Include="Models\Special.cs" />
     <Compile Include="Models\ViewWishlist.cs" />
     <Compile Include="Models\Wishlist.cs" />
@@ -325,6 +326,12 @@
     <Content Include="Views\Wishlist\Create.cshtml" />
     <Content Include="Views\Medewerker\Login.cshtml" />
     <Content Include="Views\Medewerker\ShowData.cshtml" />
+    <Content Include="Views\Programma\Donderdag.cshtml" />
+    <Content Include="Views\Programma\Index.cshtml" />
+    <Content Include="Views\Programma\Vrijdag.cshtml" />
+    <Content Include="Views\Programma\Woensdag.cshtml" />
+    <Content Include="Views\Programma\Zaterdag.cshtml" />
+    <Content Include="Views\Programma\Zondag.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
