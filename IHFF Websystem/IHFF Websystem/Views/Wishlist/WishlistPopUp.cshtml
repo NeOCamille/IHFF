@@ -1,0 +1,14 @@
+﻿@{
+    Layout = null;
+}
+
+@using IHFF_Websystem.Models
+@model IEnumerable<Film>
+@foreach (var film in Model)
+{
+    <strong>@film.evenementNaam</strong><br />
+    <span>@film.beschrijving</span>
+    <br />
+    <br />
+
+}

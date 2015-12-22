@@ -1,4 +1,17 @@
-﻿$(document).ready(function () {
+﻿/* Functions */
+function LoadWishlistPopup() {
+    /* include wishlist popup + timestamp for uncached version */
+    $.get('/Wishlist/WishlistPopup' + '?_=' + (new Date()).getTime())
+    .success(function (data) {
+        $('#wishlistbasket').html(data);
+    });
+}
+
+
+/* Standalone code */
+$(document).ready(function () {
+    LoadWishlistPopup();
+
     $("#banner > div:gt(0)").hide();
 
     setInterval(function () {
@@ -31,5 +44,18 @@
         myValue = $(this).attr('name');
         if ($('#wishlistbasket ul').text() == myValue) 
         $('#wishlistbasket ul').append('<li>'+myValue+'</li>');
+    });
+
+    /* test function */
+    $('.addToWishlistDB').click(function () {
+        myValue = $('#idTextarea').val();
+        $.post("/Wishlist/AddEvenementToWishlist", { id: myValue })
+        .done(function () {
+            alert("Data Saved");
+            LoadWishlistPopup();
+        })
+        .fail(function () {
+            alert("Failed");
+        });
     });
 });

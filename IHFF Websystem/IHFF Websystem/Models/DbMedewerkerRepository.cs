@@ -36,5 +36,24 @@ namespace IHFF_Websystem.Models
 
             return managementList;
         }
+
+        public void DeleteWishlist(int? wishlistID)
+        {
+            Wishlist wishlist = ctx.Wishlists.Find(wishlistID);
+            ctx.Wishlists.Remove(wishlist);
+            ctx.SaveChanges();
+        }
+
+        public Wishlist EditWishlistID(int? wishlistID)
+        {
+            Wishlist wishlist = ctx.Wishlists.Find(wishlistID);
+            return wishlist;
+        }
+
+        public void EditWishlist(Wishlist wishlist)
+        {
+            ctx.Entry(wishlist).State = System.Data.EntityState.Modified;
+            ctx.SaveChanges();
+        }
     }
 }
