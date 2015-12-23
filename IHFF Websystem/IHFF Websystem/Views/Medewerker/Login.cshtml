@@ -5,18 +5,20 @@
     ViewBag.Title = "Login";
 }
 
+<link rel="stylesheet" type="text/css" href="~/Content/loginPage.css">
+
 @Html.ValidationSummary()
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(m => m.gebruikersNaam)
-    @Html.TextBoxFor(m => m.gebruikersNaam)
+    @Html.LabelFor(m => m.gebruikersNaam, new { @class = "labels" })
+    @Html.TextBoxFor(m => m.gebruikersNaam, new { @class = "box" })
     @Html.ValidationMessageFor(m => m.gebruikersNaam)
     <br /><br />
 
-    @Html.LabelFor(m => m.passWord)
-    @Html.PasswordFor(m => m.passWord)
+    @Html.LabelFor(m => m.passWord, new { @class = "labels" })
+    @Html.PasswordFor(m => m.passWord, new { @class = "box" })
     @Html.ValidationMessageFor(m => m.passWord)
     <br /><br />
 
-    <input type="submit" value="Login" />
+    <input type="submit" value="Login" id="submitbutton"/>
 }
