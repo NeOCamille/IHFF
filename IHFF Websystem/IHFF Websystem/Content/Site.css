@@ -96,14 +96,41 @@ footer {
 }
 
 #wishlistbasket {
-    position:absolute;
-    float:right;
-    right:0;
-
-    z-index:100;
-
-    background-color:#fff;
+    position: absolute;
+    float: right;
+    right: 0;
+    z-index: 100;
+    background-color: #fff;
     border: 3px black solid;
-    width:250px;
-    height:500px;
+    width: 250px;
+    height: 500px;
+}
+
+a.medewerkertext {
+    text-decoration: none;
+    color: white;
+    font-size: 20px;
+    font-family: Arial;
+    font-weight: bold;
+}
+
+#whishlistlink {
+    display:block; 
+    font-size:20px; 
+    font-family:Arial; 
+    color:white; 
+    font-weight:bold; 
+    margin-top: 12px; 
+    margin-left: 24px; 
+    float: left;
+}
+
+header div.medewerkerlink {
+    display: block; 
+    text-align: right; 
+    margin-bottom: 0; 
+    padding: 0 0 0 0; 
+    margin-top: 12px; 
+    margin-left: 1184px; 
+    float: left;
 }
