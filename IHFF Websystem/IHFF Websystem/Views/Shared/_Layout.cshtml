@@ -16,7 +16,10 @@
 </head>
 
 <body>
-    <header style="margin-top:0; padding-top:1px;"><div style="display:block; text-align:right; margin-right:100px; font-size:20px; font-family:Arial; color:white; font-weight:bold; margin-bottom:0; padding:0 0 0 0; margin-top: 10px; margin-left: auto;" id="whishlistlink">Wishlist</div></header>
+    <header style="margin-top:0; padding-top:1px;">
+        <div class="medewerkerlink">@Html.ActionLink("Medewerker","login","Medewerker", null, new { @class = "medewerkertext" }) </div>
+            <div id="whishlistlink">Wishlist</div>
+</header>
     <div id="wishlistbasket">
         <ul>
             <li></li>

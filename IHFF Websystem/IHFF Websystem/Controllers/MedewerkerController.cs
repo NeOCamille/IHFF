@@ -64,7 +64,7 @@ namespace IHFF_Websystem.Controllers
         {
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
 
-            List<Wishlist>wishlistList = medewerkerRepository.ShowData(ingelogdeMedewerker);
+            List<Wishlist> wishlistList = medewerkerRepository.ShowData(ingelogdeMedewerker);
 
             return View(wishlistList);
         }
