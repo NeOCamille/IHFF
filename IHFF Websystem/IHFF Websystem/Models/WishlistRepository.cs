@@ -47,6 +47,8 @@ namespace IHFF_Websystem.Models
                 //quick fix
                 films.Add(new WishlistRepository().ctx.Films.SingleOrDefault(f => f.evenementID == wishlistevent.evenementID));
             }
+          
+            //ctx.Films.Include()
             return films;
         }
         public void CreateFilm(string evenementNaam, DateTime startTijd, string beschrijving, double prijs, string regisseur, int locatieID)
