@@ -51,6 +51,12 @@ namespace IHFF_Websystem.Models
             //ctx.Films.Include()
             return films;
         }
+
+        public IEnumerable<WishlistEvenement> GetAllWishlistEvenements(int wishlistID)
+        {
+            IEnumerable<WishlistEvenement>wishlistEvenements = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID);           
+            return wishlistEvenements;
+        }
         public void CreateFilm(string evenementNaam, DateTime startTijd, string beschrijving, double prijs, string regisseur, int locatieID)
         {
             int evenementID = 1;
@@ -58,5 +64,25 @@ namespace IHFF_Websystem.Models
             ctx.Films.Add(Myevent);
             ctx.SaveChanges();
         }
+
+        public void DeleteWishlistEvenement(int id)
+        {
+            WishlistEvenement wishlistEvenement = ctx.WishlistEvenements.Find(id);
+            ctx.WishlistEvenements.Remove(wishlistEvenement);
+            ctx.SaveChanges();
+        }
+
+        public void WishListReserveren(Wishlist wishlist)
+        {
+            wishlist.isBetaald = true;
+            ctx.Wishlists.Find(wishlist.wishlistID).isBetaald = true;
+            ctx.SaveChanges();
+        }
+
+        public Wishlist GetWishList(string codewoord)
+        {
+            return ctx.Wishlists.SingleOrDefault(w => w.codeWoord == codewoord);
+        }
+
     }
 }

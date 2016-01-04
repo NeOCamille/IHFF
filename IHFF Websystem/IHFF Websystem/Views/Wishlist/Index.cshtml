@@ -1,0 +1,42 @@
+﻿@model IEnumerable<IHFF_Websystem.Models.ViewWishlist>
+@{
+    ViewBag.Title = "Wishlist";
+}
+
+<h2>Wishlist</h2>
+@Html.ValidationSummary()
+@using (Html.BeginForm())
+{
+    <p> 
+        Codeword: @Html.TextBox("codeword")
+        <input type="submit" value="WishlistLaden" /> 
+        @Html.ActionLink("Reserveren", "Reserveren", "Wishlist", new { wishlist = Session["CurrentWishlist"] })
+    </p> 
+}
+<table>
+<tr>
+    <th>Evenement Naam</th>
+    <th></th>
+    <th>StartTijd</th>
+    <th></th>
+    <th>Prijs</th>
+    <th></th>
+    <th>Locatie</th>
+    <th></th>
+</tr>
+
+@foreach (var item in Model)
+{
+    <tr>
+        <td>@Html.DisplayFor(modelItem => item.name)</td>
+        <td> @Html.DisplayFor(modelItem => item.starttijd)</td>
+        <td>@Html.DisplayFor(modelItem => item.prijs)</td>
+        <td>@Html.DisplayFor(modelItem => item.locatie)</td>
+        <td><input type="submit" value="Delete"></td>
+    </tr>
+}
+</table>
+
+
+
+

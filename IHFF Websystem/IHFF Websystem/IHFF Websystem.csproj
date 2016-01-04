@@ -336,6 +336,8 @@
     <Content Include="Views\Programma\Zaterdag.cshtml" />
     <Content Include="Views\Programma\Zondag.cshtml" />
     <Content Include="Views\Programma\Popup.cshtml" />
+    <Content Include="Views\Wishlist\Index.cshtml" />
+    <Content Include="Views\Wishlist\Reserveren.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
