@@ -3,30 +3,35 @@
 @{
     ViewBag.Title = "AddMedewerker";
 }
-
+<div id="placement">
 <h2>Registreer</h2>
+
+<link rel="stylesheet" type="text/css" href="~/Content/loginPage.css">
 
 @using (Html.BeginForm())
 {
-    @Html.LabelFor(m => m.gebruikersNaam)
+    @Html.LabelFor(m => m.gebruikersNaam, "Gebruikersnaam:", new { @class = "labels" })
     @Html.TextBoxFor(m => m.gebruikersNaam)
     @Html.ValidationMessageFor(m => m.gebruikersNaam)
     <br /><br />
     
-    @Html.LabelFor(m => m.passWord)
+    @Html.LabelFor(m => m.passWord, "Wachtwoord:", new { @class = "labels" })
     @Html.TextBoxFor(m => m.passWord)
     @Html.ValidationMessageFor(m => m.passWord)
     <br /><br />
     
-    @Html.LabelFor(m => m.relevantie)
+    @Html.LabelFor(m => m.relevantie, "Relevantie:", new { @class = "labels" })
     @Html.TextBoxFor(m => m.relevantie)
     @Html.ValidationMessageFor(m => m.relevantie)
-  
-    <input type="submit" value="Registreer" />
+    <br /><br />
+    
+    @Html.LabelFor(m => m.locatieID, "Locatienummer:", new { @class = "labels" })
+    @Html.TextBoxFor(m => m.locatieID)
+    @Html.ValidationMessageFor(m => m.locatieID)
+    <br />
+    <br />
+     
+    <input type="submit" value="Registreer" id="submitbutton"/>
     
 }
-
-@using (Html.BeginForm())
-{
-    
-}
+</div>

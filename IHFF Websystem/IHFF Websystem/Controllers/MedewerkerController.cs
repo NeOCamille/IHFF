@@ -17,12 +17,12 @@ namespace IHFF_Websystem.Controllers
         {
             return View();
         }
-
+        [Authorize]
         public ActionResult AddMedewerker()
         {
             return View();
         }
-       
+        [Authorize]
         [HttpPost]
         public ActionResult AddMedewerker(Medewerker medewerker)
         {
@@ -59,14 +59,25 @@ namespace IHFF_Websystem.Controllers
             }
             return View(loginMedewerker);
         }
-
+        [Authorize]
         public ActionResult ShowData()
         {
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
 
-            List<Wishlist> wishlistList = medewerkerRepository.ShowData(ingelogdeMedewerker);
+            if (ingelogdeMedewerker.relevantie == "Management")
+            {
+                List<Wishlist> wishlistList = medewerkerRepository.ShowDataManagement(ingelogdeMedewerker);
 
-            return View(wishlistList);
+                return View(wishlistList);
+            }
+            else if (ingelogdeMedewerker.relevantie == "Dijkers")
+            {
+                List<Diner> dinerList = medewerkerRepository.ShowDataDiners(ingelogdeMedewerker);
+
+                return View(dinerList);
+            }
+
+            return View();
         }
 
         public ActionResult DeleteWishlist(int? wishlistID)

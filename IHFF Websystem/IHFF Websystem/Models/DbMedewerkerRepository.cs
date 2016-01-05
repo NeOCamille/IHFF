@@ -22,20 +22,33 @@ namespace IHFF_Websystem.Models
            return gevondenMedewerker;
        }
 
-        public List<Wishlist> ShowData(Medewerker ingelogdeMedewerker)
+        public List<Wishlist> ShowDataManagement(Medewerker ingelogdeMedewerker)
         {
             List<Wishlist> managementList = new List<Wishlist>();
 
-            if (ingelogdeMedewerker.relevantie == "Management")
-            {
                 foreach(Wishlist Wishlistentry in ctx.Wishlists)
                 {
                     managementList.Add(Wishlistentry);
                 }
-            }
 
             return managementList;
         }
+
+        public List<Diner> ShowDataDiners(Medewerker ingelogdeMedewerker)
+        {
+            List<Diner> dinerList = new List<Diner>();
+
+            foreach(Diner dinerEntry in ctx.Diners)
+            {
+                if (dinerEntry.locatieID == ingelogdeMedewerker.locatieID)
+                {
+                    dinerList.Add(dinerEntry);
+                }
+            }
+        
+            return dinerList;
+            }
+    
 
         public void DeleteWishlist(int? wishlistID)
         {
