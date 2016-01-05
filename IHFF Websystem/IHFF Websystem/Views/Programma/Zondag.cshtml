@@ -1,29 +1,49 @@
-﻿@{
+﻿@using IHFF_Websystem.Controllers
+@{
     ViewBag.Title = "Zondag";
 }
 
 <head>
-    <title>Woensdag</title>
+    <title>Zondag</title>
     <link rel="stylesheet" type="text/css" href="~/Content/ProgramButtons.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/jsPopup.js"></script>
+    <link type="text/css" rel="stylesheet" href="~/Content/popupStyle.css" />
 </head>
+
 <h2>Zondag</h2>
 <div id="program">
-    <button id="eID46" onclick="window.open()">Timboektoe</button>
-    <button id="eID47" onclick="window.open()">De kleur van Sneeuw</button>
-    <button id="eID48" onclick="window.open()">The Rise and Rise of Bitcoin</button>
-    <button id="eID49" onclick="window.open()">Moon</button>
-    <button id="eID50" onclick="window.open()">eXistenZ</button>
-    <button id="eID51" onclick="window.open()">THX 1138</button>
-    <button id="eID52" onclick="window.open()">Frank &amp; Robot</button>
-    <button id="eID53" onclick="window.open()">Gravity</button>
-    <button id="eID54" onclick="window.open()">Minority Report</button>
-    <button id="eID55" onclick="window.open()">The Pirate Bay AFK</button>
-    <button id="eID56" onclick="window.open()">Interstellar</button>
-    <button id="eID57" onclick="window.open()">Paprika</button>
-    <button id="eID58" onclick="window.open()">Triumph of the Nerds</button>
-    <button id="eID59" onclick="window.open()">Brazil</button>
-    <button id="eID60" onclick="window.open()">Primer</button>
+    <button id="eID46" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(46);">Timboektoe</button>
+    <button id="eID47" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(47);">De kleur van Sneeuw</button>
+    <button id="eID48" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(48);">The Rise and Rise of Bitcoin</button>
+    <button id="eID49" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(49);">Moon</button>
+    <button id="eID50" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(50);">eXistenZ</button>
+    <button id="eID51" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(51);">THX 1138</button>
+    <button id="eID52" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(52);">Frank &amp; Robot</button>
+    <button id="eID53" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(53);">Gravity</button>
+    <button id="eID54" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(54);">Minority Report</button>
+    <button id="eID55" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(55);">The Pirate Bay AFK</button>
+    <button id="eID56" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(56);">Interstellar</button>
+    <button id="eID57" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(57);">Paprika</button>
+    <button id="eID58" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(58);">Triumph of the Nerds</button>
+    <button id="eID59" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(59);">Brazil</button>
+    <button id="eID60" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(60);">Primer</button>
 </div>
 <p>
     Hierboven vindt u het festival programma...
 </p>
+
+
+<!--Popup HTML-->
+<div class="overlay-bg"></div>
+<div class="overlay-content popup1">
+    <img src="#" />
+    <h1 id="title">@Model.evenement.evenementNaam</h1>
+    <p id="locatie">@Model.evenement.locatieID.ToString()</p>
+    <p id="datum">Datum..</p>
+    <p id="tijd">@Model.evenement.startTijd.ToString()</p>
+    <p id="description">@Model.evenement.beschrijving</p>
+    <p id="prijslable">Prijs per ticket:</p>
+    <p id="prijs">&euro; @Model.evenement.prijs.ToString()</p>
+    <button class="close-btn">Voeg toe aan Wish List</button>
+</div>

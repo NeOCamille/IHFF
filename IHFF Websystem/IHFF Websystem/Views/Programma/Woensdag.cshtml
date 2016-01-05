@@ -1,4 +1,5 @@
-﻿@{
+﻿@using IHFF_Websystem.Controllers
+@{
     ViewBag.Title = "Woensdag";
 }
 <head>
@@ -11,16 +12,30 @@
 
 <h2>Woensdag</h2>
 <div id="program">
-    <button id="eID1" onclick="window.open()">Ervenis van Chrispijn</button>
-    <button id="eID2" onclick="window.open()">Haarlem Film Set</button>
-    <button id="eID3" onclick="window.open()">Wall-E</button>
-    <button id="eID4" onclick="window.open()">Moon</button>
-    <button id="eID5" onclick="window.open()">Brazil</button>
-    <button id="eID6" onclick="window.open()">Minority Report</button>
-    <button id="eID7" onclick="window.open()">eXistenZ</button>
-    <button id="eID8" onclick="window.open()">Interstellar</button>
-    <button id="eID9" onclick="window.open()">2001: A Space Oddysey</button>
+    <button id="eID1" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(1);">Ervenis van Chrispijn</button>
+    <button id="eID2" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(2);">Haarlem Film Set</button>
+    <button id="eID3" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(3);">Wall-E</button>
+    <button id="eID4" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(4);">Moon</button>
+    <button id="eID5" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(5);">Brazil</button>
+    <button id="eID6" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(6);">Minority Report</button>
+    <button id="eID7" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(7);">eXistenZ</button>
+    <button id="eID8" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(8);">Interstellar</button>
+    <button id="eID9" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(9);">2001: A Space Oddysey</button>
 </div>
 <p>
     Hierboven vindt u het festival programma...
 </p>
+
+<!--Popup HTML-->
+<div class="overlay-bg"></div>
+<div class="overlay-content popup1">
+    <img src="#" />
+    <h1 id="title">@Model.evenement.evenementNaam</h1>
+    <p id="locatie">@Model.evenement.locatieID.ToString()</p>
+    <p id="datum">Datum..</p>
+    <p id="tijd">@Model.evenement.startTijd.ToString()</p>
+    <p id="description">@Model.evenement.beschrijving</p>
+    <p id="prijslable">Prijs per ticket:</p>
+    <p id="prijs">&euro; @Model.evenement.prijs.ToString()</p>
+    <button class="close-btn">Voeg toe aan Wish List</button>
+</div>
