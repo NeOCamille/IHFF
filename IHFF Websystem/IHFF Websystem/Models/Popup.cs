@@ -7,15 +7,18 @@ namespace IHFF_Websystem.Models
 {
     public class Popup
     {
-        Evenement evenement { get; set; }
+        public Evenement evenement { get; set; }
 
-        public void OpenPopup(int eventId)
+        public Popup()
         {
-            //this.evenement = evenement where evenementID == eventId;
-            //popup.lblTitel.Text = evenement.naam;
-            //...
-            //...
-            //popup view open.
+            //TESTCODE (moet uiteindelijk ui db eventList komen.)
+            evenement = new Film();
+
+            evenement.evenementNaam = "";
+            evenement.beschrijving="";
+            evenement.evenementID = 0;
+            evenement.prijs = 0;
+            evenement.startTijd = default(DateTime);
         }
 
         public void AddToWishlist()

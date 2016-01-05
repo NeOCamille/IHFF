@@ -9,6 +9,7 @@ namespace IHFF_Websystem.Controllers
 {
     public class WishlistController : Controller
     {
+        private WishlistRepository wishlistRepository = new WishlistRepository();
         //
         // GET: /Wishlist/
 
@@ -42,8 +43,24 @@ namespace IHFF_Websystem.Controllers
 
             ViewBag.Mylist = MyList;
 
+            return View(MyList);
+        }
+
+        [HttpPost]
+        public ActionResult Index(string codeword)
+        {
+            Wishlist wishlist = wishlistRepository.GetWishList(codeword);
+            if (wishlist != null)
+            {
+                Session["CurrentWishlist"] = wishlist;
+                IEnumerable<WishlistEvenement> wishlistEvenements = wishlistRepository.GetAllWishlistEvenements(wishlist.wishlistID);
+                Session["wishlistEvenementList"] = wishlistEvenements;
+                return RedirectToAction("Index");
+            }
+
             return View();
         }
+
         public ActionResult Create()
         {
             if (Session["CurrentWishlist"] == null)
@@ -135,5 +152,24 @@ namespace IHFF_Websystem.Controllers
             return View();
         }
 
+
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            wishlistRepository.DeleteWishlistEvenement(id);
+            return RedirectToAction("Index"); 
+        }
+
+        public ActionResult Reserveren()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Reserveren(Wishlist wishlist)
+        {
+            wishlistRepository.WishListReserveren(wishlist);
+            return RedirectToAction("Index");      
+        }
     }
 }

@@ -1,26 +1,48 @@
-﻿@{
+﻿@using IHFF_Websystem.Models
+@using IHFF_Websystem.Controllers
+@model Popup
+@{
     ViewBag.Title = "Donderdag";
 }
 <head>
     <title>Woensdag</title>
     <link rel="stylesheet" type="text/css" href="~/Content/ProgramButtons.css">
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
+    <script type="text/javascript" src="~/Content/jsPopup.js"></script>
+    <link type="text/css" rel="stylesheet" href="~/Content/popupStyle.css" />
 </head>
+    
 <h2>Donderdag</h2>
 <div id="program">
-    <button id="eID10" onclick="window.open()">AIVD - De wolf in schaapskleren</button>
-    <button id="eID11" onclick="window.open()">Blood uit nood of ...</button>
-    <button id="eID12" onclick="window.open()">Ex Machina</button>
-    <button id="eID13" onclick="window.open()">Chappie</button>
-    <button id="eID14" onclick="window.open()">Her</button>
-    <button id="eID15" onclick="window.open()">Moon</button>
-    <button id="eID16" onclick="window.open()">Gravity</button>
-    <button id="eID17" onclick="window.open()">Comuter Chess</button>
-    <button id="eID18" onclick="window.open()">Artificial Intelligence</button>
-    <button id="eID19" onclick="window.open()">Minority Report</button>
-    <button id="eID20" onclick="window.open()">Ghost in the Shell</button>
-    <button id="eID21" onclick="window.open()">THX 1138</button>
-    <button id="eID22" onclick="window.open()">Solaris</button>
+    <button id="eID10" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(10);">AIVD - De wolf in schaapskleren</button>
+    <button id="eID11" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(11)">Blood uit nood of ...</button>
+    <button id="eID12" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(12);">Ex Machina</button>
+    <button id="eID13" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(13);">Chappie</button>
+    <button id="eID14" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(14);">Her</button>
+    <button id="eID15" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(15);">Moon</button>
+    <button id="eID16" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(16);">Gravity</button>
+    <button id="eID17" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(17);">Comuter Chess</button>
+    <button id="eID18" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(18);">Artificial Intelligence</button>
+    <button id="eID19" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(19);">Minority Report</button>
+    <button id="eID20" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(20);">Ghost in the Shell</button>
+    <button id="eID21" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(21);">THX 1138</button>
+    <button id="eID22" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(22);">Solaris</button>
 </div>
 <p>
     Hierboven vindt u het festival programma...
 </p>
+
+
+<!--Popup HTML-->
+<div class="overlay-bg"></div>
+<div class="overlay-content popup1">
+    <img src="#" />
+    <h1 id="title">@Model.evenement.evenementNaam</h1>
+    <p id="locatie">@Model.evenement.locatieID.ToString()</p>
+    <p id="datum">Datum..</p>
+    <p id="tijd">@Model.evenement.startTijd.ToString()</p>
+    <p id="description">@Model.evenement.beschrijving</p>
+    <p id="prijslable">Prijs per ticket:</p>
+    <p id="prijs">&euro; @Model.evenement.prijs.ToString()</p>
+    <button class="close-btn">Voeg toe aan Wish List</button>
+</div>
