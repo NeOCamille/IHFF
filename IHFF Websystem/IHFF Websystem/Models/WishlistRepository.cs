@@ -83,6 +83,5 @@ namespace IHFF_Websystem.Models
         {
             return ctx.Wishlists.SingleOrDefault(w => w.codeWoord == codewoord);
         }
-
     }
 }
