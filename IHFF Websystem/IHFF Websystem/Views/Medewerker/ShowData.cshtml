@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "ShowData";
 }
-    <link href="@Url.Content("~/Content/showData.css")" rel="stylesheet" type="text/css" />
+    <link href="@Url.Content("~/Content/showData.css?reload")" rel="stylesheet" type="text/css" />
 <h2>Alle wishlists</h2>
 <table>
     <tr>
@@ -32,8 +32,8 @@
 {
     <tr>
         <td>
-            @Html.ActionLink("Edit", "EditWishlist", new { wishlistID = entry.wishlistID }, new { @class = "link" }) |
-            @Html.ActionLink("Delete", "DeleteWishlist", new { wishlistID = entry.wishlistID }, new { @class = "link" })
+            @Html.ActionLink("Edit", "EditWishlist", new { wishlistID = entry.wishlistID }, new { @class = "link1" }) |
+            @Html.ActionLink("Delete", "DeleteWishlist", new { wishlistID = entry.wishlistID }, new { @class = "link1" })
         </td>
         <td>@entry.wishlistID</td>
         <td>@entry.codeWoord</td>
@@ -47,4 +47,3 @@
 
 </table>
 
-@Html.ActionLink("Maak nieuwe medewerker aan", "AddMedewerker", "Medewerker");

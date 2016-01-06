@@ -50,7 +50,7 @@ namespace IHFF_Websystem.Controllers
                 {
                     FormsAuthentication.SetAuthCookie(medewerker.gebruikersNaam, false);
                     Session["IngelogdeMedewerker"] = medewerker;
-                    return RedirectToAction("ShowData", "Medewerker");
+                    return RedirectToAction("Index", "Medewerker");
                 }
                 else
                 {
@@ -59,27 +59,29 @@ namespace IHFF_Websystem.Controllers
             }
             return View(loginMedewerker);
         }
+
+        public ActionResult Uitlog()
+        {
+            FormsAuthentication.SignOut();
+
+            return RedirectToAction("Login", "Medewerker");
+        }
+
         [Authorize]
         public ActionResult ShowData()
         {
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
-
             if (ingelogdeMedewerker.relevantie == "Management")
             {
                 List<Wishlist> wishlistList = medewerkerRepository.ShowDataManagement(ingelogdeMedewerker);
 
                 return View(wishlistList);
             }
-            else if (ingelogdeMedewerker.relevantie == "Dijkers")
-            {
-                List<Diner> dinerList = medewerkerRepository.ShowDataDiners(ingelogdeMedewerker);
-
-                return View(dinerList);
-            }
-
             return View();
         }
 
+
+        [Authorize]
         public ActionResult DeleteWishlist(int? wishlistID)
         {
             if (ModelState.IsValid)
@@ -90,6 +92,18 @@ namespace IHFF_Websystem.Controllers
             return View();
         }
 
+        [Authorize]
+        public ActionResult DeleteReservering(int? dinerID)
+        {
+            if (ModelState.IsValid)
+            {
+                medewerkerRepository.DeleteReservering(dinerID);
+                return RedirectToAction("GetReserveringen", "Medewerker");
+            }
+
+            return View();
+        }
+        [Authorize]
         public ActionResult EditWishlist(int? wishlistID)
         {
             Wishlist wishlist = medewerkerRepository.EditWishlistID(wishlistID);
@@ -107,5 +121,19 @@ namespace IHFF_Websystem.Controllers
 
             return View();
         }
+        [Authorize]
+        public ActionResult GetReserveringen()
+        {
+            Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
+            if (ModelState.IsValid)
+            {
+                List<Diner> reserveringsList = medewerkerRepository.ShowDataDiners(ingelogdeMedewerker);
+                return View(reserveringsList);
+            }
+
+            return View();
+
+        }
+        
     }
 }

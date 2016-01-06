@@ -5,21 +5,27 @@
     ViewBag.Title = "Login";
 }
 
-<link rel="stylesheet" type="text/css" href="~/Content/loginPage.css">
+<link rel="stylesheet" type="text/css" href="~/Content/loginPage.css?reload">
+<div id="placement">
 
-@Html.ValidationSummary()
-@using (Html.BeginForm())
-{
-    @Html.LabelFor(m => m.gebruikersNaam, new { @class = "labels" })
-    @Html.TextBoxFor(m => m.gebruikersNaam, new { @class = "box" })
-    @Html.ValidationMessageFor(m => m.gebruikersNaam)
-    <br /><br />
+    <h2>Login</h2>
+    @Html.ValidationSummary()
+    @using (Html.BeginForm())
+    {
+        @Html.LabelFor(m => m.gebruikersNaam, new { @class = "labels" })
+        @Html.TextBoxFor(m => m.gebruikersNaam, new { @class = "box" })
+        @Html.ValidationMessageFor(m => m.gebruikersNaam)
+        <br /><br />
 
-    @Html.LabelFor(m => m.passWord, new { @class = "labels" })
-    @Html.PasswordFor(m => m.passWord, new { @class = "box" })
-    @Html.ValidationMessageFor(m => m.passWord)
-    <br /><br />
+        @Html.LabelFor(m => m.passWord, new { @class = "labels" })
+        @Html.PasswordFor(m => m.passWord, new { @class = "box" })
+        @Html.ValidationMessageFor(m => m.passWord)
+        <br /><br />
 
-    <input type="submit" value="Login" id="submitbutton"/>
-  
-}
+        <input type="submit" value="Login" id="submitbutton" />
+
+    }
+
+</div>
+
+

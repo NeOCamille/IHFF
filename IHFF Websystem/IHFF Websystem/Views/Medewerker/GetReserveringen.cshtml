@@ -1,0 +1,75 @@
+﻿@using IHFF_Websystem.Models
+
+
+@{
+    ViewBag.Title = "GetReserveringen";
+}
+
+<link href="@Url.Content("~/Content/showData.css?reload")" rel="stylesheet" type="text/css" />
+
+<h2>GetReserveringen</h2>
+
+<table>
+    <tr>
+        <th>
+
+        </th>
+        <th>
+            ID
+        </th>
+        <th>
+            Start tijd
+        </th>
+        <th>
+            Eind tijd
+        </th>
+        <th>
+            FoodFilm
+        </th>
+        <th>
+            Op naam van
+        </th>
+        <th>
+            Prijs
+        </th>
+        <th>
+            Wishlist ID
+        </th>
+        <th>
+            Locatie ID
+        </th>
+    </tr>
+    @foreach (var entry in Model)
+    {
+        <tr>
+            <td>
+                @Html.ActionLink("Verwijder", "DeleteReservering", new { dinerID = entry.dinerID }, new { @class = "link1" })
+            </td>
+            <td>
+                @entry.dinerID
+            </td>
+            <td>
+                @entry.startTijd
+            </td>
+            <td>
+                @entry.eindTijd
+            </td>
+            <td>
+                @entry.foodFilm
+            </td>
+            <td>
+                @entry.opNaamVan
+            </td>
+            <td>
+                @entry.prijs
+            </td>
+            <td>
+                @entry.wishlistID
+            </td>
+            <td>
+                @entry.locatieID
+            </td>
+        </tr>
+    }
+
+</table>

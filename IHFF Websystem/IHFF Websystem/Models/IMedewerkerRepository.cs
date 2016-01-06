@@ -14,5 +14,6 @@ namespace IHFF_Websystem.Models
         void DeleteWishlist(int? wishlistID);
         Wishlist EditWishlistID(int? wishlistID);
         void EditWishlist(Wishlist newWishlist);
+        void DeleteReservering(int? dinerID);
     }
 }

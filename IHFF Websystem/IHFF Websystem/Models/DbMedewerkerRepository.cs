@@ -37,17 +37,25 @@ namespace IHFF_Websystem.Models
         public List<Diner> ShowDataDiners(Medewerker ingelogdeMedewerker)
         {
             List<Diner> dinerList = new List<Diner>();
-
-            foreach(Diner dinerEntry in ctx.Diners)
+            if (ingelogdeMedewerker.locatieID != 0 || ingelogdeMedewerker.relevantie != "Management")
             {
-                if (dinerEntry.locatieID == ingelogdeMedewerker.locatieID)
+                foreach (Diner dinerEntry in ctx.Diners)
+                {
+                    if (dinerEntry.locatieID == ingelogdeMedewerker.locatieID)
+                    {
+                        dinerList.Add(dinerEntry);
+                    }
+                }
+            }
+            else
+            {
+                foreach (Diner dinerEntry in ctx.Diners)
                 {
                     dinerList.Add(dinerEntry);
                 }
             }
-        
             return dinerList;
-            }
+        }
     
 
         public void DeleteWishlist(int? wishlistID)
@@ -66,6 +74,13 @@ namespace IHFF_Websystem.Models
         public void EditWishlist(Wishlist wishlist)
         {
             ctx.Entry(wishlist).State = System.Data.EntityState.Modified;
+            ctx.SaveChanges();
+        }
+
+        public void DeleteReservering(int? dinerID)
+        {
+            Diner diner = ctx.Diners.Find(dinerID);
+            ctx.Diners.Remove(diner);
             ctx.SaveChanges();
         }
     }
