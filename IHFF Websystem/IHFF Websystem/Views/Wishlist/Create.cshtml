@@ -4,6 +4,12 @@
 }
 
 <h2>Create</h2>
+<br />
+
+<!-- part of javascript function (test function) -->
+<input type="text" value="2" id="idTextarea" />
+<button name="1" class="addToWishlistDB">addToDB</button>
+<hr />
 @using IHFF_Websystem.Models
 @model IEnumerable<Film>
 @foreach (var film in Model)
@@ -15,6 +21,11 @@
     
 }
 <hr />
+<hr />
+Old and useless stuff below
+<hr />
+@Html.ActionLink("AddEvenementToWishlist", "AddEvenementToWishlist")
+
 <strong>Create Film</strong>
 @using (Html.BeginForm("CreateFilm", "Wishlist"))
 {
@@ -35,9 +46,7 @@
     <input type="submit" value="UpdateDB">
 }
 <hr />
-@Html.ActionLink("AddEvenementToWishlist", "AddEvenementToWishlist")
-<br />
-<input type="text" value="2" id="idTextarea" />
+
 <button name="1" class="addToWishlistDB">addToDB</button>
 <hr />
 <button name="Video1" class="addToWishlist">Add video1</button>

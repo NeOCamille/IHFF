@@ -9,8 +9,7 @@ namespace IHFF_Websystem.Controllers
 {
     public class ProgrammaController : Controller
     {
-        // eventList met alle events voor programma?
-        //List<Evenement> events;
+        WishlistRepository repository = new WishlistRepository();
         Popup popup = new Popup();
 
         public ActionResult Index()
@@ -43,10 +42,11 @@ namespace IHFF_Websystem.Controllers
             return View(popup);
         }
 
-        public void Popup(int i)
+        public Popup Popup(int id)
         {
             //Switch huidig popup
-            //popup.evenement = (Evenement)events.Where(e => e.evenementID == i);
+            popup.evenement = repository.GetEvent(id);
+            return popup;
         }
 
     }
