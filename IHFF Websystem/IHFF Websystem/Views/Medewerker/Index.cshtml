@@ -1,5 +1,13 @@
 ﻿@{
     ViewBag.Title = "Index";
 }
+<link rel="stylesheet" type="text/css" href="~/Content/indexMedewerkerPage.css?reload">
+<h2>Welkom @User.Identity.Name</h2>
+<br />
 
-<h2>Index</h2>
+@Html.ActionLink("Wishlists", "ShowData", "Medewerker", new { @class = "button" })
+@Html.ActionLink("Reserveringen", "GetReserveringen", "Medewerker", new { @class = "button" })
+@Html.ActionLink("Agenda", "GetAgenda", "Medewerker", new { @class = "button" })
+@Html.ActionLink("Instellingen", "Instellingen", "Medewerker", new { @class = "button" })
+@Html.ActionLink("Nieuw account", "AddMedewerker", "Medewerker", new { @class = "button" })
+@Html.ActionLink("Log uit", "Uitlog", "Medewerker", new { @class = "button" })

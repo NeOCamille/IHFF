@@ -338,6 +338,8 @@
     <Content Include="Views\Programma\Popup.cshtml" />
     <Content Include="Views\Wishlist\Index.cshtml" />
     <Content Include="Views\Wishlist\Reserveren.cshtml" />
+    <Content Include="Views\Medewerker\GetReserveringen.cshtml" />
+    <Content Include="Views\Medewerker\Uitlog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
