@@ -162,6 +162,7 @@ namespace IHFF_Websystem.Controllers
 
         public ActionResult Reserveren()
         {
+            ViewBag.wishlist = Session["CurrentWishlist"];
             return View();
         }
 

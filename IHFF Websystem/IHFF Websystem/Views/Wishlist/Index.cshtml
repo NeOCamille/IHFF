@@ -9,9 +9,11 @@
 {
     <p> 
         Codeword: @Html.TextBox("codeword")
-        <input type="submit" value="WishlistLaden" /> 
-        @Html.ActionLink("Reserveren", "Reserveren", "Wishlist", new { wishlist = Session["CurrentWishlist"] })
+        <input type="submit" value="WishlistLaden" />         
     </p> 
+    <p>
+        @Html.ActionLink("Reserveren", "Reserveren", "Wishlist", new { wishlist = Session["CurrentWishlist"] })
+    </p>
 }
 <table>
 <tr>
