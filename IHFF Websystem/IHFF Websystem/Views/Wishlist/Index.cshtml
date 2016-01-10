@@ -9,10 +9,10 @@
 {
     <p> 
         Codeword: @Html.TextBox("codeword")
-        <input type="submit" value="WishlistLaden" />         
+        <input type="submit" name="codeword" value="WishlistLaden" />         
     </p> 
     <p>
-        @Html.ActionLink("Reserveren", "Reserveren", "Wishlist", new { wishlist = Session["CurrentWishlist"] })
+        @Html.ActionLink("Reserveren", "Reserveren", "Wishlist", new { wishlist = ViewBag.wishlist})
     </p>
 }
 <table>
@@ -26,17 +26,21 @@
     <th>Locatie</th>
     <th></th>
 </tr>
-
-@foreach (var item in Model)
+@try { 
+foreach (var item in Model)
 {
     <tr>
         <td>@Html.DisplayFor(modelItem => item.name)</td>
         <td> @Html.DisplayFor(modelItem => item.starttijd)</td>
         <td>@Html.DisplayFor(modelItem => item.prijs)</td>
         <td>@Html.DisplayFor(modelItem => item.locatie)</td>
-        <td><input type="submit" value="Delete"></td>
+        <td>@Html.ActionLink("Delete", "Delete", "Wishlist", null)/td>
     </tr>
 }
+}
+catch{
+    <tr></tr>
+    }
 </table>
 
 

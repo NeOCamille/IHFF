@@ -1,6 +1,23 @@
-﻿@{
+﻿@model IHFF_Websystem.Models.Wishlist
+@{
     ViewBag.Title = "Reserveren";
 }
 
 <h2>Reserveren</h2>
-<input type="submit" value="Reserveren" />
+<h3>Are you sure you want to reserveren?</h3>
+<fieldset>
+    <legend>Contact</legend>
+    <p><b>CodeWoord</b></p>
+    <p>@Html.DisplayFor(model => model.codeWoord)</p>
+    <p><b>TotaalPrijs</b></p>
+    <p>@Html.DisplayFor(model => model.totaalPrijs)</p>
+
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="Reserveren" /> |
+        @Html.ActionLink("Back", "Index")
+    </p>
+}

@@ -46,13 +46,14 @@ namespace IHFF_Websystem.Controllers
             return View(MyList);
         }
 
-        [HttpPost]
-        public ActionResult Index(string codeword)
+        [HttpPost,ActionName("Index")]
+        public ActionResult WishlistLaden(string codeword)
         {
             Wishlist wishlist = wishlistRepository.GetWishList(codeword);
             if (wishlist != null)
             {
                 Session["CurrentWishlist"] = wishlist;
+                ViewBag.wishlist = wishlist;
                 IEnumerable<WishlistEvenement> wishlistEvenements = wishlistRepository.GetAllWishlistEvenements(wishlist.wishlistID);
                 Session["wishlistEvenementList"] = wishlistEvenements;
                 return RedirectToAction("Index");
@@ -162,8 +163,11 @@ namespace IHFF_Websystem.Controllers
 
         public ActionResult Reserveren()
         {
-            ViewBag.wishlist = Session["CurrentWishlist"];
-            return View();
+            Wishlist wishlist = (Wishlist)Session["CurrentWishlist"];
+            if (wishlist != null)
+                return View(wishlist);
+            else
+                return View("Index");
         }
 
         [HttpPost]
