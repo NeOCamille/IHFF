@@ -42,11 +42,11 @@ namespace IHFF_Websystem.Controllers
             return View(popup);
         }
 
-        public Popup Popup(int id)
+        public ActionResult Popup(int id, string url)
         {
             //Switch huidig popup
             popup.evenement = repository.GetEvent(id);
-            return popup;
+            return View(popup);
         }
 
     }

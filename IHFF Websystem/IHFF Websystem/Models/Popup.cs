@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using IHFF_Websystem.Controllers;
 
 namespace IHFF_Websystem.Models
 {
@@ -9,6 +10,7 @@ namespace IHFF_Websystem.Models
     {
         public Evenement evenement { get; set; }
 
+        public ProgrammaController controller;
         public Popup()
         {
             //TESTCODE (moet uiteindelijk ui db eventList komen.)
