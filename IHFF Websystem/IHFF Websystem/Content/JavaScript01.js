@@ -7,6 +7,16 @@ function LoadWishlistPopup() {
     });
 }
 
+//url in should be like: '/Wishlist/WishlistPopup'
+//example LoadPopup('/Wishlist/WishlistPopup', '#wishlistbasket');
+function LoadPopup(url, changeClassorId) {
+    /* include wishlist popup + timestamp for uncached version */
+    $.get(url + '?_=' + (new Date()).getTime())
+    .success(function (data) {
+        $(changeClassorId).html(data);
+    });
+}
+
 
 /* Standalone code */
 $(document).ready(function () {
@@ -49,7 +59,7 @@ $(document).ready(function () {
     /* test function */
     $('.addToWishlistDB').click(function () {
         myValue = $('#idTextarea').val();
-        $.post("/Wishlist/AddEvenementToWishlist", { id: myValue })
+        $.post("/Wishlist/AddEvenementToWishlist", { id: myValue, aantal:1 })
         .done(function () {
             alert("Data Saved");
             LoadWishlistPopup();

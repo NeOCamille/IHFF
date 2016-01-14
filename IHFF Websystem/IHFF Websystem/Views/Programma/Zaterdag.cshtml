@@ -1,31 +1,17 @@
-﻿@using IHFF_Websystem.Models
-@model Popup
-@using IHFF_Websystem.Controllers
-@{
-    ViewBag.Title = "Zaterdag";
-}
-
-<head>
-    <title>Zaterdag</title>
-    <link rel="stylesheet" type="text/css" href="~/Content/ProgramButtons.css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script type="text/javascript" src="~/Content/jsPopup.js"></script>
-    <link type="text/css" rel="stylesheet" href="~/Content/popupStyle.css" />
-</head>
-
+﻿
 <h2>Zaterdag</h2>
 <div id="program">
-    <button id="eID35" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(35);">Wat is Film?</button>
-    <button id="eID36" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(36);">Broken Circle</button>
-    <button id="eID37" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(37);">Triumph of the Nerds</button>
-    <button id="eID38" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(38);">Ex Machina</button>
-    <button id="eID39" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(39);">THX 1138</button>
-    <button id="eID40" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(40);">Frank &amp; Robot</button>
-    <button id="eID41" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(41);">Chappie</button>
-    <button id="eID42" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(42);">Moon</button>
-    <button id="eID43" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(43);">Her</button>
-    <button id="eID44" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(44);">2001: A Space Odyssey</button>
-    <button id="eID45" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(45);">Interstellar</button>
+    <button id="eID35" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/38', '#Popop1Content');">Wat is Film?</button>
+    <button id="eID36" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/39', '#Popop1Content');">Broken Circle</button>
+    <button id="eID37" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/43', '#Popop1Content');">Triumph of the Nerds</button>
+    <button id="eID38" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/44', '#Popop1Content');">Ex Machina</button>
+    <button id="eID39" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/45', '#Popop1Content');">THX 1138</button>
+    <button id="eID40" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/47', '#Popop1Content');">Frank &amp; Robot</button>
+    <button id="eID41" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/49', '#Popop1Content');">Chappie</button>
+    <button id="eID42" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/50', '#Popop1Content');">Moon</button>
+    <button id="eID43" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/51', '#Popop1Content');">Her</button>
+    <button id="eID44" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/53', '#Popop1Content');">2001: A Space Odyssey</button>
+    <button id="eID45" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/54', '#Popop1Content');">Interstellar</button>
 </div>
 <p>
     Hierboven vindt u het festival programma...
@@ -34,14 +20,6 @@
 
 <!--Popup HTML-->
 <div class="overlay-bg"></div>
-<div class="overlay-content popup1">
-    <img src="#" />
-    <h1 id="title">@Model.evenement.evenementNaam</h1>
-    <p id="locatie">@Model.evenement.locatieID.ToString()</p>
-    <p id="datum">Datum..</p>
-    <p id="tijd">@Model.evenement.startTijd.ToString()</p>
-    <p id="description">@Model.evenement.beschrijving</p>
-    <p id="prijslable">Prijs per ticket:</p>
-    <p id="prijs">&euro; @Model.evenement.prijs.ToString()</p>
-    <button class="close-btn">Voeg toe aan Wish List</button>
+<div class="overlay-content popup1" id="Popop1Content">
+
 </div>

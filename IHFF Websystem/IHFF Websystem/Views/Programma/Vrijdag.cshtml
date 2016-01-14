@@ -1,32 +1,18 @@
-﻿@using IHFF_Websystem.Models
-@model Popup
-@using IHFF_Websystem.Controllers
-@{
-    ViewBag.Title = "Vrijdag";
-}
-
-<head>
-    <title>Vrijdag</title>
-    <link rel="stylesheet" type="text/css" href="~/Content/ProgramButtons.css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script type="text/javascript" src="~/Content/jsPopup.js"></script>
-    <link type="text/css" rel="stylesheet" href="~/Content/popupStyle.css" />
-</head>
-
+﻿
 <h2>Vrijdag</h2>
 <div id="program">
-    <button id="eID23" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(23);">The Poetry of Details</button>
-    <button id="eID24" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(24);">Hollywood tijdens de Crisis</button>
-    <button id="eID25" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(25);">Frank &amp; Robot</button>
-    <button id="eID26" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(26);">The Pirate Bay AFK</button>
-    <button id="eID27" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(27);">Artificial Intelligence</button>
-    <button id="eID28" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(28);">Comuter Chess</button>
-    <button id="eID29" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(29);">Ghost in the Shell</button>
-    <button id="eID30" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(30);">The Rise and Rise of Bitcoin</button>
-    <button id="eID31" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(31);">The internets own Boy</button>
-    <button id="eID32" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(32);">Paprika</button>
-    <button id="eID33" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(33);">Brazil</button>
-    <button id="eID34" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(34);">Primer</button>
+    <button id="eID23" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/24', '#Popop1Content');">The Poetry of Details</button>
+    <button id="eID24" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/25', '#Popop1Content');">Hollywood tijdens de Crisis</button>
+    <button id="eID25" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/27', '#Popop1Content');">Frank &amp; Robot</button>
+    <button id="eID26" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/29', '#Popop1Content');">The Pirate Bay AFK</button>
+    <button id="eID27" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/30', '#Popop1Content');">Artificial Intelligence</button>
+    <button id="eID28" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/31', '#Popop1Content');">Comuter Chess</button>
+    <button id="eID29" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/32', '#Popop1Content');">Ghost in the Shell</button>
+    <button id="eID30" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/33', '#Popop1Content');">The Rise and Rise of Bitcoin</button>
+    <button id="eID31" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/34', '#Popop1Content');">The internets own Boy</button>
+    <button id="eID32" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/35', '#Popop1Content');">Paprika</button>
+    <button id="eID33" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/36', '#Popop1Content');">Brazil</button>
+    <button id="eID34" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/37', '#Popop1Content');">Primer</button>
 </div>
 <p>
     Hierboven vindt u het festival programma...
@@ -35,14 +21,6 @@
 
 <!--Popup HTML-->
 <div class="overlay-bg"></div>
-<div class="overlay-content popup1">
-    <img src="#" />
-    <h1 id="title">@Model.evenement.evenementNaam</h1>
-    <p id="locatie">@Model.evenement.locatieID.ToString()</p>
-    <p id="datum">Datum..</p>
-    <p id="tijd">@Model.evenement.startTijd.ToString()</p>
-    <p id="description">@Model.evenement.beschrijving</p>
-    <p id="prijslable">Prijs per ticket:</p>
-    <p id="prijs">&euro; @Model.evenement.prijs.ToString()</p>
-    <button class="close-btn">Voeg toe aan Wish List</button>
+<div class="overlay-content popup1" id="Popop1Content">
+
 </div>

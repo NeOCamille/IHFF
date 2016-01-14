@@ -12,40 +12,38 @@ namespace IHFF_Websystem.Controllers
         WishlistRepository repository = new WishlistRepository();
         Popup popup = new Popup();
 
-        public ActionResult Index()
+        public ActionResult Woensdag()
         {
             return View();
         }
 
-        public ActionResult Woensdag()
-        {
-            return View(popup);
-        }
-
         public ActionResult Donderdag()
         {
-            return View(popup);
+            return View();
         }
 
         public ActionResult Vrijdag()
         {
-            return View(popup);
+            return View();
         }
 
         public ActionResult Zaterdag()
         {
-            return View(popup);
+            return View();
         }
 
         public ActionResult Zondag()
         {
-            return View(popup);
+            return View();
         }
 
         public ActionResult Popup(int id, string url)
         {
             //Switch huidig popup
             popup.evenement = repository.GetEvent(id);
+            popup.datum = String.Format("{0:dd-MM-yyyy}", popup.evenement.startTijd);
+            popup.tijd = String.Format("{0:HH:mm}", popup.evenement.startTijd);
+            popup.locatieNaam = repository.GetLocatie(popup.evenement.locatieID).locatieNaam;
             return View(popup);
         }
 

@@ -118,6 +118,8 @@ namespace IHFF_Websystem.Controllers
             int wishlistID = (int)Session["CurrentWishlist"];
 
             IEnumerable<Film> films = new WishlistRepository().GetAllWishlistFilms(wishlistID);
+            IEnumerable<Special> specials = new WishlistRepository().GetAllWishlistSpecials(wishlistID);
+            IEnumerable<Diner> diners = new WishlistRepository().GetAllWishlistDiners(wishlistID);
 
             return View(films);
         }
@@ -156,7 +158,7 @@ namespace IHFF_Websystem.Controllers
             return RedirectToAction("Index", "Home");
         }
         [HttpPost]
-        public ActionResult AddEvenementToWishlist(int id)
+        public ActionResult AddEvenementToWishlist(int id, uint aantal)
         {
             // get current wishlist ID
             int wishlistID = (int)Session["CurrentWishlist"];
@@ -164,7 +166,7 @@ namespace IHFF_Websystem.Controllers
             int evenementID = id;
 
             //save event to wishlist in DB
-            new WishlistRepository().AddEvenement(wishlistID, evenementID);
+            new WishlistRepository().AddEvenement(wishlistID, evenementID, aantal);
 
             //don't return anyting because a background post handles this
             return new EmptyResult();

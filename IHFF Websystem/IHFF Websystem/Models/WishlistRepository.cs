@@ -16,9 +16,9 @@ namespace IHFF_Websystem.Models
             ctx.Diners.Add(diner);
             ctx.SaveChanges();
         }
-        public void AddEvenement(int wishlistID, int evenementID)
+        public void AddEvenement(int wishlistID, int evenementID, uint aantal)
         {
-            WishlistEvenement wishlistevent = new WishlistEvenement(wishlistID, evenementID);
+            WishlistEvenement wishlistevent = new WishlistEvenement(wishlistID, evenementID, aantal);
             ctx.WishlistEvenements.Add(wishlistevent);
             ctx.SaveChanges();
         }
@@ -51,6 +51,28 @@ namespace IHFF_Websystem.Models
             //ctx.Films.Include()
             return films;
         }
+
+        public IEnumerable<Special> GetAllWishlistSpecials(int wishlistID)
+        {
+            List<Special> specials = new List<Special>();
+            IEnumerable<WishlistEvenement> wishlistevents = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID);
+            foreach (WishlistEvenement wishlistevent in wishlistevents)
+            {
+                //quick fix
+                specials.Add(new WishlistRepository().ctx.Specials.SingleOrDefault(f => f.evenementID == wishlistevent.evenementID));
+            }
+
+            //ctx.Films.Include()
+            return specials;
+        }
+        public IEnumerable<Diner> GetAllWishlistDiners(int wishlistID)
+        {
+            IEnumerable<Diner> diners = ctx.Diners.Where(w => w.wishlistID == wishlistID);
+
+            //ctx.Films.Include()
+            return diners;
+        }
+
 
         public IEnumerable<WishlistEvenement> GetAllWishlistEvenements(int wishlistID)
         {
