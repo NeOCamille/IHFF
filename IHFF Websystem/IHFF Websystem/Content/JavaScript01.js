@@ -9,12 +9,11 @@ function LoadWishlistPopup() {
 
 //url in should be like: '/Wishlist/WishlistPopup'
 //example LoadPopup('/Wishlist/WishlistPopup', '#wishlistbasket');
-function LoadPopup(url, changeClass) {
+function LoadPopup(url, changeClassorId) {
     /* include wishlist popup + timestamp for uncached version */
     $.get(url + '?_=' + (new Date()).getTime())
     .success(function (data) {
-        $(changeClass).html(data);
-        alert();
+        $(changeClassorId).html(data);
     });
 }
 

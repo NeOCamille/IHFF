@@ -5,14 +5,16 @@
     <title>@ViewBag.Title - International Haarlem Film Festival</title>
     <meta name="viewport" content="width=device-width" />
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/popupStyle.css")
+    @Styles.Render("~/Content/ProgramButtons.css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/Content/JavaScript01.js")
+    @Scripts.Render("~/Content/jsPopup.js")
     <script>
         
     </script>
-    @RenderSection("JavaScript", required: false)
-    
+    @RenderSection("JavaScript", required: false)    
 </head>
 
 <body>
