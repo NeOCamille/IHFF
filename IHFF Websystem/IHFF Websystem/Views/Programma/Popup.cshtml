@@ -6,49 +6,12 @@
 @{
     ViewBag.Title = "Popup";
 }
-
 <img src="#" />
-<h1 id="title">@Model.evenement.evenementNaam</h1>
-<p id="locatie">@Model.evenement.locatieID.ToString()</p>
-<p id="datum">Datum..</p>
-<p id="tijd">@Model.evenement.startTijd.ToString()</p>
+<h2 id="title">@Model.evenement.evenementNaam</h2>
+<p id="locatie">@Model.locatieNaam</p>
+<p id="datum">@Model.datum</p>
+<p id="tijd">@Model.tijd</p>
 <p id="description">@Model.evenement.beschrijving</p>
-<p id="prijslable">Prijs per ticket: @ViewBag.random</p>
+<p id="prijslable">Prijs per ticket:</p>
 <p id="prijs">&euro; @Model.evenement.prijs.ToString()</p>
-<button class="close-btn">Voeg toe aan Wish List</button>
-
-<!--  DIT IS SOURCE HTML VAN DE POPUP. DIT BESTAND WORDT NIET IN HET SYSTEEM GEBRUIKT!
-            (mogelijk kunnen we het wel gebruiken als een gedeelde view voor alle weekdagen...)
-            -Matthijs
-    
-<head>
-    <title>Popup?</title>
-    <meta content="width=320px, initial-scale=1, user-scalable=yes" name="viewport" />
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script type="text/javascript" src="~/Content/jsPopup.js"></script>
-    <link type="text/css" rel="stylesheet" href="~/Content/popup style.css" />
-</head>
-
-    <div class="main-content">
-        <!-- Your Content Here --
-        <p>Please <a class="show-popup" href="#" data-showpopup="1">click here</a> to see the popup 1</p>
-        <p>Try <a class="show-popup" href="#" data-showpopup="2">clicking here</a> to see the popup 2</p>
-        <p>Now try <a class="show-popup" href="#" data-showpopup="3">clicking here</a> to see the popup 3</p>
-    </div>
-
-    <div class="overlay-bg">
-    </div>
-    <div class="overlay-content popup1">
-        <p>Oh My! This is a popup!</p>
-        <button class="close-btn">Close</button>
-    </div>
-    <div class="overlay-content popup2">
-        <p>This is the content for Popup #2</p>
-        <button class="close-btn">Close</button>
-    </div>
-    <div class="overlay-content popup3">
-        <p>This is the content for Popup #3</p>
-        <button class="close-btn">Close</button>
-    </div>
-
--->
+<button class="close-btn" >Voeg toe aan Wish List</button>

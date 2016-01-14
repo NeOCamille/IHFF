@@ -9,8 +9,10 @@ namespace IHFF_Websystem.Models
     public class Popup
     {
         public Evenement evenement { get; set; }
+        public string locatieNaam { get; set; }
+        public string tijd { get; set; }
+        public string datum { get; set; }
 
-        public ProgrammaController controller;
         public Popup()
         {
             //TESTCODE (moet uiteindelijk ui db eventList komen.)
