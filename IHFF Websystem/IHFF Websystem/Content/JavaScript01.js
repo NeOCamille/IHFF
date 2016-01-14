@@ -7,6 +7,16 @@ function LoadWishlistPopup() {
     });
 }
 
+//url in should be like: '/Wishlist/WishlistPopup'
+//example LoadPopup('/Wishlist/WishlistPopup', '#wishlistbasket');
+function LoadPopup(url, changeClass) {
+    /* include wishlist popup + timestamp for uncached version */
+    $.get(url + '?_=' + (new Date()).getTime())
+    .success(function (data) {
+        $(changeClass).html(data);
+    });
+}
+
 
 /* Standalone code */
 $(document).ready(function () {
