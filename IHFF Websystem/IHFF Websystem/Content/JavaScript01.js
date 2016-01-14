@@ -59,7 +59,7 @@ $(document).ready(function () {
     /* test function */
     $('.addToWishlistDB').click(function () {
         myValue = $('#idTextarea').val();
-        $.post("/Wishlist/AddEvenementToWishlist", { id: myValue })
+        $.post("/Wishlist/AddEvenementToWishlist", { id: myValue, aantal:1 })
         .done(function () {
             alert("Data Saved");
             LoadWishlistPopup();
