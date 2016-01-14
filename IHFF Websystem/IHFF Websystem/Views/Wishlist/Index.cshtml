@@ -1,4 +1,4 @@
-﻿@model IEnumerable<IHFF_Websystem.Models.ViewWishlist>
+﻿@model List<IHFF_Websystem.Models.ViewWishlist>
 @{
     ViewBag.Title = "Wishlist";
 }
@@ -11,38 +11,38 @@
         Codeword: @Html.TextBox("codeword")
         <input type="submit" name="codeword" value="WishlistLaden" />         
     </p> 
-    <p>
-        @Html.ActionLink("Reserveren", "Reserveren", "Wishlist", new { wishlist = ViewBag.wishlist})
-    </p>
 }
-<table>
-<tr>
-    <th>Evenement Naam</th>
-    <th></th>
-    <th>StartTijd</th>
-    <th></th>
-    <th>Prijs</th>
-    <th></th>
-    <th>Locatie</th>
-    <th></th>
-</tr>
-@try { 
+@if (Model !=null)
+{
+<p>Film</p> 
 foreach (var item in Model)
 {
-    <tr>
-        <td>@Html.DisplayFor(modelItem => item.name)</td>
-        <td> @Html.DisplayFor(modelItem => item.starttijd)</td>
-        <td>@Html.DisplayFor(modelItem => item.prijs)</td>
-        <td>@Html.DisplayFor(modelItem => item.locatie)</td>
-        <td>@Html.ActionLink("Delete", "Delete", "Wishlist", null)/td>
-    </tr>
-}
-}
-catch{
-    <tr></tr>
+    if (item.evenementID !=null)
+    { 
+        <p>@Html.DisplayFor(modelItem => item.name)</p>
+        <p>@Html.DisplayFor(modelItem => item.starttijd)</p>
+        <p>@Html.DisplayFor(modelItem => item.prijs)</p>
+        <p>@Html.DisplayFor(modelItem => item.locatie)</p>
+        <p>@Html.ActionLink("Delete", "DeleteEvenement", "Wishlist",new {id = item.evenementID}, null) </p>
     }
-</table>
+}
 
+<p>diner</p>
+foreach (var item in Model)
+        {
+            if (item.evenementID != null)
+            { 
+                    <p>@Html.DisplayFor(modelItem => item.name)</p>
+                    <p>@Html.DisplayFor(modelItem => item.starttijd)</p>
+                    <p>@Html.DisplayFor(modelItem => item.prijs)</p>
+                    <p>@Html.DisplayFor(modelItem => item.locatie)</p>
+                    <p>@Html.ActionLink("Delete", "DeleteDiner", "Wishlist", new { id = item.dinerID }, null)</p>
+        }
+}
+    <p>
+        @Html.ActionLink("Reserveren", "Reserveren", "Wishlist")
+    </p>
+}
 
 
 
