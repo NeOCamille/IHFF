@@ -1,17 +1,4 @@
-﻿@using IHFF_Websystem.Models
-@model Popup
-@using IHFF_Websystem.Controllers
-@{
-    ViewBag.Title = "Zondag";
-}
-
-<head>
-    <title>Zondag</title>
-    <link rel="stylesheet" type="text/css" href="~/Content/ProgramButtons.css">
-    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-    <script type="text/javascript" src="~/Content/jsPopup.js"></script>
-    <link type="text/css" rel="stylesheet" href="~/Content/popupStyle.css" />
-</head>
+﻿
 
 <h2>Zondag</h2>
 <div id="program">
@@ -38,14 +25,6 @@
 
 <!--Popup HTML-->
 <div class="overlay-bg"></div>
-<div class="overlay-content popup1">
-    <img src="#" />
-    <h1 id="title">@Model.evenement.evenementNaam</h1>
-    <p id="locatie">@Model.evenement.locatieID.ToString()</p>
-    <p id="datum">Datum..</p>
-    <p id="tijd">@Model.evenement.startTijd.ToString()</p>
-    <p id="description">@Model.evenement.beschrijving</p>
-    <p id="prijslable">Prijs per ticket:</p>
-    <p id="prijs">&euro; @Model.evenement.prijs.ToString()</p>
-    <button class="close-btn">Voeg toe aan Wish List</button>
+<div class="overlay-content popup1" id="Popop1Content">
+
 </div>

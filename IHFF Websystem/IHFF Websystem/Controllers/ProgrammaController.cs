@@ -12,34 +12,29 @@ namespace IHFF_Websystem.Controllers
         WishlistRepository repository = new WishlistRepository();
         Popup popup = new Popup();
 
-        public ActionResult Index()
+        public ActionResult Woensdag()
         {
             return View();
         }
 
-        public ActionResult Woensdag()
-        {
-            return View(popup);
-        }
-
         public ActionResult Donderdag()
         {
-            return View(popup);
+            return View();
         }
 
         public ActionResult Vrijdag()
         {
-            return View(popup);
+            return View();
         }
 
         public ActionResult Zaterdag()
         {
-            return View(popup);
+            return View();
         }
 
         public ActionResult Zondag()
         {
-            return View(popup);
+            return View();
         }
 
         public ActionResult Popup(int id, string url)

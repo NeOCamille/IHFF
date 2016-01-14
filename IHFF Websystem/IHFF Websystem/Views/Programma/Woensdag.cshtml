@@ -1,12 +1,5 @@
-﻿@using IHFF_Websystem.Models
-@model Popup
-@using IHFF_Websystem.Controllers
-
-
-
+﻿
 <h2><span style="color: #ffffff">Programma:  </span>Woensdag</h2>
-@Html.ActionLink("Test","Popup", "Programma", new { id = 1 }, null)
-@Html.ActionLink("Popup", "Programma", new { id = 1, url = Request.Url.ToString() }, null)
 <div id="program">
     <button id="eID1" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/1', '#Popop1Content');">Ervenis van Chrispijn</button>
     <button id="eID2" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/2', '#Popop1Content');">Haarlem Film Set</button>
@@ -21,3 +14,9 @@
 <p>
     Hierboven vindt u het festival programma...
 </p>
+
+<!--Popup HTML-->
+<div class="overlay-bg"></div>
+<div class="overlay-content popup1" id="Popop1Content">
+
+</div>
