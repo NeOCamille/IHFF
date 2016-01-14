@@ -147,3 +147,30 @@ h2 {
 .classs {
     padding-top: 15px;
 }
+
+
+/*Locaties. -Matthijs*/
+#container{
+    width:900px;
+}
+#left {
+    width: 600px;
+    float:left;
+}
+#lColumn{
+    float:left;
+    width:300px;
+}
+#rColumn{
+    float:right;
+    width:300px;
+}
+#Restaurants{
+    clear:both;
+    margin-top: 300px;
+}
+#map{
+    float:right;
+    width:260px;
+    height:200px;
+}
