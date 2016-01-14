@@ -83,5 +83,21 @@ namespace IHFF_Websystem.Models
             ctx.Diners.Remove(diner);
             ctx.SaveChanges();
         }
+
+        public List<Evenement> ShowEvenementen(Medewerker ingelogdeMedewerker)
+        {
+            List<Evenement> evenementen = new List<Evenement>();
+
+            if (ingelogdeMedewerker.relevantie == "Management" || ingelogdeMedewerker.locatieID == 0)
+            {
+                foreach (Evenement entry in ctx.Evenementen)
+                {
+                    evenementen.Add(entry);
+                }
+            }
+
+            return evenementen;
+
+        }
     }
 }

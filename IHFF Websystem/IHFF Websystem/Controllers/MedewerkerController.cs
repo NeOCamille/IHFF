@@ -134,6 +134,17 @@ namespace IHFF_Websystem.Controllers
             return View();
 
         }
+
+        [Authorize]
+        public ActionResult GetAgenda()
+        {
+            Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
+            if (ModelState.IsValid)
+            {
+                List<Evenement> evenementenList = medewerkerRepository.ShowEvenementen(ingelogdeMedewerker)
+            }
+            return View();
+        }
         
     }
 }

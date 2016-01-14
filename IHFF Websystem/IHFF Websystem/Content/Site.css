@@ -139,6 +139,11 @@ header div.medewerkerlink {
 }
 
 h2 {
-    margin: 0;
+    margin: 0px;
     font-family: Arial;
+    color: #413f4b;
+}
+
+.classs {
+    padding-top: 15px;
 }
