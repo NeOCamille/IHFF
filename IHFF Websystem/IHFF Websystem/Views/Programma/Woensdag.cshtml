@@ -12,8 +12,9 @@
 
 <h2><span style="color: #ffffff">Programma:  </span>Woensdag</h2>
 @Html.ActionLink("Test","Popup", "Programma", new { id = 1 }, null)
+@Html.ActionLink("Popup", "Programma", new { id = 1, url = Request.Url.ToString() }, null)
 <div id="program">
-    <button id="eID1" class="show-popup" data-showpopup="1" onclick="@Html.ActionLink("Popup", "Programma", new { id = 1, url = Request.Url.ToString()}, null)">Ervenis van Chrispijn</button>
+    <button id="eID1" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/1', '#overlay-content popup1');">Ervenis van Chrispijn</button>
     <button id="eID2" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(2);">Haarlem Film Set</button>
     <button id="eID3" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(3);">Wall-E</button>
     <button id="eID4" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(4);">Moon</button>

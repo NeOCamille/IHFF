@@ -14,6 +14,7 @@ function LoadPopup(url, changeClass) {
     $.get(url + '?_=' + (new Date()).getTime())
     .success(function (data) {
         $(changeClass).html(data);
+        alert();
     });
 }
 
