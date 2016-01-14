@@ -46,6 +46,8 @@ namespace IHFF_Websystem.Controllers
         {
             //Switch huidig popup
             popup.evenement = repository.GetEvent(id);
+            popup.datum = popup.evenement.startTijd.ToString("{0:dd-MM-YYYY}");
+            popup.tijd = popup.evenement.startTijd.ToString("{0:HH:mm}");
             popup.locatieNaam = repository.GetLocatie(popup.evenement.locatieID).locatieNaam;
             return View(popup);
         }
