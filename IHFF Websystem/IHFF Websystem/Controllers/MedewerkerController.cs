@@ -141,7 +141,7 @@ namespace IHFF_Websystem.Controllers
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
             if (ModelState.IsValid)
             {
-                List<Evenement> evenementenList = medewerkerRepository.ShowEvenementen(ingelogdeMedewerker);
+                //List<Evenement> evenementenList = medewerkerRepository.ShowEvenementen(ingelogdeMedewerker);
             }
             return View();
         }
