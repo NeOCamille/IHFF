@@ -46,6 +46,7 @@ namespace IHFF_Websystem.Controllers
         {
             //Switch huidig popup
             popup.evenement = repository.GetEvent(id);
+            ViewBag.random = new Random().Next(0,1000);
             return View(popup);
         }
 

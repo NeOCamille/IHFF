@@ -9,7 +9,7 @@
 @Html.ActionLink("Popup", "Programma", new { id = 1, url = Request.Url.ToString() }, null)
 <div id="program">
     <button id="eID1" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/1', '#Popop1Content');">Ervenis van Chrispijn</button>
-    <button id="eID2" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(2);">Haarlem Film Set</button>
+    <button id="eID2" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/2', '#Popop1Content');">Haarlem Film Set</button>
     <button id="eID3" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(3);">Wall-E</button>
     <button id="eID4" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(4);">Moon</button>
     <button id="eID5" class="show-popup" data-showpopup="1" onclick="@((ProgrammaController)this.ViewContext.Controller).Popup(5);">Brazil</button>
@@ -31,7 +31,7 @@
     <p id="datum">Datum..</p>
     <p id="tijd">@Model.evenement.startTijd.ToString()</p>
     <p id="description">@Model.evenement.beschrijving</p>
-    <p id="prijslable">Prijs per ticket:</p>
+    <p id="prijslable">Prijs per ticket: -</p>
     <p id="prijs">&euro; @Model.evenement.prijs.ToString()</p>
     <button class="close-btn">Voeg toe aan Wish List</button>
 </div>

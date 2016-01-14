@@ -7,8 +7,16 @@
     ViewBag.Title = "Popup";
 }
 
+<img src="#" />
+<h1 id="title">@Model.evenement.evenementNaam</h1>
+<p id="locatie">@Model.evenement.locatieID.ToString()</p>
+<p id="datum">Datum..</p>
+<p id="tijd">@Model.evenement.startTijd.ToString()</p>
+<p id="description">@Model.evenement.beschrijving</p>
+<p id="prijslable">Prijs per ticket: @ViewBag.random</p>
+<p id="prijs">&euro; @Model.evenement.prijs.ToString()</p>
+<button class="close-btn">Voeg toe aan Wish List</button>
 
-<p>Raav is geweldig want het werkt</p>
 <!--  DIT IS SOURCE HTML VAN DE POPUP. DIT BESTAND WORDT NIET IN HET SYSTEEM GEBRUIKT!
             (mogelijk kunnen we het wel gebruiken als een gedeelde view voor alle weekdagen...)
             -Matthijs
