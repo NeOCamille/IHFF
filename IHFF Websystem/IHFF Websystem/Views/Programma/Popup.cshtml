@@ -13,5 +13,5 @@
 <p id="tijd">@Model.tijd</p>
 <p id="description">@Model.evenement.beschrijving</p>
 <p id="prijslable">Prijs per ticket:</p>
-<p id="prijs">&euro; @Model.evenement.prijs.ToString()</p>
+<p id="prijs">&euro; @Model.evenement.prijs.ToString("{0.00}")</p>
 <button class="close-btn" >Voeg toe aan Wish List</button>
