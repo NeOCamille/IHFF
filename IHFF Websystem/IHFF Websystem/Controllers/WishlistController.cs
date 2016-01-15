@@ -15,6 +15,17 @@ namespace IHFF_Websystem.Controllers
 
         public ActionResult Index()
         {
+<<<<<<< HEAD
+            //check if excists or create list
+            if (Session["wishlistEvenementList"] == null)
+            {
+                Session["wishlistEvenementList"] = new List<int>();
+            }
+            //Evenement MyEvent = new WishlistRepository().GetEvent(film.evenementID);
+
+            //retrieve wishlist
+            List<int> Mywishlist = Session["wishlistEvenementList"] as List<int>;
+=======
             //check if excist or create list
             //if (Session["wishlistEvenementList"] == null)
             //{
@@ -24,6 +35,7 @@ namespace IHFF_Websystem.Controllers
 
             ////retrieve wishlist
             //List<int> Mywishlist = Session["wishlistEvenementList"] as List<int>;
+>>>>>>> 35c2b9686f6665692f02e553d8e3fa984da8a4a5
             
             //List<ViewWishlist> MyList = new List<ViewWishlist>();
 
@@ -117,9 +129,9 @@ namespace IHFF_Websystem.Controllers
 
             int wishlistID = (int)Session["CurrentWishlist"];
 
-            IEnumerable<Film> films = new WishlistRepository().GetAllWishlistFilms(wishlistID);
+            IEnumerable<Film> films       = new WishlistRepository().GetAllWishlistFilms(wishlistID);
             IEnumerable<Special> specials = new WishlistRepository().GetAllWishlistSpecials(wishlistID);
-            IEnumerable<Diner> diners = new WishlistRepository().GetAllWishlistDiners(wishlistID);
+            IEnumerable<Diner> diners     = new WishlistRepository().GetAllWishlistDiners(wishlistID);
 
             return View(films);
         }
