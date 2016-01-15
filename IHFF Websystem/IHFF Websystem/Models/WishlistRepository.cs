@@ -87,10 +87,46 @@ namespace IHFF_Websystem.Models
             ctx.SaveChanges();
         }
 
+        public List<Evenement> GetMyWishlistEvenements(int wishlistID)
+        {
+            List<Evenement> mywishlistevenement = new List<Evenement>();
+            IEnumerable<WishlistEvenement> wishlistevents = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID);
+            foreach (WishlistEvenement wishlistevent in wishlistevents)
+            {
+                mywishlistevenement.Add(ctx.Evenementen.SingleOrDefault(e => e.evenementID == wishlistevent.evenementID));               
+            }
+            return mywishlistevenement;
+        }
+        
+        public List<Diner> Getmywishlistdiner(int wishlistID)
+        {
+            List<Diner> mywishlistdiner = new List<Diner>();
+            IEnumerable<Diner> diners = ctx.Diners.Where(d => d.wishlistID == wishlistID);
+            foreach (Diner diner in diners)
+            {
+                mywishlistdiner.Add(diner);
+            }
+            return mywishlistdiner;
+
+        }
+
+        public WishlistEvenement GetWishlistEvenement(int wishlistID, int evenementID)
+        {
+            WishlistEvenement wishlistevenement = ctx.WishlistEvenements.SingleOrDefault(w => w.wishlistID == wishlistID && w.evenementID == evenementID);
+            return wishlistevenement;
+        }
+
         public void DeleteWishlistEvenement(int id)
         {
             WishlistEvenement wishlistEvenement = ctx.WishlistEvenements.Find(id);
             ctx.WishlistEvenements.Remove(wishlistEvenement);
+            ctx.SaveChanges();
+        }
+
+        public void DeleteDiner(int id)
+        {
+            Diner diner = ctx.Diners.Find(id);
+            ctx.Diners.Remove(diner);
             ctx.SaveChanges();
         }
 
@@ -104,6 +140,11 @@ namespace IHFF_Websystem.Models
         public Wishlist GetWishList(string codewoord)
         {
             return ctx.Wishlists.SingleOrDefault(w => w.codeWoord == codewoord);
+        }
+
+        public Wishlist GetWishList(int wishlistID)
+        {
+            return ctx.Wishlists.SingleOrDefault(w => w.wishlistID == wishlistID);
         }
     }
 }

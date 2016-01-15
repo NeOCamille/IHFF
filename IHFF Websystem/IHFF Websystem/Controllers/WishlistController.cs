@@ -15,6 +15,7 @@ namespace IHFF_Websystem.Controllers
 
         public ActionResult Index()
         {
+<<<<<<< HEAD
             //check if excists or create list
             if (Session["wishlistEvenementList"] == null)
             {
@@ -24,26 +25,71 @@ namespace IHFF_Websystem.Controllers
 
             //retrieve wishlist
             List<int> Mywishlist = Session["wishlistEvenementList"] as List<int>;
+=======
+            //check if excist or create list
+            //if (Session["wishlistEvenementList"] == null)
+            //{
+            //    Session["wishlistEvenementList"] = new List<int>();
+            //}
+            ////Evenement MyEvent = new WishlistRepository().GetEvent(film.evenementID);
+
+            ////retrieve wishlist
+            //List<int> Mywishlist = Session["wishlistEvenementList"] as List<int>;
+>>>>>>> 35c2b9686f6665692f02e553d8e3fa984da8a4a5
             
-            List<ViewWishlist> MyList = new List<ViewWishlist>();
+            //List<ViewWishlist> MyList = new List<ViewWishlist>();
 
-            foreach (int id in Mywishlist)
-            {
-                ViewWishlist item = new ViewWishlist();
+            //foreach (int id in Mywishlist)
+            //{
+            //    ViewWishlist item = new ViewWishlist();
                 
-                Evenement MyEvent = new WishlistRepository().GetEvent(id);
-                item.name = MyEvent.evenementNaam;
-                item.starttijd = MyEvent.startTijd.ToString("dd MM yyyy HH:mm");
-                item.prijs = MyEvent.prijs.ToString();
-                item.beschrijving = MyEvent.beschrijving;
-                item.locatie = new WishlistRepository().GetLocatie(MyEvent.locatieID).locatieNaam;
-                item.regiseur = new WishlistRepository().GetFilm(MyEvent.evenementID).regisseur;
-                MyList.Add(item);
+            //    Evenement MyEvent = new WishlistRepository().GetEvent(id);
+            //    item.name = MyEvent.evenementNaam;
+            //    item.starttijd = MyEvent.startTijd.ToString("dd MM yyyy HH:mm");
+            //    item.prijs = MyEvent.prijs.ToString();
+            //    item.beschrijving = MyEvent.beschrijving;
+            //    item.locatie = new WishlistRepository().GetLocatie(MyEvent.locatieID).locatieNaam;
+            //    item.regiseur = new WishlistRepository().GetFilm(MyEvent.evenementID).regisseur;
+            //    MyList.Add(item);
+            //}
+
+            //ViewBag.Mylist = MyList;
+
+            //return View(MyList);
+
+            if (Session["CurrentWishlist"] != null)
+            {
+                Wishlist wishlist = wishlistRepository.GetWishList((int)Session["CurrentWishlist"]);
+                if (wishlist != null)
+                {
+                    List<Evenement> mywishlistevenements = wishlistRepository.GetMyWishlistEvenements(wishlist.wishlistID);
+                    List<Diner> mywishlistdiner = wishlistRepository.Getmywishlistdiner(wishlist.wishlistID);
+                    List<ViewWishlist> myevenements = new List<ViewWishlist>();
+                    foreach (Evenement evenement in mywishlistevenements)
+                    {
+                        ViewWishlist viewwishlist = new ViewWishlist();
+                        viewwishlist.name = evenement.evenementNaam;
+                        viewwishlist.starttijd = evenement.startTijd;
+                        viewwishlist.locatie = wishlistRepository.GetLocatie(evenement.locatieID).locatieNaam;
+                        viewwishlist.prijs = evenement.prijs.ToString();
+                        viewwishlist.beschrijving = evenement.beschrijving;
+                        viewwishlist.evenementID = wishlistRepository.GetWishlistEvenement(wishlist.wishlistID, evenement.evenementID).ID;
+                        myevenements.Add(viewwishlist);
+                    }
+                    foreach (Diner diner in mywishlistdiner)
+                    {
+                        ViewWishlist viewwishlist = new ViewWishlist();
+                        viewwishlist.name = diner.opNaamVan;
+                        viewwishlist.starttijd = diner.startTijd;
+                        viewwishlist.eindttijd = diner.eindTijd;
+                        viewwishlist.locatie = wishlistRepository.GetLocatie(diner.dinerID).locatieNaam;
+                        viewwishlist.prijs = diner.prijs.ToString();
+                        viewwishlist.dinerID = diner.dinerID;
+                    }
+                    return View(myevenements);
+                }
             }
-
-            ViewBag.Mylist = MyList;
-
-            return View(MyList);
+            return View();
         }
 
         [HttpPost,ActionName("Index")]
@@ -52,10 +98,7 @@ namespace IHFF_Websystem.Controllers
             Wishlist wishlist = wishlistRepository.GetWishList(codeword);
             if (wishlist != null)
             {
-                Session["CurrentWishlist"] = wishlist;
-                ViewBag.wishlist = wishlist;
-                IEnumerable<WishlistEvenement> wishlistEvenements = wishlistRepository.GetAllWishlistEvenements(wishlist.wishlistID);
-                Session["wishlistEvenementList"] = wishlistEvenements;
+                Session["CurrentWishlist"] = wishlist.wishlistID;
                 return RedirectToAction("Index");
             }
 
@@ -157,23 +200,27 @@ namespace IHFF_Websystem.Controllers
 
 
         [HttpPost]
-        public ActionResult Delete(int id)
+        public ActionResult DeleteEvenement(int id)
         {
             wishlistRepository.DeleteWishlistEvenement(id);
             return RedirectToAction("Index"); 
         }
 
-        public ActionResult Reserveren()
+        [HttpPost]
+        public ActionResult DeleteDiner(int id)
         {
-            Wishlist wishlist = (Wishlist)Session["CurrentWishlist"];
-            if (wishlist != null)
-                return View(wishlist);
-            else
-                return View("Index");
+            wishlistRepository.DeleteDiner(id);
+            return RedirectToAction("Index");
         }
 
-        [HttpPost]
-        public ActionResult Reserveren(Wishlist wishlist)
+        public ActionResult Reserveren()
+        {
+                Wishlist wishlist = wishlistRepository.GetWishList((int)Session["CurrentWishlist"]);
+                return View(wishlist);
+        }
+
+        [HttpPost,ActionName("Reserveren")]
+        public ActionResult ReserverenPost(Wishlist wishlist)
         {
             wishlistRepository.WishListReserveren(wishlist);
             return RedirectToAction("Index");      
