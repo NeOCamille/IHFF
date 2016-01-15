@@ -24,8 +24,6 @@ namespace IHFF_Websystem.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
-
             return View();
         }
 
@@ -53,6 +51,12 @@ namespace IHFF_Websystem.Controllers
         public ActionResult Overons()
         {
             ViewBag.Message = "Modify this template to jump-start your ASP.NET MVC application.";
+
+            return View();
+        }
+
+        public ActionResult Sitemap()
+        {
 
             return View();
         }

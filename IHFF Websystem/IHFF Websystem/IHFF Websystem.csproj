@@ -269,6 +269,10 @@
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Images\background.jpg" />
+    <Content Include="Images\bannerHome.png" />
+    <Content Include="Images\exmachinaHome.png" />
+    <Content Include="Images\facebook.png" />
+    <Content Include="Images\foodfilmHome.png" />
     <Content Include="Images\footer.png" />
     <Content Include="Images\haarlem1.jpg" />
     <Content Include="Images\haarlem2.jpg" />
@@ -278,6 +282,8 @@
     <Content Include="Images\menubarbottom.png" />
     <Content Include="Images\menubartop.png" />
     <Content Include="Images\programmaTemplate.png" />
+    <Content Include="Images\twitter.png" />
+    <Content Include="Images\tygogernandtHome.png" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
@@ -340,6 +346,7 @@
     <Content Include="Views\Wishlist\Reserveren.cshtml" />
     <Content Include="Views\Medewerker\GetReserveringen.cshtml" />
     <Content Include="Views\Medewerker\Uitlog.cshtml" />
+    <Content Include="Views\Home\Sitemap.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

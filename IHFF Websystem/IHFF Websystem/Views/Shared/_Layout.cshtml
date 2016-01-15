@@ -122,7 +122,24 @@
             @RenderBody()
         </section>
     </section>
-    <footer></footer>
+    <footer>
+        @Html.ActionLink("Sitemap", "Sitemap", "Home", null, new { @class = "footertext" })
+        @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "footertext" })
+        @Html.ActionLink("Over ons", "Overons", "Home", null, new { @class = "footertext" })
+        @Html.ActionLink("Celluloid Silver", "Contact", "Home", null, new { @class = "footertext" })
+
+        <div id="footerwrapper">
+            <h4>Vragen? Stuur ons een mail!</h4>
+            @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "footerbutton" })
+        </div>
+        <div id="footerwrapper2">
+            <h4>Volg ons op social media!</h4>
+            <div id="footerimageswrapper">
+            <a href="http://www.facebook.com"><img src="../../Images/facebook.png" /></a>
+            <a href="http://www.twitter.com"><img src="../../Images/twitter.png" /></a>
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
 

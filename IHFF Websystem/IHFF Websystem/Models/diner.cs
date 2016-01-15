@@ -33,12 +33,14 @@ namespace IHFF_Websystem.Models
         //Foreign Key
         public int locatieID { get; set; }
 
+        public int aantal { get; set; }
+
         public Diner()
         {
 
         }
 
-        public Diner(int dinerID, DateTime startTijd, DateTime eindTijd, bool foodFilm, string opNaamVan, double prijs)
+        public Diner(int dinerID, DateTime startTijd, DateTime eindTijd, bool foodFilm, string opNaamVan, double prijs, int aantal)
         {
             this.dinerID = dinerID;
             this.startTijd = startTijd;
@@ -46,6 +48,7 @@ namespace IHFF_Websystem.Models
             this.foodFilm = foodFilm;
             this.opNaamVan = opNaamVan;
             this.prijs = prijs;
+            this.aantal = aantal;
         }
     }
 }
