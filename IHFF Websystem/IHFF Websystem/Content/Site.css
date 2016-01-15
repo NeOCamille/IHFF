@@ -27,7 +27,7 @@ a.navvtext {
 nav {
     width: 1200px;
     height: 50px;
-    margin: 0 auto;
+    margin-left: 155px;
     padding: 0;
     border: 0;
     background-image: url(../Images/menubartop.png);
@@ -50,7 +50,7 @@ nav {
 #nav2 {
     width: 1200px;
     height: 50px;
-    margin: 0 auto;
+    margin-left: 155px;
     background-image: url(../Images/menubarbottom.png);
 }
 
@@ -69,7 +69,7 @@ nav {
 }
 
 #banner {
-    margin: 0 auto; 
+    margin-left: 155px; 
     position: relative; 
     padding: 0px; 
     width: 1200px;
@@ -86,15 +86,16 @@ nav {
 
 #main {
     width: 1200px;
-    margin: 0 auto;
+    margin-left: 155px;
     background-color: #dad6cd;
     min-height: 1113px;
+    display: inline-block;
 }
 
 footer {
     width: 1200px;
     height: 260px;
-    margin: 0 auto;
+    margin-left: 155px;
     background-image: url(../Images/footer.png);
 }
 
@@ -144,6 +145,12 @@ h2 {
     color: #413f4b;
 }
 
+h3 {
+    margin-top: 15px;
+    font-family: Arial;
+    color: #413f4b;
+}
+
 .classs {
     padding-top: 15px;
 }
@@ -173,4 +180,57 @@ h2 {
     float:right;
     width:260px;
     height:200px;
+}
+
+a.footertext {
+    text-decoration: none;
+    color: white;
+    font-family: Verdana;
+    display: block;
+    width: 240px;
+    height: 50px;
+    line-height: 50px;
+    margin-left: 50px;
+    position: relative;
+    top: 30px;
+}
+#footerwrapper {
+    position: relative;
+    left: 480px;
+    top: -175px;
+    width: 400px;
+}
+
+#footerwrapper2 {
+    position: relative;
+    left: 900px;
+    top: -318px;
+    width: 400px;
+}
+
+h4 {
+    text-decoration: none;
+    color: white;
+    font-family: Verdana;
+    font-weight: normal;
+}
+
+.footerbutton {
+    text-decoration: none;
+    color: white;
+    font-family: Verdana;
+    display: block;
+    width: 240px;
+    height: 50px;
+    text-align: center;
+    margin-top: -15px;
+    line-height: 50px;
+    background-color: #3283bc;
+    margin-top: 50px;
+}
+
+#footerimageswrapper {
+    position: relative;
+    top: 30px;
+    left: 20px;
 }
