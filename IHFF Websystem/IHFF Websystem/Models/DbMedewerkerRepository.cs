@@ -96,20 +96,35 @@ namespace IHFF_Websystem.Models
             ctx.SaveChanges();
         }
 
-        public List<Evenement> ShowEvenementen(Medewerker ingelogdeMedewerker)
+        public List<Special> ShowSpecials(Medewerker ingelogdeMedewerker)
         {
-            List<Evenement> evenementen = new List<Evenement>();
+            List<Special> specials = new List<Special>();
 
             if (ingelogdeMedewerker.relevantie == "Management" || ingelogdeMedewerker.locatieID == 19)
             {
-                foreach (Evenement entry in ctx.Evenementen)
+                foreach (Special entry in ctx.Specials)
                 {
-                    evenementen.Add(entry);
+                    specials.Add(entry);
                 }
             }
 
-            return evenementen;
+            return specials;
 
+        }
+
+        public List<Film> ShowFilms(Medewerker ingelogdeMedewerker)
+        {
+            List<Film> films = new List<Film>();
+
+            if (ingelogdeMedewerker.locatieID == 19 || ingelogdeMedewerker.relevantie == "Management")
+            {
+                foreach (Film entry in ctx.Films)
+                {
+                    films.Add(entry);
+                }
+            }
+
+            return films;
         }
     }
 }

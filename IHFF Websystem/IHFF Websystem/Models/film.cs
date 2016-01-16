@@ -8,7 +8,7 @@ namespace IHFF_Websystem.Models
 {
     public class Film : Evenement
     {
-        [Required]
+        //[Required]
         public string regisseur { get; set; }
 
         public Film()

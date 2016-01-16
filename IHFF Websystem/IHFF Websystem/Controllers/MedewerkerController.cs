@@ -49,7 +49,15 @@ namespace IHFF_Websystem.Controllers
 
         public ActionResult Login()
         {
-            return View();
+            Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
+            if (ingelogdeMedewerker != null)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                return View();
+            }
         }
 
         [HttpPost]
@@ -76,8 +84,8 @@ namespace IHFF_Websystem.Controllers
         public ActionResult Uitlog()
         {
             FormsAuthentication.SignOut();
-
-            return RedirectToAction("Login", "Medewerker");
+            Session.Clear();
+            return RedirectToAction("Index", "Home");
         }
 
         [Authorize]
@@ -90,7 +98,17 @@ namespace IHFF_Websystem.Controllers
             {
                 ViewBag.Error = "U bent niet bevoegd om de wishlists te bekijken";
             }
+            double totaalomzet = 0;
 
+            foreach (var entry in wishlistList)
+            {
+                if (entry.isBetaald == true)
+                {
+                    totaalomzet = totaalomzet + entry.totaalPrijs;
+                }
+            }
+
+            ViewBag.Totaalomzet = totaalomzet;
             return View(wishlistList);   
             
         }
@@ -145,8 +163,11 @@ namespace IHFF_Websystem.Controllers
                 List<Diner> reserveringsList = medewerkerRepository.ShowReserveringen(ingelogdeMedewerker);
                 return View(reserveringsList);
             }
-
-            return View();
+            else
+            {
+                return View();
+            }
+            
 
         }
 
@@ -156,9 +177,16 @@ namespace IHFF_Websystem.Controllers
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
             if (ModelState.IsValid)
             {
-                List<Evenement> evenementenList = medewerkerRepository.ShowEvenementen(ingelogdeMedewerker);
+                List<Special> specialsList = medewerkerRepository.ShowSpecials(ingelogdeMedewerker);
+                List<Film> filmsList = medewerkerRepository.ShowFilms(ingelogdeMedewerker);
+                ViewBag.Films = filmsList;
+                return View(specialsList);
+                
             }
-            return View();
+            else
+            {
+                return View();
+            }
         }
         
     }

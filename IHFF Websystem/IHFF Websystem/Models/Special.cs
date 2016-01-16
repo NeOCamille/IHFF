@@ -8,10 +8,10 @@ namespace IHFF_Websystem.Models
 {
     public class Special : Evenement
     {
-        [Required]
+        //[Required]
         public string onderwerp { get; set; }
 
-        [Required]
+        //[Required]
         public string spreker { get; set; }
 
         public Special()

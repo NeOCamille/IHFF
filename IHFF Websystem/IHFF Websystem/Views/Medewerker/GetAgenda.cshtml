@@ -5,7 +5,9 @@
 }
 
 <h2>Agenda</h2>
-
+<br />
+<h3> Specials </h3>
+<br />
 <link href="@Url.Content("~/Content/showData.css?reload")" rel="stylesheet" type="text/css" />
 
 <table>
@@ -29,51 +31,99 @@
             Locatie ID
         </th>
         <th>
-            Regisseur
-        </th>
-        <th>
             Onderwerp
         </th>
         <th>
             Spreker
         </th>
-        <th>
-            Discriminator
-        </th>
     </tr>
     @foreach(var entry in Model)
     {
         <tr>
-            <th>
+            <td>
                 @entry.evenementID
-            </th>
-            <th>
+            </td>
+            <td>
                 @entry.evenementNaam
-            </th>
-            <th>
+            </td>
+            <td>
                 @entry.startTijd
-            </th>
-            <th>
+            </td>
+            <td>
                 @entry.beschrijving
-            </th>
-            <th>
+            </td>
+            <td>
                 @entry.prijs
-            </th>
-            <th>
+            </td>
+            <td>
                 @entry.locatieID
-            </th>
-            <th>
-                @entry.regisseur
-            </th>
-            <th>
+            </td>
+            <td>
                 @entry.onderwerp
-            </th>
-            <th>
+            </td>
+            <td>
                 @entry.spreker
-            </th>
-            <th>
-                @entry.Discriminator
-            </th>
+            </td>
+        </tr>
+    }
+</table>
+<br />
+<h3>Films</h3>
+<br />
+<table>
+   <tr>
+       <th>
+           Evenement ID
+       </th>
+       <th>
+           Evenement naam
+       </th>
+       <th>
+           Start tijd
+       </th>
+       <th>
+           Beschrijving
+       </th>
+       <th>
+           Prijs
+       </th>
+       <th>
+           Locatie ID
+       </th>
+       <th>
+           Regisseur
+       </th>
+       <th>
+           -
+       </th>
+   </tr>
+    @foreach (var entry in ViewBag.Films)
+    {
+        <tr>
+            <td>
+                @entry.evenementID
+            </td>
+            <td>
+                @entry.evenementNaam
+            </td>
+            <td>
+                @entry.startTijd
+            </td>
+            <td>
+                @entry.beschrijving
+            </td>
+            <td>
+                @entry.prijs
+            </td>
+            <td>
+                @entry.locatieID
+            </td>
+            <td>
+                @entry.regisseur
+            </td>
+            <td>
+                -
+            </td>
         </tr>
     }
 </table>
