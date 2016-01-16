@@ -347,6 +347,7 @@
     <Content Include="Views\Medewerker\GetReserveringen.cshtml" />
     <Content Include="Views\Medewerker\Uitlog.cshtml" />
     <Content Include="Views\Home\Sitemap.cshtml" />
+    <Content Include="Views\Medewerker\GetAgenda.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

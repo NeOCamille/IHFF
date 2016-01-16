@@ -10,10 +10,10 @@ namespace IHFF_Websystem.Models
     {
        public IHFFContext ctx = new IHFFContext();
 
-       public void AddMedewerker(Medewerker medewerker)
+       public void AddMedewerker(Medewerker medewerker, Medewerker ingelogdeMedewerker)
        {
-           ctx.Medewerkers.Add(medewerker);
-           ctx.SaveChanges();
+               ctx.Medewerkers.Add(medewerker);
+               ctx.SaveChanges();
        }
 
         public Medewerker GetMedewerker(string gebruikersNaam, string passWord)
@@ -24,20 +24,28 @@ namespace IHFF_Websystem.Models
 
         public List<Wishlist> ShowDataManagement(Medewerker ingelogdeMedewerker)
         {
-            List<Wishlist> managementList = new List<Wishlist>();
+            if (ingelogdeMedewerker.locatieID == 19 || ingelogdeMedewerker.relevantie == "Management")
+            {
+                List<Wishlist> wishlistList = new List<Wishlist>();
 
-                foreach(Wishlist Wishlistentry in ctx.Wishlists)
+                foreach (Wishlist Wishlistentry in ctx.Wishlists)
                 {
-                    managementList.Add(Wishlistentry);
+                    wishlistList.Add(Wishlistentry);
                 }
+                return wishlistList;
+            }
+            else {
+                List<Wishlist> wishlistList = new List<Wishlist>();
 
-            return managementList;
+                return wishlistList;
+            }
+
         }
 
-        public List<Diner> ShowDataDiners(Medewerker ingelogdeMedewerker)
+        public List<Diner> ShowReserveringen(Medewerker ingelogdeMedewerker)
         {
             List<Diner> dinerList = new List<Diner>();
-            if (ingelogdeMedewerker.locatieID != 0 || ingelogdeMedewerker.relevantie != "Management")
+            if (ingelogdeMedewerker.locatieID != 19 || ingelogdeMedewerker.relevantie != "Management")
             {
                 foreach (Diner dinerEntry in ctx.Diners)
                 {
@@ -62,6 +70,10 @@ namespace IHFF_Websystem.Models
         {
             Wishlist wishlist = ctx.Wishlists.Find(wishlistID);
             ctx.Wishlists.Remove(wishlist);
+
+            WishlistEvenement wishlistEvenement = ctx.WishlistEvenements.Find(wishlistID);
+            ctx.WishlistEvenements.Remove(wishlistEvenement);
+
             ctx.SaveChanges();
         }
 
@@ -88,7 +100,7 @@ namespace IHFF_Websystem.Models
         {
             List<Evenement> evenementen = new List<Evenement>();
 
-            if (ingelogdeMedewerker.relevantie == "Management" || ingelogdeMedewerker.locatieID == 0)
+            if (ingelogdeMedewerker.relevantie == "Management" || ingelogdeMedewerker.locatieID == 19)
             {
                 foreach (Evenement entry in ctx.Evenementen)
                 {

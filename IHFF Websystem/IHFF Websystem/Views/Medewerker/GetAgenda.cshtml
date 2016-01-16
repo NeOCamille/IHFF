@@ -1,0 +1,79 @@
+﻿@using IHFF_Websystem.Models;
+
+@{
+    ViewBag.Title = "GetAgenda";
+}
+
+<h2>Agenda</h2>
+
+<link href="@Url.Content("~/Content/showData.css?reload")" rel="stylesheet" type="text/css" />
+
+<table>
+    <tr>
+        <th>
+            Evenement ID
+        </th>
+        <th>
+            Evenement naam
+        </th>
+        <th>
+            Start tijd
+        </th>
+        <th>
+            Beschrijving
+        </th>
+        <th>
+            Prijs
+        </th>
+        <th>
+            Locatie ID
+        </th>
+        <th>
+            Regisseur
+        </th>
+        <th>
+            Onderwerp
+        </th>
+        <th>
+            Spreker
+        </th>
+        <th>
+            Discriminator
+        </th>
+    </tr>
+    @foreach(var entry in Model)
+    {
+        <tr>
+            <th>
+                @entry.evenementID
+            </th>
+            <th>
+                @entry.evenementNaam
+            </th>
+            <th>
+                @entry.startTijd
+            </th>
+            <th>
+                @entry.beschrijving
+            </th>
+            <th>
+                @entry.prijs
+            </th>
+            <th>
+                @entry.locatieID
+            </th>
+            <th>
+                @entry.regisseur
+            </th>
+            <th>
+                @entry.onderwerp
+            </th>
+            <th>
+                @entry.spreker
+            </th>
+            <th>
+                @entry.Discriminator
+            </th>
+        </tr>
+    }
+</table>

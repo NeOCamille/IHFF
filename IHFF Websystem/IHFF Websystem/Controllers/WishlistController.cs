@@ -15,7 +15,6 @@ namespace IHFF_Websystem.Controllers
 
         public ActionResult Index()
         {
-<<<<<<< HEAD
             //check if excists or create list
             if (Session["wishlistEvenementList"] == null)
             {
@@ -25,7 +24,7 @@ namespace IHFF_Websystem.Controllers
 
             //retrieve wishlist
             List<int> Mywishlist = Session["wishlistEvenementList"] as List<int>;
-=======
+
             //check if excist or create list
             //if (Session["wishlistEvenementList"] == null)
             //{
@@ -35,7 +34,6 @@ namespace IHFF_Websystem.Controllers
 
             ////retrieve wishlist
             //List<int> Mywishlist = Session["wishlistEvenementList"] as List<int>;
->>>>>>> 35c2b9686f6665692f02e553d8e3fa984da8a4a5
             
             //List<ViewWishlist> MyList = new List<ViewWishlist>();
 

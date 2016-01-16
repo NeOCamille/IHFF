@@ -12,10 +12,18 @@ namespace IHFF_Websystem.Controllers
     public class MedewerkerController : Controller
     {
         private IMedewerkerRepository medewerkerRepository = new DbMedewerkerRepository();
-
+        [Authorize]
         public ActionResult Index()
         {
-            return View();
+            Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
+            if (ingelogdeMedewerker != null)
+            {
+                return View();
+            }
+            else
+            {
+                return RedirectToAction("Login");
+            }
         }
         [Authorize]
         public ActionResult AddMedewerker()
@@ -26,12 +34,17 @@ namespace IHFF_Websystem.Controllers
         [HttpPost]
         public ActionResult AddMedewerker(Medewerker medewerker)
         {
-            if (ModelState.IsValid)
+            Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
+            if (ModelState.IsValid && ingelogdeMedewerker.locatieID == 19)
             {
-                medewerkerRepository.AddMedewerker(medewerker);
+                medewerkerRepository.AddMedewerker(medewerker, ingelogdeMedewerker);
                 return RedirectToAction("Index");
             }
-            return View(medewerker);
+            else
+            {
+                ViewBag.Error = "U bent niet bevoegd om accounts aan te maken";
+                return View(medewerker);
+            }
         }
 
         public ActionResult Login()
@@ -59,7 +72,7 @@ namespace IHFF_Websystem.Controllers
             }
             return View(loginMedewerker);
         }
-
+        [Authorize]
         public ActionResult Uitlog()
         {
             FormsAuthentication.SignOut();
@@ -71,13 +84,15 @@ namespace IHFF_Websystem.Controllers
         public ActionResult ShowData()
         {
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
-            if (ingelogdeMedewerker.relevantie == "Management")
-            {
-                List<Wishlist> wishlistList = medewerkerRepository.ShowDataManagement(ingelogdeMedewerker);
+            List<Wishlist> wishlistList = medewerkerRepository.ShowDataManagement(ingelogdeMedewerker);
 
-                return View(wishlistList);
+            if (ingelogdeMedewerker.relevantie != "Management" || ingelogdeMedewerker.locatieID != 19)
+            {
+                ViewBag.Error = "U bent niet bevoegd om de wishlists te bekijken";
             }
-            return View();
+
+            return View(wishlistList);   
+            
         }
 
 
@@ -127,7 +142,7 @@ namespace IHFF_Websystem.Controllers
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
             if (ModelState.IsValid)
             {
-                List<Diner> reserveringsList = medewerkerRepository.ShowDataDiners(ingelogdeMedewerker);
+                List<Diner> reserveringsList = medewerkerRepository.ShowReserveringen(ingelogdeMedewerker);
                 return View(reserveringsList);
             }
 
@@ -141,7 +156,7 @@ namespace IHFF_Websystem.Controllers
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
             if (ModelState.IsValid)
             {
-                //List<Evenement> evenementenList = medewerkerRepository.ShowEvenementen(ingelogdeMedewerker);
+                List<Evenement> evenementenList = medewerkerRepository.ShowEvenementen(ingelogdeMedewerker);
             }
             return View();
         }
