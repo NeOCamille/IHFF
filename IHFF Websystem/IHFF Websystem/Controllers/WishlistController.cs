@@ -34,6 +34,7 @@ namespace IHFF_Websystem.Controllers
 
             ////retrieve wishlist
             //List<int> Mywishlist = Session["wishlistEvenementList"] as List<int>;
+//>>>>>>> 35c2b9686f6665692f02e553d8e3fa984da8a4a5
             
             //List<ViewWishlist> MyList = new List<ViewWishlist>();
 
@@ -61,8 +62,8 @@ namespace IHFF_Websystem.Controllers
                 if (wishlist != null)
                 {
                     List<Evenement> mywishlistevenements = wishlistRepository.GetMyWishlistEvenements(wishlist.wishlistID);
-                    List<Diner> mywishlistdiner = wishlistRepository.Getmywishlistdiner(wishlist.wishlistID);
-                    List<ViewWishlist> myevenements = new List<ViewWishlist>();
+                    List<Diner> mywishlistdiner          = wishlistRepository.Getmywishlistdiner(wishlist.wishlistID);
+                    List<ViewWishlist> myevenements      = new List<ViewWishlist>();
                     foreach (Evenement evenement in mywishlistevenements)
                     {
                         ViewWishlist viewwishlist = new ViewWishlist();
@@ -105,12 +106,13 @@ namespace IHFF_Websystem.Controllers
 
         public ActionResult Create()
         {
-            if (Session["CurrentWishlist"] == null)
-            {
+            wishlistRepository.CheckAvailabilityEvenement(8);
+            //if (Session["CurrentWishlist"] == null)
+            //{
                 //test line
-                int WishlistID = new Random().Next(0,100000);
-                Session["CurrentWishlist"] = WishlistID;
-            }
+                //int WishlistID = wishlistRepository.NewWishlist().wishlistID; // 1;//new Random().Next(0,100000);
+                //Session["CurrentWishlist"] = WishlistID;
+            //}
 
             IEnumerable<Film> films = new WishlistRepository().GetAllFilms();
 
@@ -118,12 +120,11 @@ namespace IHFF_Websystem.Controllers
         }
         public ActionResult WishlistPopUp()
         {
-            if (Session["CurrentWishlist"] == null)
+            if (Session["CurrentWishlist"] != null)
             {
-                //test line
-                int WishlistID = new Random().Next(0, 100000);
-                Session["CurrentWishlist"] = WishlistID;
-            }
+                //int WishlistID = wishlistRepository.NewWishlist().wishlistID;
+                //Session["CurrentWishlist"] = WishlistID;
+            
 
             int wishlistID = (int)Session["CurrentWishlist"];
 
@@ -131,13 +132,19 @@ namespace IHFF_Websystem.Controllers
             IEnumerable<Special> specials = new WishlistRepository().GetAllWishlistSpecials(wishlistID);
             IEnumerable<Diner> diners     = new WishlistRepository().GetAllWishlistDiners(wishlistID);
 
-            return View(films);
+                return View(films);
+            }
+            else
+            {
+                return new EmptyResult();
+            }
         }
         
 
         // GET: /Wishlist/AddTo
         public ActionResult AddTo()
         {
+            
             return View();
         }
 
@@ -167,9 +174,19 @@ namespace IHFF_Websystem.Controllers
 
             return RedirectToAction("Index", "Home");
         }
+
+
+        //This handels mathijs his buttons
         [HttpPost]
-        public ActionResult AddEvenementToWishlist(int id, uint aantal)
+        public ActionResult AddEvenementToWishlist(int id, int aantal)
         {
+            //only create a new wishlist if non exists
+            if (Session["CurrentWishlist"] == null)
+            {
+                int WishlistID = wishlistRepository.NewWishlist().wishlistID;
+                Session["CurrentWishlist"] = WishlistID;
+            }
+
             // get current wishlist ID
             int wishlistID = (int)Session["CurrentWishlist"];
             // get evenementID form postdata

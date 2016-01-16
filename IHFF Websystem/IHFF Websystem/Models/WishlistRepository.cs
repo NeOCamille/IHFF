@@ -10,18 +10,28 @@ namespace IHFF_Websystem.Models
     {
         public IHFFContext ctx = new IHFFContext();
 
+        //Create a new wishlist with ID
+        public Wishlist NewWishlist()
+        {
+            Wishlist newWishlist = new Wishlist(0, "", false, false, "", 0.00);
+            ctx.Wishlists.Add(newWishlist);
+            ctx.SaveChanges();
+            return newWishlist;
+        }
+
         public void AddDiner(int wishlistID, Diner diner)
         {
             diner.wishlistID = wishlistID;
             ctx.Diners.Add(diner);
             ctx.SaveChanges();
         }
-        public void AddEvenement(int wishlistID, int evenementID, uint aantal)
+        public void AddEvenement(int wishlistID, int evenementID, int aantal)
         {
             WishlistEvenement wishlistevent = new WishlistEvenement(wishlistID, evenementID, aantal);
             ctx.WishlistEvenements.Add(wishlistevent);
             ctx.SaveChanges();
         }
+
         public Evenement GetEvent(int ID)
         {
             return ctx.Evenementen.SingleOrDefault(c => c.evenementID == ID);   
@@ -34,11 +44,13 @@ namespace IHFF_Websystem.Models
         {
             return ctx.Films.SingleOrDefault(c => c.evenementID == ID);
         }
+
         public IEnumerable<Film> GetAllFilms()
         {
             IEnumerable<Film> films = ctx.Films;
             return films;
         }
+
         public IEnumerable<Film> GetAllWishlistFilms(int wishlistID)
         {
             List<Film> films = new List<Film>();
@@ -51,7 +63,6 @@ namespace IHFF_Websystem.Models
             //ctx.Films.Include()
             return films;
         }
-
         public IEnumerable<Special> GetAllWishlistSpecials(int wishlistID)
         {
             List<Special> specials = new List<Special>();
@@ -72,13 +83,56 @@ namespace IHFF_Websystem.Models
             //ctx.Films.Include()
             return diners;
         }
-
-
         public IEnumerable<WishlistEvenement> GetAllWishlistEvenements(int wishlistID)
         {
             IEnumerable<WishlistEvenement>wishlistEvenements = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID);           
             return wishlistEvenements;
         }
+
+        //Check available seats
+        public int CheckAvailabilityEvenement(int myEvenementID)
+        {
+            //SELECT COUNT (WishlistEvenements.aantal)
+            //FROM Evenements
+            //INNER JOIN WishlistEvenements
+            //ON Evenements.evenementID = WishlistEvenements.evenementID
+            //INNER JOIN Wishlists
+            //ON Wishlists.wishlistID = WishlistEvenements.wishlistID
+            //WHERE Wishlists.isBetaald = '1'
+
+            // SQL statement to get all aantals
+            var eventAantal = (from e in ctx.Evenementen
+                                join we in ctx.WishlistEvenements on e.evenementID equals we.evenementID
+                                join w in ctx.Wishlists on we.wishlistID equals w.wishlistID
+                                where w.isBetaald == true
+                                where e.evenementID == myEvenementID
+                                select new
+                                {
+                                    aantal = we.aantal
+                                });
+
+            // add all aantals
+            int total = 0;
+            foreach (var single in eventAantal)
+            {
+                total += single.aantal;
+            }
+
+
+            //get maxAantal plaatsen for evenementID
+            var eventMaxAantal = (from e in ctx.Evenementen
+                               join l in ctx.Locaties on e.locatieID equals l.locatieID
+                                  where e.evenementID == myEvenementID
+                               select new
+                               {
+                                   maxAantalPlaatsen = l.maxAantalPlaatsen
+                               }).Single(); //single gives exeption if more then one
+            
+
+            // return available seats
+            return (eventMaxAantal.maxAantalPlaatsen - total);
+        }
+
         public void CreateFilm(string evenementNaam, DateTime startTijd, string beschrijving, double prijs, string regisseur, int locatieID)
         {
             int evenementID = 1;

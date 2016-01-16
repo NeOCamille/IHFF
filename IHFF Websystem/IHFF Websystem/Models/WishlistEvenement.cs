@@ -18,7 +18,7 @@ namespace IHFF_Websystem.Models
         public int evenementID { get; set; }
                 
         [Required]
-        public uint aantal { get; set; }
+        public int aantal { get; set; }
 
         public WishlistEvenement()
         {
@@ -26,7 +26,7 @@ namespace IHFF_Websystem.Models
             //Test
         }
 
-        public WishlistEvenement(int wishlistID, int evenementID, uint aantal)
+        public WishlistEvenement(int wishlistID, int evenementID, int aantal)
         {
             this.wishlistID = wishlistID;
             this.evenementID = evenementID;
