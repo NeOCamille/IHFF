@@ -12,7 +12,7 @@
     @Scripts.Render("~/Content/JavaScript01.js")
     @Scripts.Render("~/Content/jsPopup.js")
     <script>
-        
+
     </script>
     @RenderSection("JavaScript", required: false)    
 </head>
@@ -20,13 +20,17 @@
 <body>
     <header style="margin-top:0; padding-top:1px;">
         <div class="medewerkerlink">@Html.ActionLink("Medewerker","login","Medewerker", null, new { @class = "medewerkertext" }) </div>
-            <div id="whishlistlink">Wishlist</div>
+            <div id="whishlistlink"><a href="#">Wishlist</a></div>
 </header>
+    <!-- Wishlist popup right corner-->
+
     <div id="wishlistbasket">
-        <ul>
-            <li></li>
-        </ul>
-    </div>
+        @Html.ActionLink("Wish-List", "Index", "Wishlist", null, new { @id = "wishlistHeader" })
+            <div id="wishlistbasket-inner-style">
+                <div id="wishlistbasket-inner"></div>
+            </div>
+            <a href="#" onclick="" id="wishlistbasket-button">Reserveren</a>
+        </div>
     <nav>
         <ul id="navigatie">
             <li>
