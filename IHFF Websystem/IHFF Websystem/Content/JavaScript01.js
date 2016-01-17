@@ -15,6 +15,18 @@ function AddEventToWishlist(myValue) {
         });
 }
 
+wbAddAmount(id) {
+    $.post("/Wishlist/UpdateEvenementToWishlist", { id: myValue, aantal:1 })
+        .done(function () {
+            //alert("Data Saved");
+            LoadWishlistPopup();
+            $('.overlay-bg, .overlay-content').hide();
+        })
+        .fail(function () {
+            alert("Failed");
+        });
+}
+
 //url in should be like: '/Wishlist/WishlistPopup'
 //example LoadPopup('/Wishlist/WishlistPopup', '#wishlistbasket');
 function LoadPopup(url, changeClassorId) {

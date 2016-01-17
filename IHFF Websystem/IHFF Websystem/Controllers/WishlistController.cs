@@ -90,6 +90,22 @@ namespace IHFF_Websystem.Controllers
             }
             return View();
         }
+        public ActionResult UpdateEvenementToWishlist(int id, int aantal)
+        {
+            if (Session["CurrentWishlist"] != null)
+            {            
+                int wishlistID = (int)Session["CurrentWishlist"];
+
+
+
+                return new EmptyResult();
+            }
+            else
+            {
+                return new EmptyResult();
+            }
+        }
+
 
         [HttpPost,ActionName("Index")]
         public ActionResult WishlistLaden(string codeword)
@@ -146,6 +162,9 @@ namespace IHFF_Websystem.Controllers
                     myPopup.regisseur = film.regisseur;
                     myPopup.eventType = events.film;
 
+                    Locatie locatie = wishlistRepository.GetLocatie(film.locatieID);
+                    myPopup.locatieNaam = locatie.locatieNaam;
+
                     myPopups.Add(myPopup);
                 }
 
@@ -165,6 +184,9 @@ namespace IHFF_Websystem.Controllers
                     myPopup.onderwerp = special.onderwerp;
                     myPopup.spreker = special.spreker;
                     myPopup.eventType = events.special;
+
+                    Locatie locatie = wishlistRepository.GetLocatie(special.locatieID);
+                    myPopup.locatieNaam = locatie.locatieNaam;
 
                     myPopups.Add(myPopup);
                 }
