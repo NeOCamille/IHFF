@@ -1,10 +1,18 @@
 ﻿/* Functions */
 function LoadWishlistPopup() {
-    /* include wishlist popup + timestamp for uncached version */
-    $.get('/Wishlist/WishlistPopup' + '?_=' + (new Date()).getTime())
-    .success(function (data) {
-        $('#wishlistbasket-inner').html(data);
-    });
+    LoadPopup('/Wishlist/WishlistPopup', '#wishlistbasket-inner');
+}
+
+function AddEventToWishlist(myValue) {
+        $.post("/Wishlist/AddEvenementToWishlist", { id: myValue, aantal:1 })
+        .done(function () {
+            //alert("Data Saved");
+            LoadWishlistPopup();
+            $('.overlay-bg, .overlay-content').hide();
+        })
+        .fail(function () {
+            alert("Failed");
+        });
 }
 
 //url in should be like: '/Wishlist/WishlistPopup'
@@ -44,7 +52,7 @@ $(document).ready(function () {
     $('#whishlistlink').click(function () {
         if (wishlistbasket_toggel === true) {
             $('#wishlistbasket').show();
-            LoadWishlistPopup();
+            LoadWishlistPopup()
         } else {
             $('#wishlistbasket').hide();
         }

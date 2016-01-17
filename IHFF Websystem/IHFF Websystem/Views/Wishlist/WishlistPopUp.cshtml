@@ -3,18 +3,22 @@
 }
 
 @using IHFF_Websystem.Models
-@model IEnumerable<Film>
+@model IEnumerable<WishlistPopup>
 
-<p>wtf waarom werkt t niet meer</p>
-    <ul>
-        @foreach (var film in Model)
-        {
-            <li>
-                <strong>@film.evenementNaam</strong>
-                <br />
-                <span>@film.beschrijving</span>
-                <br />
-                <br />
-            </li>
-        }
-    </ul>
+@foreach (WishlistPopup item in Model)
+{
+    if (item.eventType == events.film) {
+        <strong>@item.evenementNaam</strong><br />
+        @item.startTijd.ToString();
+        <hr /><br />
+    } else if (item.eventType == events.special) {
+        <strong>@item.evenementNaam</strong><br />
+        @item.startTijd.ToString();
+        <hr /><br />
+    } else if (item.eventType == events.diner) {
+        <strong>@item.locatieNaam</strong><br />
+        @item.startTijd.ToString();
+        <hr /><br />
+    }
+}
+

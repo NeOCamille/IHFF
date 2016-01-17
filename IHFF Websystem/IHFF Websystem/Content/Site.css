@@ -113,10 +113,13 @@ footer {
 #wishlistbasket-inner-style {
     width:350px;
     height:467px;
+    max-height:467px;
     margin-left:15px;
     border: 1px #808080 solid;
     background-color:white;
     opacity: 1.0;
+    overflow-y: auto; /* does nothing */
+    /*height: calc(100% - 100px);*/
 }
 
 #wishlistbasket-button {

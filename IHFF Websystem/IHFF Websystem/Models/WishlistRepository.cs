@@ -147,7 +147,7 @@ namespace IHFF_Websystem.Models
             IEnumerable<WishlistEvenement> wishlistevents = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID);
             foreach (WishlistEvenement wishlistevent in wishlistevents)
             {
-                mywishlistevenement.Add(ctx.Evenementen.SingleOrDefault(e => e.evenementID == wishlistevent.evenementID));               
+                mywishlistevenement.Add(new WishlistRepository().ctx.Evenementen.SingleOrDefault(e => e.evenementID == wishlistevent.evenementID));               
             }
             return mywishlistevenement;
         }
