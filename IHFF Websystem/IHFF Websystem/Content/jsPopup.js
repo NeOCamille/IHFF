@@ -2,7 +2,6 @@
 //  Sourcecode van popup JavaScript (ik snap niks van JS) -Matthijs
 
 $(document).ready(function () {
-
     // function to show our popups
     function showPopup(whichpopup) {
         var docHeight = $(document).height(); //grab the height of the page

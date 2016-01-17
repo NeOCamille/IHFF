@@ -3,7 +3,7 @@ function LoadWishlistPopup() {
     /* include wishlist popup + timestamp for uncached version */
     $.get('/Wishlist/WishlistPopup' + '?_=' + (new Date()).getTime())
     .success(function (data) {
-        $('#wishlistbasket').html(data);
+        $('#wishlistbasket-inner').html(data);
     });
 }
 
@@ -21,7 +21,6 @@ function LoadPopup(url, changeClassorId) {
 /* Standalone code */
 $(document).ready(function () {
     LoadWishlistPopup();
-
     $("#banner > div:gt(0)").hide();
 
     setInterval(function () {
@@ -37,17 +36,19 @@ $(document).ready(function () {
     */
 
     /* ### WHISLIST ### */
+    
     /* Hide wishlist basket */
     $('#wishlistbasket').hide();
 
-    wishlistbasket_toggel = false;
+    wishlistbasket_toggel = true;
     $('#whishlistlink').click(function () {
-        if (wishlistbasket_toggel == true) {
+        if (wishlistbasket_toggel === true) {
             $('#wishlistbasket').show();
+            LoadWishlistPopup();
         } else {
             $('#wishlistbasket').hide();
         }
-        wishlistbasket_toggel = !wishlistbasket_toggel
+        wishlistbasket_toggel = !wishlistbasket_toggel;
     });
 
     $('.addToWishlist').click(function () {
