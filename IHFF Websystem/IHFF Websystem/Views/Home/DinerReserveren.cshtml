@@ -1,0 +1,39 @@
+﻿@model IHFF_Websystem.Models.DinerReserverenModel
+@{
+    ViewBag.Title = "DinerReserveren";
+}
+
+<h2>DinerReserveren</h2>
+<hgroup class="title">
+</hgroup>
+
+@using (Html.BeginForm())
+{
+    <fieldset>
+        <legend>Diner reserveren</legend>
+        <ol>
+            <li>
+                <p>@Html.LabelFor(d => d.StartTijd)</p>
+                <p>@Html.TextBoxFor(d => d.StartTijd) yy-mm-dd hh:mm:ss (bv 2000-01-01 20:00:00)</p>
+                @Html.ValidationMessageFor(d => d.StartTijd)
+            </li>
+            <li>
+                <p>@Html.LabelFor(d => d.EindTijd)</p>
+                <p>@Html.TextBoxFor(d => d.EindTijd) yy-mm-dd hh:mm:ss (bv 2000-01-01 20:00:00)</p>
+                @Html.ValidationMessageFor(d => d.EindTijd)
+            </li>
+            <li>
+                <p>@Html.LabelFor(d => d.OpNaamVan)</p>
+                <p>@Html.TextBoxFor(d => d.OpNaamVan)</p>
+                @Html.ValidationMessageFor(d => d.OpNaamVan)
+            </li>
+            <li>
+                <p>@Html.LabelFor(d => d.Aantal)</p>
+                <p>@Html.TextBoxFor(d => d.Aantal) Prijs: aantal * 10 Euro</p>
+                @Html.ValidationMessageFor(d => d.Aantal)
+            </li>
+        </ol>
+        <input type="submit" value="DinerReserveren" />
+    </fieldset>
+}
+

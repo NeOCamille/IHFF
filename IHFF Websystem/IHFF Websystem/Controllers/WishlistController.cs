@@ -81,7 +81,7 @@ namespace IHFF_Websystem.Controllers
                         viewwishlist.name = diner.opNaamVan;
                         viewwishlist.starttijd = diner.startTijd;
                         viewwishlist.eindttijd = diner.eindTijd;
-                        viewwishlist.locatie = wishlistRepository.GetLocatie(diner.dinerID).locatieNaam;
+                        viewwishlist.locatie = wishlistRepository.GetLocatie(diner.locatieID).locatieNaam;
                         viewwishlist.prijs = diner.prijs.ToString();
                         viewwishlist.dinerID = diner.dinerID;
                     }
@@ -249,7 +249,7 @@ namespace IHFF_Websystem.Controllers
             diner.wishlistID = 1;
 
             //add directly to DB
-            new WishlistRepository().AddDiner(WishlistID, diner);
+            new WishlistRepository().AddDiner(diner);
 
             return RedirectToAction("Index", "Home");
         }

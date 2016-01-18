@@ -27,18 +27,18 @@ foreach (var item in Model)
     }
 }
 
-<p>diner</p>
+<p>Diner</p>
 foreach (var item in Model)
         {
-            if (item.evenementID != null)
+            if (item.dinerID != null)
             { 
                     <p>@Html.DisplayFor(modelItem => item.name)</p>
                     <p>@Html.DisplayFor(modelItem => item.starttijd)</p>
                     <p>@Html.DisplayFor(modelItem => item.prijs)</p>
                     <p>@Html.DisplayFor(modelItem => item.locatie)</p>
                     <p>@Html.ActionLink("Delete", "DeleteDiner", "Wishlist", new { id = item.dinerID }, null)</p>
-        }
 }
+        }
     <p>
         @Html.ActionLink("Reserveren", "Reserveren", "Wishlist")
     </p>
