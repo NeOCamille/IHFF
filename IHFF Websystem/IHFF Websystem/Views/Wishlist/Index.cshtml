@@ -1,4 +1,5 @@
-﻿@model List<IHFF_Websystem.Models.ViewWishlist>
+﻿@using IHFF_Websystem.Models
+@model List<IHFF_Websystem.Models.WishlistPopup>
 @{
     ViewBag.Title = "Wishlist";
 }
@@ -17,12 +18,12 @@
 <p>Film</p> 
 foreach (var item in Model)
 {
-    if (item.evenementID !=null)
+    if (item.eventType == events.film)
     { 
-        <p>@Html.DisplayFor(modelItem => item.name)</p>
-        <p>@Html.DisplayFor(modelItem => item.starttijd)</p>
+        <p>@Html.DisplayFor(modelItem => item.evenementNaam)</p>
+        <p>@Html.DisplayFor(modelItem => item.startTijd)</p>
         <p>@Html.DisplayFor(modelItem => item.prijs)</p>
-        <p>@Html.DisplayFor(modelItem => item.locatie)</p>
+        <p>@Html.DisplayFor(modelItem => item.locatieNaam)</p>
         <p>@Html.ActionLink("Delete", "DeleteEvenement", "Wishlist",new {id = item.evenementID}, null) </p>
     }
 }
@@ -30,12 +31,12 @@ foreach (var item in Model)
 <p>Diner</p>
 foreach (var item in Model)
         {
-            if (item.dinerID != null)
+            if (item.eventType == events.diner)
             { 
-                    <p>@Html.DisplayFor(modelItem => item.name)</p>
-                    <p>@Html.DisplayFor(modelItem => item.starttijd)</p>
+                    <p>@Html.DisplayFor(modelItem => item.opNaamVan)</p>
+                    <p>@Html.DisplayFor(modelItem => item.startTijd)</p>
                     <p>@Html.DisplayFor(modelItem => item.prijs)</p>
-                    <p>@Html.DisplayFor(modelItem => item.locatie)</p>
+                    <p>@Html.DisplayFor(modelItem => item.locatieNaam)</p>
                     <p>@Html.ActionLink("Delete", "DeleteDiner", "Wishlist", new { id = item.dinerID }, null)</p>
 }
         }
