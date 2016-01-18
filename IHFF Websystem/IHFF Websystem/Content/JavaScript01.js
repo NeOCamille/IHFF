@@ -15,7 +15,7 @@ function AddEventToWishlist(myValue) {
         });
 }
 
-wbAddAmount(id) {
+function wbAddAmount(id) {
     $.post("/Wishlist/UpdateEvenementToWishlist", { id: myValue, aantal:1 })
         .done(function () {
             //alert("Data Saved");
