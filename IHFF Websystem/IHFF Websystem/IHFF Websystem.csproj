@@ -352,6 +352,7 @@
     <Content Include="Views\Medewerker\GetAgenda.cshtml" />
     <Content Include="Views\Wishlist\WishlistPopUp.cshtml" />
     <Content Include="Views\Home\DinerReserveren.cshtml" />
+    <Content Include="Views\Wishlist\WishlistLaden.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -142,27 +142,30 @@ namespace IHFF_Websystem.Models
         //update aantal for a wishlistEvenement
         public void UpdateAantal_WE(int evenementID, int wishlistID, int aantal)
         {
-            if (aantal <= 0)
+            try
             {
-                var test = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID).Where(w => w.evenementID == evenementID);
-                //Only change one
-                WishlistEvenement updated = test.First();
-                ctx.WishlistEvenements.Remove(updated);
-                ctx.SaveChanges();
-            }
-            else
-            {
+                if (aantal <= 0)
+                {
+                    var test = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID).Where(w => w.evenementID == evenementID);
+                    //Only change one
+                    WishlistEvenement updated = test.First();
+                    ctx.WishlistEvenements.Remove(updated);
+                    ctx.SaveChanges();
+                }
+                else
+                {
 
-                var test = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID).Where(w => w.evenementID == evenementID);
-                //Only change one
-                WishlistEvenement updated = test.First();
-                updated.aantal = aantal;
+                    var test = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID).Where(w => w.evenementID == evenementID);
+                    //Only change one
+                    WishlistEvenement updated = test.First();
+                    updated.aantal = aantal;
 
-                ctx.WishlistEvenements.Attach(updated);
-                var entry = ctx.Entry(updated);
-                entry.Property(e => e.aantal).IsModified = true;
-                ctx.SaveChanges();
-            }
+                    ctx.WishlistEvenements.Attach(updated);
+                    var entry = ctx.Entry(updated);
+                    entry.Property(e => e.aantal).IsModified = true;
+                    ctx.SaveChanges();
+                }
+            } catch(Exception ex) {  }
         }
 
         //Update aantal for Diner

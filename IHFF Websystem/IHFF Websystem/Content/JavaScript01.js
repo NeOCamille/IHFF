@@ -25,7 +25,7 @@ function wbAddAmount(eid, amount, isDiner) {
             LoadWishlistPopup();
         })
         .fail(function () {
-            alert("Failed");
+            alert("I Failed");
         });
 }
 function wbRemoveAmount(eid, amount, isDiner) {
@@ -50,6 +50,27 @@ function LoadPopup(url, changeClassorId) {
     });
 }
 
+function myReload() {
+    if (confirm('Wishlist aangepast, wil je herladen?')) {
+        location.reload();
+    }
+}
+
+function wishlistLaden() {
+    myValue = $("#codewoordbox").val();
+    $.post("/Wishlist/WishlistLaden", { codeword: myValue })
+        .done(function () {
+            if (data === "") {
+                alert("codewoord ingevuld");
+                location.reload();
+            } else {
+                alert("codewoord incorrect");
+            }
+        })
+        .fail(function () {
+            alert("Failed");
+        });
+}
 
 /* Standalone code */
 $(document).ready(function () {
