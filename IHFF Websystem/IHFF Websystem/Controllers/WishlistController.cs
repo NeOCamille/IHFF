@@ -63,29 +63,61 @@ namespace IHFF_Websystem.Controllers
                 {
                     List<Evenement> mywishlistevenements = wishlistRepository.GetMyWishlistEvenements(wishlist.wishlistID);
                     List<Diner> mywishlistdiner          = wishlistRepository.Getmywishlistdiner(wishlist.wishlistID);
-                    List<ViewWishlist> myevenements      = new List<ViewWishlist>();
+                    //List<ViewWishlist> myevenements      = new List<ViewWishlist>();
+                    //foreach (Evenement evenement in mywishlistevenements)
+                    //{
+                    //    ViewWishlist viewwishlist = new ViewWishlist();
+                    //    viewwishlist.name = evenement.evenementNaam;
+                    //    viewwishlist.starttijd = evenement.startTijd;
+                    //    viewwishlist.locatie = wishlistRepository.GetLocatie(evenement.locatieID).locatieNaam;
+                    //    viewwishlist.prijs = evenement.prijs.ToString();
+                    //    viewwishlist.beschrijving = evenement.beschrijving;
+                    //    viewwishlist.evenementID = wishlistRepository.GetWishlistEvenement(wishlist.wishlistID, evenement.evenementID).ID;
+                    //    myevenements.Add(viewwishlist);
+                    //}
+                    //foreach (Diner diner in mywishlistdiner)
+                    //{
+                    //    ViewWishlist viewwishlist = new ViewWishlist();
+                    //    viewwishlist.name = diner.opNaamVan;
+                    //    viewwishlist.starttijd = diner.startTijd;
+                    //    viewwishlist.eindttijd = diner.eindTijd;
+                    //    viewwishlist.locatie = wishlistRepository.GetLocatie(diner.locatieID).locatieNaam;
+                    //    viewwishlist.prijs = diner.prijs.ToString();
+                    //    viewwishlist.dinerID = diner.dinerID;
+                    //}
+                    List<WishlistPopup> Popups = new List<WishlistPopup>();
                     foreach (Evenement evenement in mywishlistevenements)
                     {
-                        ViewWishlist viewwishlist = new ViewWishlist();
-                        viewwishlist.name = evenement.evenementNaam;
-                        viewwishlist.starttijd = evenement.startTijd;
-                        viewwishlist.locatie = wishlistRepository.GetLocatie(evenement.locatieID).locatieNaam;
-                        viewwishlist.prijs = evenement.prijs.ToString();
-                        viewwishlist.beschrijving = evenement.beschrijving;
-                        viewwishlist.evenementID = wishlistRepository.GetWishlistEvenement(wishlist.wishlistID, evenement.evenementID).ID;
-                        myevenements.Add(viewwishlist);
+                        WishlistPopup myPopup = new WishlistPopup();
+                        myPopup.evenementID = evenement.evenementID;
+                        myPopup.evenementNaam = evenement.evenementNaam;
+                        myPopup.startTijd = evenement.startTijd;
+                        myPopup.beschrijving = evenement.beschrijving;
+                        myPopup.prijs = evenement.prijs;
+                        myPopup.locatieID = evenement.locatieID;
+                        myPopup.eventType = events.film;
+                        myPopup.locatieNaam = wishlistRepository.GetLocatie(evenement.locatieID).locatieNaam;
+                        Popups.Add(myPopup);
                     }
                     foreach (Diner diner in mywishlistdiner)
                     {
-                        ViewWishlist viewwishlist = new ViewWishlist();
-                        viewwishlist.name = diner.opNaamVan;
-                        viewwishlist.starttijd = diner.startTijd;
-                        viewwishlist.eindttijd = diner.eindTijd;
-                        viewwishlist.locatie = wishlistRepository.GetLocatie(diner.dinerID).locatieNaam;
-                        viewwishlist.prijs = diner.prijs.ToString();
-                        viewwishlist.dinerID = diner.dinerID;
+                        WishlistPopup myPopup = new WishlistPopup();
+
+                        myPopup.dinerID = diner.dinerID;
+                        myPopup.startTijd = diner.startTijd;
+                        myPopup.eindTijd = diner.eindTijd;
+                        myPopup.foodFilm = diner.foodFilm;
+                        myPopup.opNaamVan = diner.opNaamVan;
+                        myPopup.prijs = diner.prijs;
+                        myPopup.wishlistID = diner.wishlistID;
+                        myPopup.locatieID = diner.locatieID;
+                        myPopup.aantal = diner.aantal;
+                        myPopup.eventType = events.diner;
+                        myPopup.locatieNaam = wishlistRepository.GetLocatie(diner.locatieID).locatieNaam;
+
+                        Popups.Add(myPopup);
                     }
-                    return View(myevenements);
+                    return View(Popups);
                 }
             }
             return View();
@@ -249,7 +281,7 @@ namespace IHFF_Websystem.Controllers
             diner.wishlistID = 1;
 
             //add directly to DB
-            new WishlistRepository().AddDiner(WishlistID, diner);
+            new WishlistRepository().AddDiner(diner);
 
             return RedirectToAction("Index", "Home");
         }

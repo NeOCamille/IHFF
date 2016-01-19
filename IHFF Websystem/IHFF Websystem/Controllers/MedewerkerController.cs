@@ -107,8 +107,11 @@ namespace IHFF_Websystem.Controllers
                     totaalomzet = totaalomzet + entry.totaalPrijs;
                 }
             }
-
             ViewBag.Totaalomzet = totaalomzet;
+
+            //List<WishlistEvenement> wishlistKoppelingen = new List<WishlistEvenement>();
+            //
+            //
             return View(wishlistList);   
             
         }

@@ -19,9 +19,8 @@ namespace IHFF_Websystem.Models
             return newWishlist;
         }
 
-        public void AddDiner(int wishlistID, Diner diner)
+        public void AddDiner(Diner diner)
         {
-            diner.wishlistID = wishlistID;
             ctx.Diners.Add(diner);
             ctx.SaveChanges();
         }
