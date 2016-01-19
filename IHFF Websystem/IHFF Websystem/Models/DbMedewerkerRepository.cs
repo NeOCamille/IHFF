@@ -65,14 +65,35 @@ namespace IHFF_Websystem.Models
             return dinerList;
         }
     
+// raaaaaaaaaaaaaaaaaaaaaav
+// PLS HELP
+// raaaaaaaaaaaaaaaaaaaaaav
 
         public void DeleteWishlist(int? wishlistID)
         {
             Wishlist wishlist = ctx.Wishlists.Find(wishlistID);
             ctx.Wishlists.Remove(wishlist);
+            //ctx.SaveChanges();
 
-            WishlistEvenement wishlistEvenement = ctx.WishlistEvenements.Find(wishlistID);
-            ctx.WishlistEvenements.Remove(wishlistEvenement);
+            foreach (WishlistEvenement entry in ctx.WishlistEvenements)
+            {
+                WishlistEvenement wishlistEvenement = ctx.WishlistEvenements.Find(wishlistID);
+                if (wishlistEvenement != null)
+                {
+                    ctx.WishlistEvenements.Remove(wishlistEvenement);
+                }
+                //ctx.SaveChanges();
+            }
+
+            foreach (Diner entry in ctx.Diners)
+            {
+                Diner diner = ctx.Diners.Find(wishlistID);
+                if (diner != null)
+                {
+                    ctx.Diners.Remove(diner);
+                }
+                //ctx.SaveChanges();
+            }
 
             ctx.SaveChanges();
         }
