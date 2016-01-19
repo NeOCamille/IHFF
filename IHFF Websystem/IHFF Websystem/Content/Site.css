@@ -205,7 +205,7 @@ header div.medewerkerlink {
 }
 
 h2 {
-    margin: 0px;
+    margin: 20px;
     font-family: Arial;
     color: #413f4b;
 }
@@ -224,22 +224,27 @@ h3 {
 /*Locaties. -Matthijs*/
 #container{
     width:900px;
+    margin: 20px;
+}
+#container p{
+    margin-bottom: 40px;
 }
 #left {
     width: 600px;
     float:left;
 }
-#lColumn{
+.lColumn{
     float:left;
     width:300px;
 }
-#rColumn{
+.rColumn{
     float:right;
     width:300px;
 }
-#Restaurants{
-    clear:both;
-    margin-top: 300px;
+#Theaters{
+    float: left;
+    margin-bottom: 50px;
+    border-bottom: solid 1px black;
 }
 #map{
     float:right;
@@ -247,6 +252,8 @@ h3 {
     height:200px;
 }
 
+
+/*Locaties end*/
 a.footertext {
     text-decoration: none;
     color: white;
