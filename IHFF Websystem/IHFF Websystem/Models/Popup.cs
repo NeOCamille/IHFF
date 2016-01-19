@@ -24,10 +24,5 @@ namespace IHFF_Websystem.Models
             evenement.prijs = 0;
             evenement.startTijd = default(DateTime);
         }
-
-        public void AddToWishlist()
-        {
-            //wishlist.add(evenement)...
-        }
     }
 }
