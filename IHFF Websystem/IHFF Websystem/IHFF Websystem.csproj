@@ -191,6 +191,7 @@
     </Compile>
     <Compile Include="Models\DbMedewerkerRepository.cs" />
     <Compile Include="Models\Diner.cs" />
+    <Compile Include="Models\DinerReserverenModel.cs" />
     <Compile Include="Models\Evenement.cs" />
     <Compile Include="Models\Film.cs" />
     <Compile Include="Models\IHFFContext.cs" />
@@ -203,6 +204,7 @@
     <Compile Include="Models\ViewWishlist.cs" />
     <Compile Include="Models\Wishlist.cs" />
     <Compile Include="Models\WishlistEvenement.cs" />
+    <Compile Include="Models\WishlistPopup.cs" />
     <Compile Include="Models\WishlistRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -348,6 +350,8 @@
     <Content Include="Views\Medewerker\Uitlog.cshtml" />
     <Content Include="Views\Home\Sitemap.cshtml" />
     <Content Include="Views\Medewerker\GetAgenda.cshtml" />
+    <Content Include="Views\Wishlist\WishlistPopUp.cshtml" />
+    <Content Include="Views\Home\DinerReserveren.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

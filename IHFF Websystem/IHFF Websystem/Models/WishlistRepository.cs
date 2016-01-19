@@ -19,9 +19,8 @@ namespace IHFF_Websystem.Models
             return newWishlist;
         }
 
-        public void AddDiner(int wishlistID, Diner diner)
+        public void AddDiner(Diner diner)
         {
-            diner.wishlistID = wishlistID;
             ctx.Diners.Add(diner);
             ctx.SaveChanges();
         }
@@ -147,7 +146,7 @@ namespace IHFF_Websystem.Models
             IEnumerable<WishlistEvenement> wishlistevents = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID);
             foreach (WishlistEvenement wishlistevent in wishlistevents)
             {
-                mywishlistevenement.Add(ctx.Evenementen.SingleOrDefault(e => e.evenementID == wishlistevent.evenementID));               
+                mywishlistevenement.Add(new WishlistRepository().ctx.Evenementen.SingleOrDefault(e => e.evenementID == wishlistevent.evenementID));               
             }
             return mywishlistevenement;
         }

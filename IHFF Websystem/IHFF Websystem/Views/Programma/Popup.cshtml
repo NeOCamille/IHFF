@@ -14,4 +14,4 @@
 <p id="description">@Model.evenement.beschrijving</p>
 <p id="prijslable">Prijs per ticket:</p>
 <p id="prijs">&euro; @String.Format("{0: 0.00}", Model.evenement.prijs)</p>
-<button class="close-btn" onclick="">Voeg toe aan Wish List</button>
+<button class="close-btn" onclick="AddEventToWishlist(@Model.evenement.evenementID)">Voeg toe aan Wish List</button>

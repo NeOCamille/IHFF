@@ -3,13 +3,83 @@
 }
 
 @using IHFF_Websystem.Models
-@model IEnumerable<Film>
+@model IEnumerable<WishlistPopup>
 
-@foreach (var film in Model)
+@foreach (WishlistPopup item in Model)
 {
-    <strong>@film.evenementNaam</strong><br />
-    <span>@film.beschrijving</span>
-    <br />
-    <br />
+    if (item.eventType == events.film)
+    {
+        <div style="background-color:white; border:1px #797979 solid; color:black; margin:5px; font-family:Arial;">
+            <div style="float:right; margin:5px;">
+                <a href="#" onclick="wbAddAmount(@item.evenementID)" class="amountButtons">+</a>
+                <br />
+                <a href="#" onclick="wbRemoveAmount(@item.evenementID)" class="amountButtons">-</a>
+            </div>
+            <div style="float:right; margin:5px; padding-top:20px; font-size:18px; font-weight:bold;" class="wb-aantal">
+                2
+            </div>
 
+            <p style="margin: 5px 5px 5px 5px; padding: 0 0 0 0;">
+                @item.startTijd<br />
+                <strong>@item.evenementNaam</strong><br />
+                @item.locatieNaam
+            </p>
+            <div style="clear:right;"></div>
+
+            <div style="float:right; margin:5px; font-size:18px; font-weight:bold;" class="wb-prijs">
+                &euro; @item.prijs
+            </div>
+            <div style="clear:right;"></div>
+        </div>
+    }
+    else if (item.eventType == events.special)
+    {
+        <div style="background-color:white; border:1px #797979 solid; color:black; margin:5px; font-family:Arial;">
+            <div style="float:right; margin:5px;">
+                <a href="#" onclick="" class="amountButtons">+</a>
+                <br />
+                <a href="#" onclick="" class="amountButtons">-</a>
+            </div>
+            <div style="float:right; margin:5px; padding-top:20px; font-size:18px; font-weight:bold;" class="wb-aantal">
+                2
+            </div>
+
+            <p style="margin: 5px 5px 5px 5px; padding: 0 0 0 0;">
+                @item.startTijd<br />
+                <strong>@item.evenementNaam</strong><br />
+                @item.locatieNaam
+            </p>
+            <div style="clear:right;"></div>
+
+            <div style="float:right; margin:5px; font-size:18px; font-weight:bold;" class="wb-prijs">
+                prijs
+            </div>
+            <div style="clear:right;"></div>
+        </div>
+    }
+    else if (item.eventType == events.diner)
+    {
+        <div style="background-color:white; border:1px #797979 solid; color:black; margin:5px; font-family:Arial;">
+            <div style="float:right; margin:5px;">
+                <a href="#" onclick="" class="amountButtons">+</a>
+                <br />
+                <a href="#" onclick="" class="amountButtons">-</a>
+            </div>
+            <div style="float:right; margin:5px; padding-top:20px; font-size:18px; font-weight:bold;" class="wb-aantal">
+                2
+            </div>
+
+            <p style="margin: 5px 5px 5px 5px; padding: 0 0 0 0;">
+                @item.startTijd<br />
+                <strong>@item.locatieNaam</strong><br />
+            </p>
+            <div style="clear:right;"></div>
+
+            <div style="float:right; margin:5px; font-size:18px; font-weight:bold;" class="wb-prijs">
+                prijs
+            </div>
+            <div style="clear:right;"></div>
+        </div>
+    }
 }
+

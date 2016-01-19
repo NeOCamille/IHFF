@@ -9,7 +9,7 @@ namespace IHFF_Websystem.Models
     // test comment
     public class Diner
     {
-        [Required]
+        
         public int dinerID { get; set; }
 
         [Required]
