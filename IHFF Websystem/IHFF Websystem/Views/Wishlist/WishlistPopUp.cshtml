@@ -20,14 +20,15 @@
             </div>
 
             <p style="margin: 5px 5px 5px 5px; padding: 0 0 0 0;">
-                @item.startTijd<br />
+                @String.Format("{0:dd-MM-yyyy}", item.startTijd);<br />
+                @String.Format("{0:HH:mm}", item.startTijd);<br />
                 <strong>@item.evenementNaam</strong><br />
                 @item.locatieNaam
             </p>
             <div style="clear:right;"></div>
 
             <div style="float:right; margin:5px; font-size:18px; font-weight:bold;" class="wb-prijs">
-                &euro; @item.prijs
+                &euro; @String.Format("{0: 0.00}", item.prijs)
             </div>
             <div style="clear:right;"></div>
         </div>
