@@ -172,52 +172,56 @@ namespace IHFF_Websystem.Controllers
             {            
                 int wishlistID = (int)Session["CurrentWishlist"];
 
-                IEnumerable<Film> films       = new WishlistRepository().GetAllWishlistFilms(wishlistID);
-                IEnumerable<Special> specials = new WishlistRepository().GetAllWishlistSpecials(wishlistID);
+                IEnumerable<Tuple<Film, int>> films = new WishlistRepository().GetAllWishlistFilms(wishlistID);
+                IEnumerable<Tuple<Special, int>> specials = new WishlistRepository().GetAllWishlistSpecials(wishlistID);
                 IEnumerable<Diner> diners     = new WishlistRepository().GetAllWishlistDiners(wishlistID);
 
                 List<WishlistPopup> myPopups = new List<WishlistPopup>();
 
-                foreach (Film film in films)
+                foreach (Tuple<Film, int> film in films)
                 {
-                    if (film == null)
+                    if (film.Item1 == null)
                         continue;
 
                     WishlistPopup myPopup = new WishlistPopup();
 
-                    myPopup.evenementID = film.evenementID;
-                    myPopup.evenementNaam = film.evenementNaam;
-                    myPopup.startTijd = film.startTijd;
-                    myPopup.beschrijving = film.beschrijving;
-                    myPopup.prijs = film.prijs;
-                    myPopup.locatieID = film.locatieID;
-                    myPopup.regisseur = film.regisseur;
+                    myPopup.evenementID = film.Item1.evenementID;
+                    myPopup.evenementNaam = film.Item1.evenementNaam;
+                    myPopup.startTijd = film.Item1.startTijd;
+                    myPopup.beschrijving = film.Item1.beschrijving;
+                    myPopup.prijs = film.Item1.prijs;
+                    myPopup.locatieID = film.Item1.locatieID;
+                    myPopup.regisseur = film.Item1.regisseur;
                     myPopup.eventType = events.film;
 
-                    Locatie locatie = wishlistRepository.GetLocatie(film.locatieID);
+                    myPopup.aantal = film.Item2;
+
+                    Locatie locatie = wishlistRepository.GetLocatie(film.Item1.locatieID);
                     myPopup.locatieNaam = locatie.locatieNaam;
 
                     myPopups.Add(myPopup);
                 }
 
-                foreach (Special special in specials)
+                foreach (Tuple<Special, int> special in specials)
                 {
-                    if (special == null)
+                    if (special.Item1 == null)
                         continue;
 
                     WishlistPopup myPopup = new WishlistPopup();
 
-                    myPopup.evenementID = special.evenementID;
-                    myPopup.evenementNaam = special.evenementNaam;
-                    myPopup.startTijd = special.startTijd;
-                    myPopup.beschrijving = special.beschrijving;
-                    myPopup.prijs = special.prijs;
-                    myPopup.locatieID = special.locatieID;
-                    myPopup.onderwerp = special.onderwerp;
-                    myPopup.spreker = special.spreker;
+                    myPopup.evenementID = special.Item1.evenementID;
+                    myPopup.evenementNaam = special.Item1.evenementNaam;
+                    myPopup.startTijd = special.Item1.startTijd;
+                    myPopup.beschrijving = special.Item1.beschrijving;
+                    myPopup.prijs = special.Item1.prijs;
+                    myPopup.locatieID = special.Item1.locatieID;
+                    myPopup.onderwerp = special.Item1.onderwerp;
+                    myPopup.spreker = special.Item1.spreker;
                     myPopup.eventType = events.special;
 
-                    Locatie locatie = wishlistRepository.GetLocatie(special.locatieID);
+                    myPopup.aantal = special.Item2;
+
+                    Locatie locatie = wishlistRepository.GetLocatie(special.Item1.locatieID);
                     myPopup.locatieNaam = locatie.locatieNaam;
 
                     myPopups.Add(myPopup);
@@ -325,6 +329,23 @@ namespace IHFF_Websystem.Controllers
             //don't return anyting because a background post handles this
             return new EmptyResult();
         }
+        //Update aantal value
+        [HttpPost]
+        public ActionResult UpdateAantal(int eID, int aantal, bool diner)
+        {
+            if (diner)
+            {
+                wishlistRepository.UpdateAantal_D(eID, aantal);
+            }
+            else
+            {
+                int wID = (int)Session["CurrentWishlist"]; //You only come here if session is set
+                wishlistRepository.UpdateAantal_WE(eID, wID, aantal);
+            }
+            return new EmptyResult();
+        }
+
+
         public ActionResult AddEvenementToWishlist(Evenement evenement)
         {
             return View();

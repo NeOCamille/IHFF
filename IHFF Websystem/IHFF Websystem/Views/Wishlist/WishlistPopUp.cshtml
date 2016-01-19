@@ -11,12 +11,12 @@
     {
         <div style="background-color:white; border:1px #797979 solid; color:black; margin:5px; font-family:Arial;">
             <div style="float:right; margin:5px;">
-                <a href="#" onclick="wbAddAmount(@item.evenementID)" class="amountButtons">+</a>
+                <a href="#" onclick="wbAddAmount(@item.evenementID, @item.aantal, false)" class="amountButtons">+</a>
                 <br />
-                <a href="#" onclick="wbRemoveAmount(@item.evenementID)" class="amountButtons">-</a>
+                <a href="#" onclick="wbRemoveAmount(@item.evenementID, @item.aantal, false)" class="amountButtons">-</a>
             </div>
             <div style="float:right; margin:5px; padding-top:20px; font-size:18px; font-weight:bold;" class="wb-aantal">
-                2
+                @item.aantal
             </div>
 
             <p style="margin: 5px 5px 5px 5px; padding: 0 0 0 0;">
@@ -37,23 +37,24 @@
     {
         <div style="background-color:white; border:1px #797979 solid; color:black; margin:5px; font-family:Arial;">
             <div style="float:right; margin:5px;">
-                <a href="#" onclick="" class="amountButtons">+</a>
+                <a href="#" onclick="wbAddAmount(@item.evenementID, @item.aantal, false)" class="amountButtons">+</a>
                 <br />
-                <a href="#" onclick="" class="amountButtons">-</a>
+                <a href="#" onclick="wbRemoveAmount(@item.evenementID, @item.aantal, false)" class="amountButtons">-</a>
             </div>
             <div style="float:right; margin:5px; padding-top:20px; font-size:18px; font-weight:bold;" class="wb-aantal">
-                2
+                @item.aantal
             </div>
 
             <p style="margin: 5px 5px 5px 5px; padding: 0 0 0 0;">
-                @item.startTijd<br />
+                @String.Format("{0:dd-MM-yyyy}", item.startTijd);<br />
+                @String.Format("{0:HH:mm}", item.startTijd);<br />
                 <strong>@item.evenementNaam</strong><br />
                 @item.locatieNaam
             </p>
             <div style="clear:right;"></div>
 
             <div style="float:right; margin:5px; font-size:18px; font-weight:bold;" class="wb-prijs">
-                prijs
+                &euro; @String.Format("{0: 0.00}", item.prijs)
             </div>
             <div style="clear:right;"></div>
         </div>
@@ -62,17 +63,19 @@
     {
         <div style="background-color:white; border:1px #797979 solid; color:black; margin:5px; font-family:Arial;">
             <div style="float:right; margin:5px;">
-                <a href="#" onclick="" class="amountButtons">+</a>
+                <a href="#" onclick="wbAddAmount(@item.dinerID, @item.aantal, true)" class="amountButtons">+</a>
                 <br />
-                <a href="#" onclick="" class="amountButtons">-</a>
+                <a href="#" onclick="wbRemoveAmount(@item.dinerID, @item.aantal, true)" class="amountButtons">-</a>
             </div>
             <div style="float:right; margin:5px; padding-top:20px; font-size:18px; font-weight:bold;" class="wb-aantal">
-                2
+                @item.aantal
             </div>
 
             <p style="margin: 5px 5px 5px 5px; padding: 0 0 0 0;">
-                @item.startTijd<br />
+                @String.Format("{0:dd-MM-yyyy}", item.startTijd);<br />
+                @String.Format("{0:HH:mm}", item.startTijd); - @String.Format("{0:HH:mm}", item.eindTijd);<br />
                 <strong>@item.locatieNaam</strong><br />
+                
             </p>
             <div style="clear:right;"></div>
 
