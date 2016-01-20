@@ -194,6 +194,22 @@ namespace IHFF_Websystem.Models
             }
         }
 
+        //Save codewoord
+        public void UpdatecodeWoord(int wishlistID, string codewoord)
+        {
+                var wishlist = ctx.Wishlists.Where(d => d.wishlistID == wishlistID);
+                Wishlist updated = wishlist.First();
+                updated.codeWoord = codewoord;
+
+                ctx.Wishlists.Attach(updated);
+                //db.Users.Attach(updatedUser);
+                var entry = ctx.Entry(updated);
+                //var entry = db.Entry(updatedUser);
+                entry.Property(e => e.codeWoord).IsModified = true;
+                // other changed properties
+                ctx.SaveChanges();
+        }
+
         public void CreateFilm(string evenementNaam, DateTime startTijd, string beschrijving, double prijs, string regisseur, int locatieID)
         {
             int evenementID = 1;

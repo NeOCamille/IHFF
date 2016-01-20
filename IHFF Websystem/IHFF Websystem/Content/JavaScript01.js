@@ -59,16 +59,25 @@ function myReload() {
 function wishlistLaden() {
     myValue = $("#codewoordbox").val();
     $.post("/Wishlist/WishlistLaden", { codeword: myValue })
-        .done(function () {
-            if (data === "") {
-                alert("codewoord ingevuld");
+        .done(function (data) {
+            if (data == "[object XMLDocument]") {
                 location.reload();
             } else {
                 alert("codewoord incorrect");
             }
         })
         .fail(function () {
-            alert("Failed");
+            //alert("Failed");
+        });
+}
+function wishlistOpslaan() {
+    myValue = $("#codewoordbox2").val();
+    $.post("/Wishlist/WishlistOpslaan", { codeword: myValue })
+        .done(function () {
+            location.reload();
+        })
+        .fail(function () {
+            //alert("Failed");
         });
 }
 

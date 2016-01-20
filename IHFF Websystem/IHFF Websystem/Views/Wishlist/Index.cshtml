@@ -7,7 +7,7 @@
 
 <div style="padding:5px;">
 <div style="float:right; font-family:Arial; font-size:20px;">
-    Wishlist laden met codewoord: @Html.TextBox("codeword", null, new { @id = "codewoordbox", @class = "bigBox" }) <a href="#" onclick="wishlistLaden()" class="blueButton">Laden</a>
+    Wishlist laden met codewoord: @Html.TextBox("codeword", null, new { @id = "codewoordbox", @class = "bigBox" }) <a href="" onclick="wishlistLaden()" class="blueButton">Laden</a>
 </div>
 <h2>Wishlist</h2>
 <div id="wishlistArea">
@@ -98,14 +98,14 @@
 </div>
 <div style="font-family:Arial; font-size:20px;">
     <br />
-    Wishlist laden met codewoord: @Html.TextBox("codeword", null, new { @id = "codewoordbox2", @class="bigBox" })
-    <a href="#" onclick="" class="blueButton">Opslaan</a>
+    Wishlist opslaan met codewoord: @Html.TextBox("codeword", null, new { @id = "codewoordbox2", @class="bigBox" })
+    <a href="" onclick="wishlistOpslaan();" class="blueButton">Opslaan</a>
 <br /><br /><br />
-    Wishlist laden met codewoord: @Html.TextBox("codeword", null, new { @id = "emailbox", @class = "bigBox" })
-    <a href="#" onclick="" class="blueButton">Verzenden</a>
+    Wishlist verzenden naar e-mail: @Html.TextBox("codeword", null, new { @id = "emailbox", @class = "bigBox" })
+    <a href="" onclick="alert('deze functie is nog niet werkzaam om deze server');" class="blueButton">Verzenden</a>
 <br />
 <p>
-    Wishlist <a href="#">downloaden</a>.<br />
+    Wishlist <a href="#" onclick="alert('deze functie is nog niet werkzaam om deze server');">downloaden</a>.<br />
     Print de wishlist om bij de balie te betalen.
 </p>
 </div>

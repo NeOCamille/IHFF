@@ -144,6 +144,26 @@ namespace IHFF_Websystem.Controllers
             return View();
         }
 
+        [HttpPost]
+        public ActionResult WishlistOpslaan(string codeword)
+        {
+            if (Session["CurrentWishlist"] != null)
+            {
+                int wishlistID = (int)Session["CurrentWishlist"];
+                try
+                {
+                    wishlistRepository.UpdatecodeWoord(wishlistID, codeword);
+                }
+                catch (Exception ex)
+                {
+
+                }
+                //return RedirectToAction("Index");
+                return new EmptyResult();
+                
+            }
+            return new EmptyResult();
+        }
 
         public ActionResult Create()
         {
