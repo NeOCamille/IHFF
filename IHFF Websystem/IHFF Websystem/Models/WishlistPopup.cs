@@ -55,6 +55,8 @@ namespace IHFF_Websystem.Models
         //extra locatie naam
         public string locatieNaam { get; set; }
 
+        //plaatsen
+        public int plaatsenVrij { get; set; }
     }
     public enum events
     {

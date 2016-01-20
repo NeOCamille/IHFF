@@ -30,7 +30,8 @@
                     @String.Format("{0:dd-MM-yyyy}", item.startTijd)<br />
                     @String.Format("{0:HH:mm}", item.startTijd)<br />
                     <strong>@item.evenementNaam</strong><br />
-                    @item.locatieNaam
+                    @item.locatieNaam<br />
+                    plaatsen vrij: @item.plaatsenVrij
                 </p>
                 <div style="clear:right;"></div>
 
@@ -56,7 +57,8 @@
                     @String.Format("{0:dd-MM-yyyy}", item.startTijd)<br />
                     @String.Format("{0:HH:mm}", item.startTijd)<br />
                     <strong>@item.evenementNaam</strong><br />
-                    @item.locatieNaam
+                    @item.locatieNaam<br />
+                    plaatsen vrij: @item.plaatsenVrij
                 </p>
                 <div style="clear:right;"></div>
 
@@ -81,7 +83,9 @@
                 <p style="margin: 5px 5px 5px 5px; padding: 0 0 0 0;">
                     @String.Format("{0:dd-MM-yyyy}", item.startTijd)<br />
                     @String.Format("{0:HH:mm}", item.startTijd) - @String.Format("{0:HH:mm}", item.eindTijd)<br />
-                    <strong>@item.locatieNaam</strong><br /><br />
+                    <strong>@item.locatieNaam</strong><br />
+                    plaatsen vrij: @item.plaatsenVrij
+                    <br />
 
                 </p>
                 <div style="clear:right;"></div>

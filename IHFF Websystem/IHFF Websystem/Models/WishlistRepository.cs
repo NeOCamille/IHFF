@@ -139,6 +139,49 @@ namespace IHFF_Websystem.Models
             return (eventMaxAantal.maxAantalPlaatsen - total);
         }
 
+        //Check available seats
+        public int CheckAvailabilityDiner(int mydinerID)
+        {
+            //SELECT COUNT (WishlistEvenements.aantal)
+            //FROM Evenements
+            //INNER JOIN WishlistEvenements
+            //ON Evenements.evenementID = WishlistEvenements.evenementID
+            //INNER JOIN Wishlists
+            //ON Wishlists.wishlistID = WishlistEvenements.wishlistID
+            //WHERE Wishlists.isBetaald = '1'
+
+            // SQL statement to get all aantals
+            var eventAantal = (from d in ctx.Diners
+                               join w in ctx.Wishlists on d.wishlistID equals w.wishlistID
+                               where w.isBetaald == true
+                               where d.dinerID == mydinerID
+                               select new
+                               {
+                                   aantal = d.aantal
+                               });
+
+            // add all aantals
+            int total = 0;
+            foreach (var single in eventAantal)
+            {
+                total += single.aantal;
+            }
+
+
+            //get maxAantal plaatsen for evenementID
+            var eventMaxAantal = (from d in ctx.Diners
+                                  join l in ctx.Locaties on d.locatieID equals l.locatieID
+                                  where d.dinerID == mydinerID
+                                  select new
+                                  {
+                                      maxAantalPlaatsen = l.maxAantalPlaatsen
+                                  }).Single(); //single gives exeption if more then one
+
+
+            // return available seats
+            return (eventMaxAantal.maxAantalPlaatsen - total);
+        }
+
         //update aantal for a wishlistEvenement
         public void UpdateAantal_WE(int evenementID, int wishlistID, int aantal)
         {
@@ -266,6 +309,8 @@ namespace IHFF_Websystem.Models
             wishlist.isBetaald = true;
             ctx.Wishlists.Find(wishlist.wishlistID).isBetaald = true;
             ctx.SaveChanges();
+
+
         }
 
         public Wishlist GetWishList(string codewoord)
