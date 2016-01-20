@@ -106,7 +106,7 @@ namespace IHFF_Websystem.Controllers
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
             if (ingelogdeMedewerker.locatieID == 19 || ingelogdeMedewerker.relevantie == "Management")
             {
-                wishlistList = medewerkerRepository.GetWishlists(ingelogdeMedewerker);
+                wishlistList = medewerkerRepository.GetWishlists();
                 double totaalomzet = 0;
                 foreach (var entry in wishlistList)
                 {
@@ -202,8 +202,8 @@ namespace IHFF_Websystem.Controllers
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
             if (ModelState.IsValid && ingelogdeMedewerker.locatieID == 19)
             {
-                specialsList = medewerkerRepository.GetSpecials(ingelogdeMedewerker);
-                filmsList = medewerkerRepository.GetFilms(ingelogdeMedewerker);
+                specialsList = medewerkerRepository.GetSpecials();
+                filmsList = medewerkerRepository.GetFilms();
                 ViewBag.Films = filmsList;
                 return View(specialsList); 
             }

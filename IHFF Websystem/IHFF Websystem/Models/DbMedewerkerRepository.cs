@@ -22,7 +22,7 @@ namespace IHFF_Websystem.Models
            return gevondenMedewerker;
        }
 
-        public List<Wishlist> GetWishlists(Medewerker ingelogdeMedewerker)
+        public List<Wishlist> GetWishlists()
         {
             List<Wishlist> wishlistList = new List<Wishlist>();
             foreach (Wishlist Wishlistentry in ctx.Wishlists)
@@ -82,7 +82,7 @@ namespace IHFF_Websystem.Models
             ctx.SaveChanges();
         }
 
-        public List<Special> GetSpecials(Medewerker ingelogdeMedewerker)
+        public List<Special> GetSpecials()
         {
             List<Special> specials = new List<Special>();
             foreach (Special entry in ctx.Specials)
@@ -92,7 +92,7 @@ namespace IHFF_Websystem.Models
             return specials;
         }
 
-        public List<Film> GetFilms(Medewerker ingelogdeMedewerker)
+        public List<Film> GetFilms()
         {
             List<Film> films = new List<Film>();
             foreach (Film entry in ctx.Films)
