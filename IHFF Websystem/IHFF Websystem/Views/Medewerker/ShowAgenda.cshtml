@@ -3,7 +3,7 @@
 @{
     ViewBag.Title = "GetAgenda";
 }
-
+@ViewBag.Error
 <h2>Agenda</h2>
 <br />
 <h3> Specials </h3>
@@ -37,7 +37,7 @@
             Spreker
         </th>
     </tr>
-    @foreach(var entry in Model)
+    @foreach (var entry in Model)
     {
         <tr>
             <td>
@@ -71,32 +71,32 @@
 <h3>Films</h3>
 <br />
 <table>
-   <tr>
-       <th>
-           Evenement ID
-       </th>
-       <th>
-           Evenement naam
-       </th>
-       <th>
-           Start tijd
-       </th>
-       <th>
-           Beschrijving
-       </th>
-       <th>
-           Prijs
-       </th>
-       <th>
-           Locatie ID
-       </th>
-       <th>
-           Regisseur
-       </th>
-       <th>
-           -
-       </th>
-   </tr>
+    <tr>
+        <th>
+            Evenement ID
+        </th>
+        <th>
+            Evenement naam
+        </th>
+        <th>
+            Start tijd
+        </th>
+        <th>
+            Beschrijving
+        </th>
+        <th>
+            Prijs
+        </th>
+        <th>
+            Locatie ID
+        </th>
+        <th>
+            Regisseur
+        </th>
+        <th>
+            -
+        </th>
+    </tr>
     @foreach (var entry in ViewBag.Films)
     {
         <tr>

@@ -10,7 +10,7 @@ namespace IHFF_Websystem.Models
     {
        public IHFFContext ctx = new IHFFContext();
 
-       public void AddMedewerker(Medewerker medewerker, Medewerker ingelogdeMedewerker)
+       public void AddMedewerker(Medewerker medewerker)
        {
                ctx.Medewerkers.Add(medewerker);
                ctx.SaveChanges();
@@ -22,27 +22,18 @@ namespace IHFF_Websystem.Models
            return gevondenMedewerker;
        }
 
-        public List<Wishlist> ShowDataManagement(Medewerker ingelogdeMedewerker)
+        public List<Wishlist> GetWishlists()
         {
-            if (ingelogdeMedewerker.locatieID == 19 || ingelogdeMedewerker.relevantie == "Management")
+            List<Wishlist> wishlistList = new List<Wishlist>();
+            foreach (Wishlist Wishlistentry in ctx.Wishlists)
             {
-                List<Wishlist> wishlistList = new List<Wishlist>();
-
-                foreach (Wishlist Wishlistentry in ctx.Wishlists)
-                {
-                    wishlistList.Add(Wishlistentry);
-                }
-                return wishlistList;
+                wishlistList.Add(Wishlistentry);
             }
-            else {
-                List<Wishlist> wishlistList = new List<Wishlist>();
-
-                return wishlistList;
-            }
-
+            return wishlistList;
         }
+        
 
-        public List<Diner> ShowReserveringen(Medewerker ingelogdeMedewerker)
+        public List<Diner> GetReserveringen(Medewerker ingelogdeMedewerker)
         {
             List<Diner> dinerList = new List<Diner>();
             if (ingelogdeMedewerker.locatieID != 19 || ingelogdeMedewerker.relevantie != "Management")
@@ -64,37 +55,11 @@ namespace IHFF_Websystem.Models
             }
             return dinerList;
         }
-    
-// raaaaaaaaaaaaaaaaaaaaaav
-// PLS HELP
-// raaaaaaaaaaaaaaaaaaaaaav
 
         public void DeleteWishlist(int? wishlistID)
         {
             Wishlist wishlist = ctx.Wishlists.Find(wishlistID);
             ctx.Wishlists.Remove(wishlist);
-            //ctx.SaveChanges();
-
-            foreach (WishlistEvenement entry in ctx.WishlistEvenements)
-            {
-                WishlistEvenement wishlistEvenement = ctx.WishlistEvenements.Find(wishlistID);
-                if (wishlistEvenement != null)
-                {
-                    ctx.WishlistEvenements.Remove(wishlistEvenement);
-                }
-                //ctx.SaveChanges();
-            }
-
-            foreach (Diner entry in ctx.Diners)
-            {
-                Diner diner = ctx.Diners.Find(wishlistID);
-                if (diner != null)
-                {
-                    ctx.Diners.Remove(diner);
-                }
-                //ctx.SaveChanges();
-            }
-
             ctx.SaveChanges();
         }
 
@@ -117,35 +82,44 @@ namespace IHFF_Websystem.Models
             ctx.SaveChanges();
         }
 
-        public List<Special> ShowSpecials(Medewerker ingelogdeMedewerker)
+        public List<Special> GetSpecials()
         {
             List<Special> specials = new List<Special>();
-
-            if (ingelogdeMedewerker.relevantie == "Management" || ingelogdeMedewerker.locatieID == 19)
+            foreach (Special entry in ctx.Specials)
             {
-                foreach (Special entry in ctx.Specials)
-                {
-                    specials.Add(entry);
-                }
+                specials.Add(entry);
             }
-
             return specials;
-
         }
 
-        public List<Film> ShowFilms(Medewerker ingelogdeMedewerker)
+        public List<Film> GetFilms()
         {
             List<Film> films = new List<Film>();
-
-            if (ingelogdeMedewerker.locatieID == 19 || ingelogdeMedewerker.relevantie == "Management")
+            foreach (Film entry in ctx.Films)
             {
-                foreach (Film entry in ctx.Films)
+                films.Add(entry);
+            }
+            return films;
+        }
+
+        public List<Locatie> getLocaties()
+        {
+            List<Locatie> locaties = new List<Locatie>();
+            foreach (Locatie entry in ctx.Locaties)
+            {
+                if (entry.locatieID == 1 || entry.locatieID == 3 || entry.locatieID == 4 || entry.locatieID == 5 || entry.locatieID == 6 || entry.locatieID == 7 || entry.locatieID == 19)
                 {
-                    films.Add(entry);
+                    locaties.Add(entry);
                 }
             }
+            return locaties;
+        }
 
-            return films;
+        public void DeleteAccount(int medewerkerID)
+        {
+            Medewerker medewerker = ctx.Medewerkers.Find(medewerkerID);
+            ctx.Medewerkers.Remove(medewerker);
+            ctx.SaveChanges();
         }
     }
 }

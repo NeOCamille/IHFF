@@ -7,15 +7,17 @@ namespace IHFF_Websystem.Models
 {
     interface IMedewerkerRepository
     {
-        void AddMedewerker(Medewerker medewerker, Medewerker ingelogdeMedewerker);
+        void AddMedewerker(Medewerker medewerker);
         Medewerker GetMedewerker(string gebruikersNaam, string passWord);
-        List<Wishlist> ShowDataManagement(Medewerker medewerker);
-        List<Diner> ShowReserveringen(Medewerker medewerker);
+        List<Wishlist> GetWishlists();
+        List<Diner> GetReserveringen(Medewerker medewerker);
         void DeleteWishlist(int? wishlistID);
         Wishlist EditWishlistID(int? wishlistID);
         void EditWishlist(Wishlist newWishlist);
         void DeleteReservering(int? dinerID);
-        List<Special> ShowSpecials(Medewerker ingelogdeMedewerker);
-        List<Film> ShowFilms(Medewerker ingelogdeMedewerker);
+        List<Special> GetSpecials();
+        List<Film> GetFilms();
+        List<Locatie> getLocaties();
+        void DeleteAccount(int medewerkerID);
     }
 }

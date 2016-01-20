@@ -5,9 +5,9 @@
 <h2>Welkom @User.Identity.Name</h2>
 <br />
 
-@Html.ActionLink("Wishlists", "ShowData", "Medewerker", new { @class = "button" })
-@Html.ActionLink("Reserveringen", "GetReserveringen", "Medewerker", new { @class = "button" })
-@Html.ActionLink("Agenda", "GetAgenda", "Medewerker", new { @class = "button" })
+@Html.ActionLink("Wishlists", "ShowWishlists", "Medewerker", new { @class = "button" })
+@Html.ActionLink("Reserveringen", "ShowReserveringen", "Medewerker", new { @class = "button" })
+@Html.ActionLink("Agenda", "ShowAgenda", "Medewerker", new { @class = "button" })
 @Html.ActionLink("Instellingen", "Instellingen", "Medewerker", new { @class = "button" })
 @Html.ActionLink("Nieuw account", "AddMedewerker", "Medewerker", new { @class = "button" })
 @Html.ActionLink("Log uit", "Uitlog", "Medewerker", new { @class = "button" })

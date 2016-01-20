@@ -12,9 +12,11 @@ namespace IHFF_Websystem.Controllers
     public class MedewerkerController : Controller
     {
         private IMedewerkerRepository medewerkerRepository = new DbMedewerkerRepository();
+
         [Authorize]
         public ActionResult Index()
         {
+            // Als er niemand ingelogd is, dan doorverwijzen naar login scherm, anders het medewerker startscherm
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
             if (ingelogdeMedewerker != null)
             {
@@ -25,19 +27,24 @@ namespace IHFF_Websystem.Controllers
                 return RedirectToAction("Login");
             }
         }
+
         [Authorize]
         public ActionResult AddMedewerker()
         {
+            // Zoekt de locaties op die geselecteerd kunnen worden in de dropdownlist bij de registreerpagina
+            List<Locatie> dropdownLocaties = medewerkerRepository.getLocaties();
+            ViewBag.Locaties = dropdownLocaties;
             return View();
         }
-        [Authorize]
+
         [HttpPost]
         public ActionResult AddMedewerker(Medewerker medewerker)
         {
+            //Checkt of de ingelogde medewerker een manager is. Als dat zo is dan wordt er een nieuw account geregistreerd
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
             if (ModelState.IsValid && ingelogdeMedewerker.locatieID == 19)
             {
-                medewerkerRepository.AddMedewerker(medewerker, ingelogdeMedewerker);
+                medewerkerRepository.AddMedewerker(medewerker);
                 return RedirectToAction("Index");
             }
             else
@@ -49,6 +56,7 @@ namespace IHFF_Websystem.Controllers
 
         public ActionResult Login()
         {
+            // Als er al een medewerker ingelogd is, krijgt diegene de medewerkerspagina te zien, anders het loginscherm
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
             if (ingelogdeMedewerker != null)
             {
@@ -63,10 +71,10 @@ namespace IHFF_Websystem.Controllers
         [HttpPost]
         public ActionResult Login(Login loginMedewerker)
         {
+            // Checkt de credentials
             if (ModelState.IsValid)
             {
                 Medewerker medewerker = medewerkerRepository.GetMedewerker(loginMedewerker.gebruikersNaam, loginMedewerker.passWord);
-
                 if (medewerker != null)
                 {
                     FormsAuthentication.SetAuthCookie(medewerker.gebruikersNaam, false);
@@ -80,50 +88,48 @@ namespace IHFF_Websystem.Controllers
             }
             return View(loginMedewerker);
         }
+
         [Authorize]
         public ActionResult Uitlog()
         {
+            // Uitloggen, nodig om signout te doen, en session.clear, anders dan redirect de "Medewerker" link niet goed
             FormsAuthentication.SignOut();
             Session.Clear();
             return RedirectToAction("Index", "Home");
         }
 
         [Authorize]
-        public ActionResult ShowData()
+        public ActionResult ShowWishlists()
         {
+            //Checkt of de medewerker manager is, als dat zo is worden de wishlists getoond
+            List<Wishlist> wishlistList = new List<Wishlist>();
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
-            List<Wishlist> wishlistList = medewerkerRepository.ShowDataManagement(ingelogdeMedewerker);
-
-            if (ingelogdeMedewerker.relevantie != "Management" || ingelogdeMedewerker.locatieID != 19)
+            if (ingelogdeMedewerker.locatieID == 19 || ingelogdeMedewerker.relevantie == "Management")
+            {
+                wishlistList = medewerkerRepository.GetWishlists();
+                double totaalomzet = 0;
+                foreach (var entry in wishlistList)
+                {
+                        totaalomzet = totaalomzet + entry.totaalPrijs;
+                }
+                ViewBag.Totaalomzet = totaalomzet;
+            }
+            else
             {
                 ViewBag.Error = "U bent niet bevoegd om de wishlists te bekijken";
             }
-            double totaalomzet = 0;
-
-            foreach (var entry in wishlistList)
-            {
-                if (entry.isBetaald == true)
-                {
-                    totaalomzet = totaalomzet + entry.totaalPrijs;
-                }
-            }
-            ViewBag.Totaalomzet = totaalomzet;
-
-            //List<WishlistEvenement> wishlistKoppelingen = new List<WishlistEvenement>();
-            //
-            //
-            return View(wishlistList);   
-            
+            return View(wishlistList); 
         }
-
 
         [Authorize]
         public ActionResult DeleteWishlist(int? wishlistID)
         {
-            if (ModelState.IsValid)
+            // Checkt of de medewerker een manager is, dan wordt de wishlist verwijderd
+            Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
+            if (ModelState.IsValid && ingelogdeMedewerker.locatieID == 19)
             {
                 medewerkerRepository.DeleteWishlist(wishlistID);
-                return RedirectToAction("ShowData", "Medewerker");
+                return RedirectToAction("ShowWishlists", "Medewerker");
             }
             return View();
         }
@@ -134,63 +140,95 @@ namespace IHFF_Websystem.Controllers
             if (ModelState.IsValid)
             {
                 medewerkerRepository.DeleteReservering(dinerID);
-                return RedirectToAction("GetReserveringen", "Medewerker");
+                return RedirectToAction("ShowReserveringen", "Medewerker");
             }
-
             return View();
         }
+
         [Authorize]
         public ActionResult EditWishlist(int? wishlistID)
         {
-            Wishlist wishlist = medewerkerRepository.EditWishlistID(wishlistID);
-            return View(wishlist);
+            // Checkt of medewerker een manager is, dan wordt de gewenste wishlist opgezocht
+            Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
+            Wishlist wishlist;
+            if (ingelogdeMedewerker.locatieID == 19)
+            {
+                wishlist = medewerkerRepository.EditWishlistID(wishlistID);
+            }
+            else
+            {
+                wishlist = null;
+            }
+                return View(wishlist);
         }
         
         [HttpPost]
         public ActionResult EditWishlist(Wishlist newWishlist)
         {
-            if (ModelState.IsValid)
+            // Checkt of medewerker een manager is, verandert daarna de wishlist
+            Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
+            if (ModelState.IsValid && ingelogdeMedewerker.locatieID == 19)
             {
                 medewerkerRepository.EditWishlist(newWishlist);
-                return RedirectToAction("ShowData", "Medewerker");
+                return RedirectToAction("ShowWishlists", "Medewerker");
             }
-
             return View();
         }
+
         [Authorize]
-        public ActionResult GetReserveringen()
+        public ActionResult ShowReserveringen()
         {
+            // Als de medewerker een restauranteigenaar is, worden alleen de relevante reserveringen getoond
+            // Als de medewerker een manager is, worden alle reserveringen getoond
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
             if (ModelState.IsValid)
             {
-                List<Diner> reserveringsList = medewerkerRepository.ShowReserveringen(ingelogdeMedewerker);
+                List<Diner> reserveringsList = medewerkerRepository.GetReserveringen(ingelogdeMedewerker);
                 return View(reserveringsList);
             }
             else
             {
                 return View();
             }
-            
-
         }
 
         [Authorize]
-        public ActionResult GetAgenda()
+        public ActionResult ShowAgenda()
         {
+            // Checkt of de medewerker een manager is, en laat dan lijsten met films en specials zien
+            List<Special> specialsList = new List<Special>();
+            List<Film> filmsList = new List<Film>();
+
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
-            if (ModelState.IsValid)
+            if (ModelState.IsValid && ingelogdeMedewerker.locatieID == 19)
             {
-                List<Special> specialsList = medewerkerRepository.ShowSpecials(ingelogdeMedewerker);
-                List<Film> filmsList = medewerkerRepository.ShowFilms(ingelogdeMedewerker);
+                specialsList = medewerkerRepository.GetSpecials();
+                filmsList = medewerkerRepository.GetFilms();
                 ViewBag.Films = filmsList;
-                return View(specialsList);
-                
+                return View(specialsList); 
             }
             else
             {
-                return View();
+                ViewBag.Films = filmsList;
+                ViewBag.Error = "U bent niet bevoegd deze pagina te bekijken.";
+                return View(specialsList);
             }
         }
-        
+   
+        public ActionResult Instellingen()
+        {
+            return View();
+        }
+
+        public ActionResult DeleteAccount()
+        {
+            Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
+
+            medewerkerRepository.DeleteAccount(ingelogdeMedewerker.medewerkerID);
+            FormsAuthentication.SignOut();
+            Session.Clear();
+
+            return RedirectToAction("Index", "Home");
+        }
     }
 }

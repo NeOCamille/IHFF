@@ -1,5 +1,7 @@
 ﻿@model IHFF_Websystem.Models.Medewerker
 
+@using IHFF_Websystem.Models;
+
 @{
     ViewBag.Title = "AddMedewerker";
 }
@@ -28,9 +30,10 @@
     @Html.ValidationMessageFor(m => m.relevantie)
     <br /><br />
     
-    @Html.LabelFor(m => m.locatieID, "Locatienummer:", new { @class = "labels" })
-    @Html.TextBoxFor(m => m.locatieID, new { @class = "box" })
+    @Html.LabelFor(m => m.locatieID, "Locatie", new { @class = "labels" })
+    @Html.DropDownListFor(m => m.locatieID, new SelectList(ViewBag.Locaties, "locatieID", "locatieNaam"), new { @class = "box" })
     @Html.ValidationMessageFor(m => m.locatieID)
+    
     <br />
     <br />
      
