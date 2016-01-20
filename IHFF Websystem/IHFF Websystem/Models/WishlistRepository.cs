@@ -50,30 +50,37 @@ namespace IHFF_Websystem.Models
             return films;
         }
 
-        public IEnumerable<Film> GetAllWishlistFilms(int wishlistID)
+        public IEnumerable<Tuple<Film, int>> GetAllWishlistFilms(int wishlistID)
         {
-            List<Film> films = new List<Film>();
+            //Using a tuple to get film and aantal
+            List<Tuple<Film, int>> lijst = new List<Tuple<Film, int>>();
             IEnumerable<WishlistEvenement> wishlistevents = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID);
             foreach (WishlistEvenement wishlistevent in wishlistevents) {
                 //quick fix
-                films.Add(new WishlistRepository().ctx.Films.SingleOrDefault(f => f.evenementID == wishlistevent.evenementID));
+                Tuple<Film, int> lijstItem =
+                    new Tuple<Film, int>(
+                        new WishlistRepository().ctx.Films.SingleOrDefault(f => f.evenementID == wishlistevent.evenementID),
+                        wishlistevent.aantal);
+                lijst.Add(lijstItem);
             }
           
-            //ctx.Films.Include()
-            return films;
+            return lijst;
         }
-        public IEnumerable<Special> GetAllWishlistSpecials(int wishlistID)
+        public IEnumerable<Tuple<Special, int>> GetAllWishlistSpecials(int wishlistID)
         {
-            List<Special> specials = new List<Special>();
+            List<Tuple<Special, int>> lijst = new List<Tuple<Special, int>>();
             IEnumerable<WishlistEvenement> wishlistevents = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID);
             foreach (WishlistEvenement wishlistevent in wishlistevents)
             {
-                //quick fix
-                specials.Add(new WishlistRepository().ctx.Specials.SingleOrDefault(f => f.evenementID == wishlistevent.evenementID));
+                Tuple<Special, int> lijstItem =
+                    new Tuple<Special, int>(
+                        new WishlistRepository().ctx.Specials.SingleOrDefault(f => f.evenementID == wishlistevent.evenementID),
+                        wishlistevent.aantal);
+                lijst.Add(lijstItem);
             }
 
             //ctx.Films.Include()
-            return specials;
+            return lijst;
         }
         public IEnumerable<Diner> GetAllWishlistDiners(int wishlistID)
         {
@@ -130,6 +137,61 @@ namespace IHFF_Websystem.Models
 
             // return available seats
             return (eventMaxAantal.maxAantalPlaatsen - total);
+        }
+
+        //update aantal for a wishlistEvenement
+        public void UpdateAantal_WE(int evenementID, int wishlistID, int aantal)
+        {
+            try
+            {
+                if (aantal <= 0)
+                {
+                    var test = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID).Where(w => w.evenementID == evenementID);
+                    //Only change one
+                    WishlistEvenement updated = test.First();
+                    ctx.WishlistEvenements.Remove(updated);
+                    ctx.SaveChanges();
+                }
+                else
+                {
+
+                    var test = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID).Where(w => w.evenementID == evenementID);
+                    //Only change one
+                    WishlistEvenement updated = test.First();
+                    updated.aantal = aantal;
+
+                    ctx.WishlistEvenements.Attach(updated);
+                    var entry = ctx.Entry(updated);
+                    entry.Property(e => e.aantal).IsModified = true;
+                    ctx.SaveChanges();
+                }
+            } catch(Exception ex) {  }
+        }
+
+        //Update aantal for Diner
+        public void UpdateAantal_D(int dinerID, int aantal)
+        {
+            if (aantal <= 0)
+            {
+                var diners = ctx.Diners.Where(d => d.dinerID == dinerID);
+                Diner updated = diners.First();
+                ctx.Diners.Remove(updated);
+                ctx.SaveChanges();
+            }
+            else
+            {
+                var diners = ctx.Diners.Where(d => d.dinerID == dinerID);
+                Diner updated = diners.First();
+                updated.aantal = aantal;
+
+                ctx.Diners.Attach(updated);
+                //db.Users.Attach(updatedUser);
+                var entry = ctx.Entry(updated);
+                //var entry = db.Entry(updatedUser);
+                entry.Property(e => e.aantal).IsModified = true;
+                // other changed properties
+                ctx.SaveChanges();
+            }
         }
 
         public void CreateFilm(string evenementNaam, DateTime startTijd, string beschrijving, double prijs, string regisseur, int locatieID)

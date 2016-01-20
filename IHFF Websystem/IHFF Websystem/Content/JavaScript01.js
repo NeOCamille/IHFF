@@ -8,6 +8,8 @@ function AddEventToWishlist(myValue) {
         .done(function () {
             //alert("Data Saved");
             LoadWishlistPopup();
+            //Loading_icon.gif
+            $('#Popop1Content').html("");
             $('.overlay-bg, .overlay-content').hide();
         })
         .fail(function () {
@@ -15,12 +17,23 @@ function AddEventToWishlist(myValue) {
         });
 }
 
-function wbAddAmount(id) {
-    $.post("/Wishlist/UpdateEvenementToWishlist", { id: myValue, aantal:1 })
+function wbAddAmount(eid, amount, isDiner) {
+    //(int wID, int eID, int aantal, bool diner)
+    amount = amount + 1; //add one
+    $.post("/Wishlist/UpdateAantal", { eID: eid, aantal: amount, diner: isDiner })
         .done(function () {
-            //alert("Data Saved");
             LoadWishlistPopup();
-            $('.overlay-bg, .overlay-content').hide();
+        })
+        .fail(function () {
+            alert("I Failed");
+        });
+}
+function wbRemoveAmount(eid, amount, isDiner) {
+    //(int wID, int eID, int aantal, bool diner)
+    amount = amount - 1; //add one
+    $.post("/Wishlist/UpdateAantal", { eID: eid, aantal: amount, diner: isDiner })
+        .done(function () {
+            LoadWishlistPopup();
         })
         .fail(function () {
             alert("Failed");
@@ -37,6 +50,27 @@ function LoadPopup(url, changeClassorId) {
     });
 }
 
+function myReload() {
+    if (confirm('Wishlist aangepast, wil je herladen?')) {
+        location.reload();
+    }
+}
+
+function wishlistLaden() {
+    myValue = $("#codewoordbox").val();
+    $.post("/Wishlist/WishlistLaden", { codeword: myValue })
+        .done(function () {
+            if (data === "") {
+                alert("codewoord ingevuld");
+                location.reload();
+            } else {
+                alert("codewoord incorrect");
+            }
+        })
+        .fail(function () {
+            alert("Failed");
+        });
+}
 
 /* Standalone code */
 $(document).ready(function () {

@@ -1,49 +1,116 @@
-﻿@using IHFF_Websystem.Models
-@model List<IHFF_Websystem.Models.WishlistPopup>
-@{
+﻿@{
     ViewBag.Title = "Wishlist";
 }
 
+@using IHFF_Websystem.Models
+@model IEnumerable<WishlistPopup>
+
+<div style="padding:5px;">
+<div style="float:right; font-family:Arial; font-size:20px;">
+    Wishlist laden met codewoord: @Html.TextBox("codeword", null, new { @id = "codewoordbox", @class = "bigBox" }) <a href="#" onclick="wishlistLaden()" class="blueButton">Laden</a>
+</div>
 <h2>Wishlist</h2>
-@Html.ValidationSummary()
-@using (Html.BeginForm())
-{
-    <p> 
-        Codeword: @Html.TextBox("codeword")
-        <input type="submit" name="codeword" value="WishlistLaden" />         
-    </p> 
-}
-@if (Model !=null)
-{
-<p>Film</p> 
-foreach (var item in Model)
-{
-    if (item.eventType == events.film)
-    { 
-        <p>@Html.DisplayFor(modelItem => item.evenementNaam)</p>
-        <p>@Html.DisplayFor(modelItem => item.startTijd)</p>
-        <p>@Html.DisplayFor(modelItem => item.prijs)</p>
-        <p>@Html.DisplayFor(modelItem => item.locatieNaam)</p>
-        <p>@Html.ActionLink("Delete", "DeleteEvenement", "Wishlist",new {id = item.evenementID}, null) </p>
+<div id="wishlistArea">
+@if (Model != null) {  
+    foreach (WishlistPopup item in Model)
+    {
+        if (item.eventType == events.film)
+        {
+            <div style="background-color:white; border:1px #797979 solid; color:black; margin:5px; font-family:Arial; width:320px; float:left;">
+                <div style="float:right; margin:5px;">
+                    <a href="#" onclick="wbAddAmount(@item.evenementID, @item.aantal, false);myReload();" class="amountButtons">+</a>
+                    <br />
+                    <a href="#" onclick="wbRemoveAmount(@item.evenementID, @item.aantal, false);myReload();" class="amountButtons">-</a>
+                </div>
+                <div style="float:right; margin:5px; padding-top:20px; font-size:18px; font-weight:bold;" class="wb-aantal">
+                    @item.aantal
+                </div>
+
+                <p style="margin: 5px 5px 5px 5px; padding: 0 0 0 0;">
+                    @String.Format("{0:dd-MM-yyyy}", item.startTijd)<br />
+                    @String.Format("{0:HH:mm}", item.startTijd)<br />
+                    <strong>@item.evenementNaam</strong><br />
+                    @item.locatieNaam
+                </p>
+                <div style="clear:right;"></div>
+
+                <div style="float:right; margin:5px; font-size:18px; font-weight:bold;" class="wb-prijs">
+                    &euro; @String.Format("{0: 0.00}", item.prijs)
+                </div>
+                <div style="clear:right;"></div>
+            </div>
+        }
+        else if (item.eventType == events.special)
+        {
+            <div style="background-color:white; border:1px #797979 solid; color:black; margin:5px; font-family:Arial; width:320px; float:left;">
+                <div style="float:right; margin:5px;">
+                    <a href="#" onclick="wbAddAmount(@item.evenementID, @item.aantal, false);myReload();" class="amountButtons">+</a>
+                    <br />
+                    <a href="#" onclick="wbRemoveAmount(@item.evenementID, @item.aantal, false);myReload();" class="amountButtons">-</a>
+                </div>
+                <div style="float:right; margin:5px; padding-top:20px; font-size:18px; font-weight:bold;" class="wb-aantal">
+                    @item.aantal
+                </div>
+
+                <p style="margin: 5px 5px 5px 5px; padding: 0 0 0 0;">
+                    @String.Format("{0:dd-MM-yyyy}", item.startTijd)<br />
+                    @String.Format("{0:HH:mm}", item.startTijd)<br />
+                    <strong>@item.evenementNaam</strong><br />
+                    @item.locatieNaam
+                </p>
+                <div style="clear:right;"></div>
+
+                <div style="float:right; margin:5px; font-size:18px; font-weight:bold;" class="wb-prijs">
+                    &euro; @String.Format("{0: 0.00}", item.prijs)
+                </div>
+                <div style="clear:right;"></div>
+            </div>
+        }
+        else if (item.eventType == events.diner)
+        {
+            <div style="background-color:white; border:1px #797979 solid; color:black; margin:5px; font-family:Arial; width:320px; float:left;">
+                <div style="float:right; margin:5px;">
+                    <a href="#" onclick="wbAddAmount(@item.dinerID, @item.aantal, true);myReload();" class="amountButtons">+</a>
+                    <br />
+                    <a href="#" onclick="wbRemoveAmount(@item.dinerID, @item.aantal, true);myReload();" class="amountButtons">-</a>
+                </div>
+                <div style="float:right; margin:5px; padding-top:20px; font-size:18px; font-weight:bold;" class="wb-aantal">
+                    @item.aantal
+                </div>
+
+                <p style="margin: 5px 5px 5px 5px; padding: 0 0 0 0;">
+                    @String.Format("{0:dd-MM-yyyy}", item.startTijd)<br />
+                    @String.Format("{0:HH:mm}", item.startTijd) - @String.Format("{0:HH:mm}", item.eindTijd)<br />
+                    <strong>@item.locatieNaam</strong><br /><br />
+
+                </p>
+                <div style="clear:right;"></div>
+
+                <div style="float:right; margin:5px; font-size:18px; font-weight:bold;" class="wb-prijs">
+                    &euro; @String.Format("{0: 0.00}", item.prijs)
+                </div>
+                <div style="clear:right;"></div>
+            </div>
+        }
     }
 }
+<div style="clear:left;"></div>
+</div>
+<div style="font-family:Arial; font-size:20px;">
+    <br />
+    Wishlist laden met codewoord: @Html.TextBox("codeword", null, new { @id = "codewoordbox2", @class="bigBox" })
+    <a href="#" onclick="" class="blueButton">Opslaan</a>
+<br /><br /><br />
+    Wishlist laden met codewoord: @Html.TextBox("codeword", null, new { @id = "emailbox", @class = "bigBox" })
+    <a href="#" onclick="" class="blueButton">Verzenden</a>
+<br />
+<p>
+    Wishlist <a href="#">downloaden</a>.<br />
+    Print de wishlist om bij de balie te betalen.
+</p>
+</div>
 
-<p>Diner</p>
-foreach (var item in Model)
-        {
-            if (item.eventType == events.diner)
-            { 
-                    <p>@Html.DisplayFor(modelItem => item.opNaamVan)</p>
-                    <p>@Html.DisplayFor(modelItem => item.startTijd)</p>
-                    <p>@Html.DisplayFor(modelItem => item.prijs)</p>
-                    <p>@Html.DisplayFor(modelItem => item.locatieNaam)</p>
-                    <p>@Html.ActionLink("Delete", "DeleteDiner", "Wishlist", new { id = item.dinerID }, null)</p>
-}
-        }
     <p>
         @Html.ActionLink("Reserveren", "Reserveren", "Wishlist")
     </p>
-}
-
-
-
+</div>
