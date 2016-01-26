@@ -36,7 +36,7 @@ namespace IHFF_Websystem.Models
         public List<Diner> GetReserveringen(Medewerker ingelogdeMedewerker)
         {
             List<Diner> dinerList = new List<Diner>();
-            if (ingelogdeMedewerker.locatieID != 19 || ingelogdeMedewerker.relevantie != "Management")
+            if (ingelogdeMedewerker.locatieID != 19)
             {
                 foreach (Diner dinerEntry in ctx.Diners)
                 {

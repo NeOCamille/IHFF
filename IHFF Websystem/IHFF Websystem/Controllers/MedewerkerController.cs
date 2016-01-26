@@ -104,7 +104,7 @@ namespace IHFF_Websystem.Controllers
             //Checkt of de medewerker manager is, als dat zo is worden de wishlists getoond
             List<Wishlist> wishlistList = new List<Wishlist>();
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
-            if (ingelogdeMedewerker.locatieID == 19 || ingelogdeMedewerker.relevantie == "Management")
+            if (ingelogdeMedewerker.locatieID == 19)
             {
                 wishlistList = medewerkerRepository.GetWishlists();
                 double totaalomzet = 0;
