@@ -11,10 +11,10 @@ namespace IHFF_Websystem.Models
         Medewerker GetMedewerker(string gebruikersNaam, string passWord);
         List<Wishlist> GetWishlists();
         List<Diner> GetReserveringen(Medewerker medewerker);
-        void DeleteWishlist(int? wishlistID);
-        Wishlist EditWishlistID(int? wishlistID);
+        void DeleteWishlist(int wishlistID);
+        Wishlist EditWishlistID(int wishlistID);
         void EditWishlist(Wishlist newWishlist);
-        void DeleteReservering(int? dinerID);
+        void DeleteReservering(int dinerID);
         List<Special> GetSpecials();
         List<Film> GetFilms();
         List<Locatie> getLocaties();
