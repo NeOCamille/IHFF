@@ -237,8 +237,17 @@ namespace IHFF_Websystem.Controllers
 
         public ActionResult Reserveren()
         {
+            //check of er een wishlist word gebruikt
+            if (Session["CurrentWishlist"] != null)
+            {
                 Wishlist wishlist = wishlistRepository.GetWishList((int)Session["CurrentWishlist"]);
                 return View(wishlist);
+            }
+            //geen wishlist dan naar wishlist pagina
+            else
+            {
+                return RedirectToAction("Index");
+            }
         }
 
         [HttpPost,ActionName("Reserveren")]
