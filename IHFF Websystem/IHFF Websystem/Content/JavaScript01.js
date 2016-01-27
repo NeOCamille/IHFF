@@ -1,22 +1,11 @@
 ﻿/* Functions */
+
+//(her)laad de wishlist popup rechtsboven
 function LoadWishlistPopup() {
     LoadPopup('/Wishlist/WishlistPopup', '#wishlistbasket-inner');
 }
 
-function AddEventToWishlist(myValue) {
-        $.post("/Wishlist/AddEvenementToWishlist", { id: myValue, aantal:1 })
-        .done(function () {
-            //alert("Data Saved");
-            LoadWishlistPopup();
-            //Loading_icon.gif
-            $('#Popop1Content').html("");
-            $('.overlay-bg, .overlay-content').hide();
-        })
-        .fail(function () {
-            alert("Failed");
-        });
-}
-
+//actie voor plusje bij wishlist item
 function wbAddAmount(eid, amount, isDiner) {
     //(int wID, int eID, int aantal, bool diner)
     amount = amount + 1; //add one
@@ -28,6 +17,8 @@ function wbAddAmount(eid, amount, isDiner) {
             alert("I Failed");
         });
 }
+
+//actie voor plusje bij wishlist item
 function wbRemoveAmount(eid, amount, isDiner) {
     //(int wID, int eID, int aantal, bool diner)
     amount = amount - 1; //add one
@@ -40,6 +31,7 @@ function wbRemoveAmount(eid, amount, isDiner) {
         });
 }
 
+//hiermee kan de inhoud van een class of ID worden aangepast met het resultaat van een AJAX/JQUERY GET, bijvoorbeeld LoadWishlistPopup()
 //url in should be like: '/Wishlist/WishlistPopup'
 //example LoadPopup('/Wishlist/WishlistPopup', '#wishlistbasket');
 function LoadPopup(url, changeClassorId) {
@@ -50,12 +42,14 @@ function LoadPopup(url, changeClassorId) {
     });
 }
 
+//vraagt of de wishlist pagina herladen moet worden
 function myReload() {
     if (confirm('Wishlist aangepast, wil je herladen?')) {
         location.reload();
     }
 }
 
+//laad wishlist bij het invoeren van  een nieuw codewoord
 function wishlistLaden() {
     myValue = $("#codewoordbox").val();
     $.post("/Wishlist/WishlistLaden", { codeword: myValue })
@@ -70,6 +64,8 @@ function wishlistLaden() {
             //alert("Failed");
         });
 }
+
+//slaat wishlist op met codewoord
 function wishlistOpslaan() {
     myValue = $("#codewoordbox2").val();
     $.post("/Wishlist/WishlistOpslaan", { codeword: myValue })
@@ -79,6 +75,21 @@ function wishlistOpslaan() {
         .fail(function () {
             //alert("Failed");
         });
+}
+
+//Voegt evenement toe aan wishlist
+function AddEventToWishlist(myValue) {
+    $.post("/Wishlist/AddEvenementToWishlist", { id: myValue, aantal: 1 })
+    .done(function () {
+        //alert("Data Saved");
+        LoadWishlistPopup();
+        //Loading_icon.gif
+        $('#Popop1Content').html("");
+        $('.overlay-bg, .overlay-content').hide();
+    })
+    .fail(function () {
+        alert("Failed");
+    });
 }
 
 /* Standalone code */

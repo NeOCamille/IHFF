@@ -121,14 +121,6 @@ namespace IHFF_Websystem.Models
         //Check available seats
         public int CheckAvailabilityEvenement(int myEvenementID)
         {
-            //SELECT COUNT (WishlistEvenements.aantal)
-            //FROM Evenements
-            //INNER JOIN WishlistEvenements
-            //ON Evenements.evenementID = WishlistEvenements.evenementID
-            //INNER JOIN Wishlists
-            //ON Wishlists.wishlistID = WishlistEvenements.wishlistID
-            //WHERE Wishlists.isBetaald = '1'
-
             // SQL statement to get all aantals
             var eventAantal = (from e in ctx.Evenementen
                                 join we in ctx.WishlistEvenements on e.evenementID equals we.evenementID
@@ -165,14 +157,6 @@ namespace IHFF_Websystem.Models
         //Check available seats
         public int CheckAvailabilityDiner(int mydinerID)
         {
-            //SELECT COUNT (WishlistEvenements.aantal)
-            //FROM Evenements
-            //INNER JOIN WishlistEvenements
-            //ON Evenements.evenementID = WishlistEvenements.evenementID
-            //INNER JOIN Wishlists
-            //ON Wishlists.wishlistID = WishlistEvenements.wishlistID
-            //WHERE Wishlists.isBetaald = '1'
-
             // SQL statement to get all aantals
             var eventAantal = (from d in ctx.Diners
                                join w in ctx.Wishlists on d.wishlistID equals w.wishlistID
@@ -332,8 +316,6 @@ namespace IHFF_Websystem.Models
             wishlist.isBetaald = true;
             ctx.Wishlists.Find(wishlist.wishlistID).isBetaald = true;
             ctx.SaveChanges();
-
-
         }
 
         public Wishlist GetWishList(string codewoord)
@@ -349,6 +331,37 @@ namespace IHFF_Websystem.Models
         public IEnumerable<Evenement> GetDagprogramma(string dag)
         {
             return ctx.Evenementen.Where(e => e.Dag == dag);
+        }
+
+        public double GetWishlistTotalPrice(int wishlistID)
+        {
+            //get alle pijzen van de evenementen
+            var result = (from e in ctx.Evenementen
+                               join we in ctx.WishlistEvenements on e.evenementID equals we.evenementID
+                               where we.wishlistID == wishlistID
+                               select new
+                               {
+                                   price = we.aantal * e.prijs
+                               });
+            //maak een totale prijs
+            double totaal = 0;
+
+            //tel de evenementen uit de wishlist bij de totaalprijs
+            foreach (var item in result)
+            {
+                totaal += item.price;
+            }
+
+            //get alle diners
+            IEnumerable<Diner> diners = ctx.Diners.Where(w => w.wishlistID == wishlistID);
+
+            //voeg de prijzen van de diners toe aan de totaal prijs
+            foreach (var item in diners)
+            {
+                totaal += item.aantal * item.prijs;
+            }
+
+            return totaal;
         }
     }
 }
