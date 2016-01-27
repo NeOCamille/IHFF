@@ -17,8 +17,6 @@ namespace IHFF_Websystem.Models
         [Required]
         public string passWord { get; set; }
 
-        public string relevantie { get; set; }
-
         public int locatieID { get; set; }
 
         public Medewerker()
@@ -26,12 +24,11 @@ namespace IHFF_Websystem.Models
 
         }
 
-        public Medewerker(int medewerkerID, string gebruikersNaam, string passWord, string relevantie, int locatieID)
+        public Medewerker(int medewerkerID, string gebruikersNaam, string passWord, int locatieID)
         {
             this.medewerkerID = medewerkerID;
             this.gebruikersNaam = gebruikersNaam;
             this.passWord = passWord;
-            this.relevantie = relevantie;
             this.locatieID = locatieID;
         }
     }
