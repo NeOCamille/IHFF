@@ -10,41 +10,36 @@ namespace IHFF_Websystem.Controllers
     public class ProgrammaController : Controller
     {
         WishlistRepository repository = new WishlistRepository();
-        Popup popup = new Popup();
 
         public ActionResult Woensdag()
         {
-            return View();
+            return View(repository.GetDagprogramma("Woensdag"));
         }
 
         public ActionResult Donderdag()
         {
-            return View();
+            return View(repository.GetDagprogramma("Donderdag"));
         }
 
         public ActionResult Vrijdag()
         {
-            return View();
+
+            return View(repository.GetDagprogramma("Vrijdag"));
         }
 
         public ActionResult Zaterdag()
         {
-            return View();
+            return View(repository.GetDagprogramma("Zaterdag"));
         }
 
         public ActionResult Zondag()
         {
-            return View();
+            return View(repository.GetDagprogramma("Zondag"));
         }
 
         public ActionResult Popup(int id)
         {
-            //Switch huidig popup
-            popup.evenement = repository.GetEvent(id);
-            popup.datum = String.Format("{0:dd-MM-yyyy}", popup.evenement.startTijd);
-            popup.tijd = String.Format("{0:HH:mm}", popup.evenement.startTijd);
-            popup.locatieNaam = repository.GetLocatie(popup.evenement.locatieID).locatieNaam;
-            return View(popup);
+            return View(repository.GetPopup(id));
         }
 
     }
