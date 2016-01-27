@@ -8,10 +8,10 @@
 }
 <img src="~/Images/Films/@(Model.image)" />
 <h2 id="title">@Model.evenementNaam</h2>
-<p id="locatie">@Model.locatieNaam</p>
-<p id="datum">@Model.datum</p>
-<p id="tijd">@Model.tijd</p>
-<p id="description">@Model.beschrijving</p>
+<p id="locatie">Locatie: @Model.locatieNaam</p>
+<p id="datum">Datum: @Model.datum</p>
+<p id="tijd">Starttijd: @Model.tijd</p>
+<p id="description">Beschrijving:<br /><br />@Model.beschrijving</p>
 <p id="prijslable">Prijs per ticket:</p>
 <p id="prijs">&euro; @String.Format("{0: 0.00}", Model.prijs)</p>
 <button class="close-btn" onclick="AddEventToWishlist(@Model.evenementID)">Voeg toe aan Wish List</button>
