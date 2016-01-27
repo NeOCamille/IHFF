@@ -33,12 +33,8 @@ namespace IHFF_Websystem.Models
             ctx.WishlistEvenements.Add(wishlistevent);
             ctx.SaveChanges();
         }
-<<<<<<< HEAD
-        public Evenement GetEvent(int ID)
-=======
 
         public Popup GetPopup(int ID)
->>>>>>> 6f19ca0b9588b2d100f27798cd3f547a067d275f
         {
             Evenement e = ctx.Evenementen.SingleOrDefault(c => c.evenementID == ID);
             Popup popup = new Popup(e,GetLocatie(e.locatieID).locatieNaam);
