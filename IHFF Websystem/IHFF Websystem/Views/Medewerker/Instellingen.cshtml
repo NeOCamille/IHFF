@@ -1,7 +1,8 @@
 ﻿@{
     ViewBag.Title = "Instellingen";
 }
+<link rel="stylesheet" type="text/css" href="~/Content/indexMedewerkerPage.css?reload">
 
 <h2>Instellingen</h2>
 
-@Html.ActionLink("Verwijder account", "DeleteAccount", "Medewerker")
+@Html.ActionLink("Verwijder account", "DeleteAccount", "Medewerker", new { @class = "button" })

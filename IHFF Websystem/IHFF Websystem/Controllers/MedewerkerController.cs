@@ -86,6 +86,10 @@ namespace IHFF_Websystem.Controllers
                     ModelState.AddModelError("loginError", "Gebruikersnaam en wachtwoordcombinatie is fout");
                 }
             }
+            else
+            {
+                return View();
+            }
             return View(loginMedewerker);
         }
 

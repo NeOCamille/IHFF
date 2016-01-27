@@ -14,12 +14,12 @@
     {
         @Html.LabelFor(m => m.gebruikersNaam, new { @class = "labels" })
         @Html.TextBoxFor(m => m.gebruikersNaam, new { @class = "box" })
-        @Html.ValidationMessageFor(m => m.gebruikersNaam)
+
         <br /><br />
 
         @Html.LabelFor(m => m.passWord, new { @class = "labels" })
         @Html.PasswordFor(m => m.passWord, new { @class = "box" })
-        @Html.ValidationMessageFor(m => m.passWord)
+
         <br /><br />
 
         <input type="submit" value="Login" id="submitbutton" />
