@@ -1,6 +1,12 @@
-﻿
-<h2><span style="color: #ffffff">Programma:  </span>Woensdag</h2>
+﻿@using IHFF_Websystem.Models
+@model List<IHFF_Websystem.Models.Popup>
+<h2>Woensdag</h2>
 <div id="program">
+        @foreach (Popup popup in Model)
+        {
+            <button id="eID@(popup.evenementID)" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/@popup.evenementID', '#Popop1Content');">@popup.evenementNaam</button>
+        }
+    <!--
     <button id="eID1" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/1', '#Popop1Content');">Ervenis van Chrispijn</button>
     <button id="eID2" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/2', '#Popop1Content');">Haarlem Film Set</button>
     <button id="eID3" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/3', '#Popop1Content');">Wall-E</button>
@@ -10,6 +16,7 @@
     <button id="eID7" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/7', '#Popop1Content');">eXistenZ</button>
     <button id="eID8" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/8', '#Popop1Content');">Interstellar</button>
     <button id="eID9" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/9', '#Popop1Content');">2001: A Space Oddysey</button>
+        -->
 </div>
 <p>
     Hierboven vindt u het festival programma...

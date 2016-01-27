@@ -14,36 +14,43 @@ namespace IHFF_Websystem.Controllers
 
         public ActionResult Woensdag()
         {
-            return View();
+            List<Popup> popups = repository.GetDagprogramma("Woensdag");
+            return View(popups);
         }
 
         public ActionResult Donderdag()
         {
-            return View();
+            List<Popup> popups = repository.GetDagprogramma("Donderdag");
+            return View(popups);
         }
 
         public ActionResult Vrijdag()
         {
-            return View();
+            List<Popup> popups = repository.GetDagprogramma("Vrijdag");
+            return View(popups);
         }
 
         public ActionResult Zaterdag()
         {
-            return View();
+            List<Popup> popups = repository.GetDagprogramma("Zaterdag");
+            return View(popups);
         }
 
         public ActionResult Zondag()
         {
-            return View();
+            List<Popup> popups = repository.GetDagprogramma("Zondag");
+            return View(popups);
         }
 
         public ActionResult Popup(int id)
         {
+            
             //Switch huidig popup
             popup.evenement = repository.GetEvent(id);
+            //popup = new Popup(repository.GetEvent(id));
             popup.datum = String.Format("{0:dd-MM-yyyy}", popup.evenement.startTijd);
             popup.tijd = String.Format("{0:HH:mm}", popup.evenement.startTijd);
-            popup.locatieNaam = repository.GetLocatie(popup.evenement.locatieID).locatieNaam;
+            popup.locatieNaam = (string)repository.GetLocatie(popup.evenement.locatieID).locatieNaam;
             return View(popup);
         }
 

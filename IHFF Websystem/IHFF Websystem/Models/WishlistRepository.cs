@@ -322,5 +322,19 @@ namespace IHFF_Websystem.Models
         {
             return ctx.Wishlists.SingleOrDefault(w => w.wishlistID == wishlistID);
         }
+
+        public List<Popup> GetDagprogramma(string dag)
+        {
+            List<Popup> dagprogramma = new List<Popup>();
+            IEnumerable<Evenement> evenementen = ctx.Evenementen.Where(e => e.Dag == dag);
+            foreach (Evenement e in evenementen)
+            {
+                string locatie = ctx.Locaties.SingleOrDefault(l => l.locatieID == e.locatieID).locatieNaam;
+                dagprogramma.Add(new Popup(e,locatie));
+            }
+            return dagprogramma;
+            
+
+        }
     }
 }
