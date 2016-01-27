@@ -24,13 +24,15 @@ namespace IHFF_Websystem.Models
             ctx.Diners.Add(diner);
             ctx.SaveChanges();
         }
+
+        //Voeg een evenement (film/special) toe aan de wishlist
         public void AddEvenement(int wishlistID, int evenementID, int aantal)
         {
+            //Voeg item toe aan wishlist
             WishlistEvenement wishlistevent = new WishlistEvenement(wishlistID, evenementID, aantal);
             ctx.WishlistEvenements.Add(wishlistevent);
             ctx.SaveChanges();
         }
-
         public Evenement GetEvent(int ID)
         {
             return ctx.Evenementen.SingleOrDefault(c => c.evenementID == ID);   
@@ -52,34 +54,51 @@ namespace IHFF_Websystem.Models
 
         public IEnumerable<Tuple<Film, int>> GetAllWishlistFilms(int wishlistID)
         {
-            //Using a tuple to get film and aantal
+            //make list for film and aantal
             List<Tuple<Film, int>> lijst = new List<Tuple<Film, int>>();
-            IEnumerable<WishlistEvenement> wishlistevents = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID);
-            foreach (WishlistEvenement wishlistevent in wishlistevents) {
-                //quick fix
+
+            //Get all films in the wishlist in one query
+            var result = (from we in ctx.WishlistEvenements
+                               join f in ctx.Films on we.evenementID equals f.evenementID
+                               where we.wishlistID == wishlistID
+                               select new
+                               {
+                                   f = f,
+                                   aantal = we.aantal
+                               }).ToList();
+
+            //Put result in usable list
+            foreach (var item in result){
                 Tuple<Film, int> lijstItem =
-                    new Tuple<Film, int>(
-                        new WishlistRepository().ctx.Films.SingleOrDefault(f => f.evenementID == wishlistevent.evenementID),
-                        wishlistevent.aantal);
+                    new Tuple<Film, int>(item.f,item.aantal);
                 lijst.Add(lijstItem);
             }
-          
+
             return lijst;
         }
         public IEnumerable<Tuple<Special, int>> GetAllWishlistSpecials(int wishlistID)
         {
+            //make list for Special and aantal
             List<Tuple<Special, int>> lijst = new List<Tuple<Special, int>>();
-            IEnumerable<WishlistEvenement> wishlistevents = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID);
-            foreach (WishlistEvenement wishlistevent in wishlistevents)
+
+            //Get all Specials in the wishlist in one query
+            var result = (from we in ctx.WishlistEvenements
+                          join s in ctx.Specials on we.evenementID equals s.evenementID
+                          where we.wishlistID == wishlistID
+                          select new
+                          {
+                              s = s,
+                              aantal = we.aantal
+                          }).ToList();
+
+            //Put result in usable list
+            foreach (var item in result)
             {
                 Tuple<Special, int> lijstItem =
-                    new Tuple<Special, int>(
-                        new WishlistRepository().ctx.Specials.SingleOrDefault(f => f.evenementID == wishlistevent.evenementID),
-                        wishlistevent.aantal);
+                    new Tuple<Special, int>(item.s, item.aantal);
                 lijst.Add(lijstItem);
             }
 
-            //ctx.Films.Include()
             return lijst;
         }
         public IEnumerable<Diner> GetAllWishlistDiners(int wishlistID)
@@ -89,6 +108,7 @@ namespace IHFF_Websystem.Models
             //ctx.Films.Include()
             return diners;
         }
+
         public IEnumerable<WishlistEvenement> GetAllWishlistEvenements(int wishlistID)
         {
             IEnumerable<WishlistEvenement>wishlistEvenements = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID);           
