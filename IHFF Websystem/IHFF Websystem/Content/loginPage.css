@@ -1,0 +1,43 @@
+﻿h2 {
+
+background-color: #3283bc;
+height: 50px;
+width: 355px;
+color: white;
+font-size: 20px;
+border: 0;
+text-align: center;
+font-family: Arial;
+position: relative;
+left: -10px;
+}
+
+#submitbutton {
+background-color: #3283bc;
+height: 50px;
+width: 355px;
+color: white;
+font-size: 16px;
+border: 0;
+margin: 10px;
+}
+
+.labels {
+    width: 170px;
+    display: inline-block;
+    margin-top: 3px;
+    text-align: right;
+    margin-right: 5px;
+    font-family: Arial;
+}
+
+.box {
+    width: 189px;
+    
+}
+
+#placement {
+position: relative;
+top: 100px;
+left: 400px;
+}

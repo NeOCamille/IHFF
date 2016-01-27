@@ -36,7 +36,7 @@ namespace IHFF_Websystem.Models
         public List<Diner> GetReserveringen(Medewerker ingelogdeMedewerker)
         {
             List<Diner> dinerList = new List<Diner>();
-            if (ingelogdeMedewerker.locatieID != 19 || ingelogdeMedewerker.relevantie != "Management")
+            if (ingelogdeMedewerker.locatieID != 19)
             {
                 foreach (Diner dinerEntry in ctx.Diners)
                 {
@@ -56,14 +56,14 @@ namespace IHFF_Websystem.Models
             return dinerList;
         }
 
-        public void DeleteWishlist(int? wishlistID)
+        public void DeleteWishlist(int wishlistID)
         {
             Wishlist wishlist = ctx.Wishlists.Find(wishlistID);
             ctx.Wishlists.Remove(wishlist);
             ctx.SaveChanges();
         }
 
-        public Wishlist EditWishlistID(int? wishlistID)
+        public Wishlist EditWishlistID(int wishlistID)
         {
             Wishlist wishlist = ctx.Wishlists.Find(wishlistID);
             return wishlist;
@@ -75,7 +75,7 @@ namespace IHFF_Websystem.Models
             ctx.SaveChanges();
         }
 
-        public void DeleteReservering(int? dinerID)
+        public void DeleteReservering(int dinerID)
         {
             Diner diner = ctx.Diners.Find(dinerID);
             ctx.Diners.Remove(diner);

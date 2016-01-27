@@ -63,7 +63,7 @@ namespace IHFF_Websystem.Controllers
                     myPopup.evenementNaam = special.Item1.evenementNaam;
                     myPopup.startTijd = special.Item1.startTijd;
                     myPopup.beschrijving = special.Item1.beschrijving;
-                    myPopup.prijs = special.Item1.prijs; //* film.Item2;
+                    myPopup.prijs = special.Item1.prijs * special.Item2;
                     myPopup.locatieID = special.Item1.locatieID;
                     myPopup.onderwerp = special.Item1.onderwerp;
                     myPopup.spreker = special.Item1.spreker;
@@ -319,7 +319,7 @@ namespace IHFF_Websystem.Controllers
         }
 
 
-        //This handels mathijs his buttons
+        //This handels matthijs his buttons
         [HttpPost]
         public ActionResult AddEvenementToWishlist(int id, int aantal)
         {

@@ -11,14 +11,13 @@ namespace IHFF_Websystem.Models
         [Required]
         public int medewerkerID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Gebruikersnaam moet worden ingevuld")]
         public string gebruikersNaam { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Wachtwoord moet worden ingevuld")]
         public string passWord { get; set; }
 
-        public string relevantie { get; set; }
-
+        [Required(ErrorMessage = "Locatie moet worden ingeuld")]
         public int locatieID { get; set; }
 
         public Medewerker()
@@ -26,12 +25,11 @@ namespace IHFF_Websystem.Models
 
         }
 
-        public Medewerker(int medewerkerID, string gebruikersNaam, string passWord, string relevantie, int locatieID)
+        public Medewerker(int medewerkerID, string gebruikersNaam, string passWord, int locatieID)
         {
             this.medewerkerID = medewerkerID;
             this.gebruikersNaam = gebruikersNaam;
             this.passWord = passWord;
-            this.relevantie = relevantie;
             this.locatieID = locatieID;
         }
     }

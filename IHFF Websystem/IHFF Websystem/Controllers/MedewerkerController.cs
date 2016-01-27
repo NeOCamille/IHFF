@@ -86,6 +86,10 @@ namespace IHFF_Websystem.Controllers
                     ModelState.AddModelError("loginError", "Gebruikersnaam en wachtwoordcombinatie is fout");
                 }
             }
+            else
+            {
+                return View();
+            }
             return View(loginMedewerker);
         }
 
@@ -104,7 +108,7 @@ namespace IHFF_Websystem.Controllers
             //Checkt of de medewerker manager is, als dat zo is worden de wishlists getoond
             List<Wishlist> wishlistList = new List<Wishlist>();
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
-            if (ingelogdeMedewerker.locatieID == 19 || ingelogdeMedewerker.relevantie == "Management")
+            if (ingelogdeMedewerker.locatieID == 19)
             {
                 wishlistList = medewerkerRepository.GetWishlists();
                 double totaalomzet = 0;
@@ -122,11 +126,11 @@ namespace IHFF_Websystem.Controllers
         }
 
         [Authorize]
-        public ActionResult DeleteWishlist(int? wishlistID)
+        public ActionResult DeleteWishlist(int wishlistID)
         {
             // Checkt of de medewerker een manager is, dan wordt de wishlist verwijderd
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
-            if (ModelState.IsValid && ingelogdeMedewerker.locatieID == 19)
+            if (ingelogdeMedewerker.locatieID == 19)
             {
                 medewerkerRepository.DeleteWishlist(wishlistID);
                 return RedirectToAction("ShowWishlists", "Medewerker");
@@ -135,7 +139,7 @@ namespace IHFF_Websystem.Controllers
         }
 
         [Authorize]
-        public ActionResult DeleteReservering(int? dinerID)
+        public ActionResult DeleteReservering(int dinerID)
         {
             if (ModelState.IsValid)
             {
@@ -146,7 +150,7 @@ namespace IHFF_Websystem.Controllers
         }
 
         [Authorize]
-        public ActionResult EditWishlist(int? wishlistID)
+        public ActionResult EditWishlist(int wishlistID)
         {
             // Checkt of medewerker een manager is, dan wordt de gewenste wishlist opgezocht
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
@@ -181,15 +185,10 @@ namespace IHFF_Websystem.Controllers
             // Als de medewerker een restauranteigenaar is, worden alleen de relevante reserveringen getoond
             // Als de medewerker een manager is, worden alle reserveringen getoond
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
-            if (ModelState.IsValid)
-            {
-                List<Diner> reserveringsList = medewerkerRepository.GetReserveringen(ingelogdeMedewerker);
-                return View(reserveringsList);
-            }
-            else
-            {
-                return View();
-            }
+            
+            List<Diner> reserveringsList = medewerkerRepository.GetReserveringen(ingelogdeMedewerker);
+            return View(reserveringsList);
+           
         }
 
         [Authorize]
@@ -200,7 +199,7 @@ namespace IHFF_Websystem.Controllers
             List<Film> filmsList = new List<Film>();
 
             Medewerker ingelogdeMedewerker = (Medewerker)Session["IngelogdeMedewerker"];
-            if (ModelState.IsValid && ingelogdeMedewerker.locatieID == 19)
+            if (ingelogdeMedewerker.locatieID == 19)
             {
                 specialsList = medewerkerRepository.GetSpecials();
                 filmsList = medewerkerRepository.GetFilms();

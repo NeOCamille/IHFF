@@ -17,22 +17,17 @@
 {
     @Html.LabelFor(m => m.gebruikersNaam, "Gebruikersnaam:", new { @class = "labels" })
     @Html.TextBoxFor(m => m.gebruikersNaam, new { @class = "box" })
-    @Html.ValidationMessageFor(m => m.gebruikersNaam)
+
     <br /><br />
     
     @Html.LabelFor(m => m.passWord, "Wachtwoord:", new { @class = "labels" })
     @Html.PasswordFor(m => m.passWord, new { @class = "box" })
-    @Html.ValidationMessageFor(m => m.passWord)
-    <br /><br />
-    
-    @Html.LabelFor(m => m.relevantie, "Relevantie:", new { @class = "labels" })
-    @Html.TextBoxFor(m => m.relevantie, new { @class = "box" })
-    @Html.ValidationMessageFor(m => m.relevantie)
+
     <br /><br />
     
     @Html.LabelFor(m => m.locatieID, "Locatie", new { @class = "labels" })
     @Html.DropDownListFor(m => m.locatieID, new SelectList(ViewBag.Locaties, "locatieID", "locatieNaam"), new { @class = "box" })
-    @Html.ValidationMessageFor(m => m.locatieID)
+
     
     <br />
     <br />
@@ -41,6 +36,5 @@
     
     <br />
     <br />
-
 }
 </div>
