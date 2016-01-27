@@ -1,18 +1,11 @@
-﻿
+﻿@using IHFF_Websystem.Models
+@model IEnumerable<IHFF_Websystem.Models.Evenement>
 <h2>Vrijdag</h2>
 <div id="program">
-    <button id="eID23" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/24', '#Popop1Content');">The Poetry of Details</button>
-    <button id="eID24" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/25', '#Popop1Content');">Hollywood tijdens de Crisis</button>
-    <button id="eID25" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/27', '#Popop1Content');">Frank &amp; Robot</button>
-    <button id="eID26" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/29', '#Popop1Content');">The Pirate Bay AFK</button>
-    <button id="eID27" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/30', '#Popop1Content');">Artificial Intelligence</button>
-    <button id="eID28" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/31', '#Popop1Content');">Comuter Chess</button>
-    <button id="eID29" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/32', '#Popop1Content');">Ghost in the Shell</button>
-    <button id="eID30" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/33', '#Popop1Content');">The Rise and Rise of Bitcoin</button>
-    <button id="eID31" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/34', '#Popop1Content');">The internets own Boy</button>
-    <button id="eID32" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/35', '#Popop1Content');">Paprika</button>
-    <button id="eID33" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/36', '#Popop1Content');">Brazil</button>
-    <button id="eID34" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/37', '#Popop1Content');">Primer</button>
+    @foreach (Evenement e in Model)
+    {
+        <button id="eID@(e.evenementID)" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/@(e.evenementID)', '#Popop1Content');">@(e.evenementNaam)</button>
+    }
 </div>
 <p>
     Hierboven vindt u het festival programma...

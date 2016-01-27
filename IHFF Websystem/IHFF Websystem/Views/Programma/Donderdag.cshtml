@@ -1,19 +1,11 @@
-﻿
+﻿@using IHFF_Websystem.Models
+@model IEnumerable<IHFF_Websystem.Models.Evenement>
 <h2>Donderdag</h2>
 <div id="program">
-    <button id="eID10" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/10', '#Popop1Content');">AIVD - De wolf in schaapskleren</button>
-    <button id="eID11" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/11', '#Popop1Content');">Blood uit nood of ...</button>
-    <button id="eID12" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/12', '#Popop1Content');">Ex Machina</button>
-    <button id="eID13" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/13', '#Popop1Content');">Chappie</button>
-    <button id="eID14" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/14', '#Popop1Content');">Her</button>
-    <button id="eID15" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/15', '#Popop1Content');">Moon</button>
-    <button id="eID16" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/16', '#Popop1Content');">Gravity</button>
-    <button id="eID17" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/17', '#Popop1Content');">Comuter Chess</button>
-    <button id="eID18" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/18', '#Popop1Content');">Artificial Intelligence</button>
-    <button id="eID19" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/19', '#Popop1Content');">Minority Report</button>
-    <button id="eID20" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/21', '#Popop1Content');">Ghost in the Shell</button>
-    <button id="eID21" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/22', '#Popop1Content');">THX 1138</button>
-    <button id="eID22" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/23', '#Popop1Content');">Solaris</button>
+    @foreach (Evenement e in Model)
+    {
+        <button id="eID@(e.evenementID)" class="show-popup" data-showpopup="1" onclick="LoadPopup('/Programma/Popup/@(e.evenementID)', '#Popop1Content');">@(e.evenementNaam)</button>
+    }
 </div>
 <p>
     Hierboven vindt u het festival programma...

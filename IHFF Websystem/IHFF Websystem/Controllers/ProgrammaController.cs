@@ -10,48 +10,36 @@ namespace IHFF_Websystem.Controllers
     public class ProgrammaController : Controller
     {
         WishlistRepository repository = new WishlistRepository();
-        Popup popup = new Popup();
 
         public ActionResult Woensdag()
         {
-            List<Popup> popups = repository.GetDagprogramma("Woensdag");
-            return View(popups);
+            return View(repository.GetDagprogramma("Woensdag"));
         }
 
         public ActionResult Donderdag()
         {
-            List<Popup> popups = repository.GetDagprogramma("Donderdag");
-            return View(popups);
+            return View(repository.GetDagprogramma("Donderdag"));
         }
 
         public ActionResult Vrijdag()
         {
-            List<Popup> popups = repository.GetDagprogramma("Vrijdag");
-            return View(popups);
+
+            return View(repository.GetDagprogramma("Vrijdag"));
         }
 
         public ActionResult Zaterdag()
         {
-            List<Popup> popups = repository.GetDagprogramma("Zaterdag");
-            return View(popups);
+            return View(repository.GetDagprogramma("Zaterdag"));
         }
 
         public ActionResult Zondag()
         {
-            List<Popup> popups = repository.GetDagprogramma("Zondag");
-            return View(popups);
+            return View(repository.GetDagprogramma("Zondag"));
         }
 
         public ActionResult Popup(int id)
         {
-            
-            //Switch huidig popup
-            popup.evenement = repository.GetEvent(id);
-            //popup = new Popup(repository.GetEvent(id));
-            popup.datum = String.Format("{0:dd-MM-yyyy}", popup.evenement.startTijd);
-            popup.tijd = String.Format("{0:HH:mm}", popup.evenement.startTijd);
-            popup.locatieNaam = (string)repository.GetLocatie(popup.evenement.locatieID).locatieNaam;
-            return View(popup);
+            return View(repository.GetPopup(id));
         }
 
     }

@@ -31,9 +31,11 @@ namespace IHFF_Websystem.Models
             ctx.SaveChanges();
         }
 
-        public Evenement GetEvent(int ID)
+        public Popup GetPopup(int ID)
         {
-            return ctx.Evenementen.SingleOrDefault(c => c.evenementID == ID);   
+            Evenement e = ctx.Evenementen.SingleOrDefault(c => c.evenementID == ID);
+            Popup popup = new Popup(e,GetLocatie(e.locatieID).locatieNaam);
+            return popup;
         }
         public Locatie GetLocatie(int ID)
         {
@@ -323,18 +325,9 @@ namespace IHFF_Websystem.Models
             return ctx.Wishlists.SingleOrDefault(w => w.wishlistID == wishlistID);
         }
 
-        public List<Popup> GetDagprogramma(string dag)
+        public IEnumerable<Evenement> GetDagprogramma(string dag)
         {
-            List<Popup> dagprogramma = new List<Popup>();
-            IEnumerable<Evenement> evenementen = ctx.Evenementen.Where(e => e.Dag == dag);
-            foreach (Evenement e in evenementen)
-            {
-                string locatie = ctx.Locaties.SingleOrDefault(l => l.locatieID == e.locatieID).locatieNaam;
-                dagprogramma.Add(new Popup(e,locatie));
-            }
-            return dagprogramma;
-            
-
+            return ctx.Evenementen.Where(e => e.Dag == dag);
         }
     }
 }
