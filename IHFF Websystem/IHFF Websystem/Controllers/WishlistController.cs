@@ -30,6 +30,8 @@ namespace IHFF_Websystem.Controllers
                 //voeg alle evenementen samen in een list
                 List<WishlistPopup> myPopups = mergeEvents(films, specials, diners);
 
+                ViewData["wishlistid"] = wishlistID;
+
                 //order de list chronlogish
                 return View(myPopups.OrderBy(x => x.startTijd).ToList());
             }
@@ -220,29 +222,25 @@ namespace IHFF_Websystem.Controllers
             return View();
         }
 
-
-        [HttpPost]
-        public ActionResult DeleteEvenement(int id)
+        public ActionResult DeleteWishlist(int wishlistid)
         {
-            wishlistRepository.DeleteWishlistEvenement(id);
-            return RedirectToAction("Index"); 
+            Wishlist wishlist = wishlistRepository.GetWishList(wishlistid);
+            return View(wishlist); ;
         }
 
         [HttpPost]
-        public ActionResult DeleteDiner(int id)
+        public ActionResult DeleteWishlist(Wishlist wishlist)
         {
-            wishlistRepository.DeleteDiner(id);
+            Session["CurrentWishlist"] = null;
+            wishlistRepository.DeleteWishlist(wishlist);
             return RedirectToAction("Index");
         }
 
-        public ActionResult Reserveren()
+        public ActionResult Reserveren(int wishlistid)
         {
-            //check of er een wishlist word gebruikt
-            if (Session["CurrentWishlist"] != null)
-            {
                 Wishlist wishlist = wishlistRepository.GetWishList((int)Session["CurrentWishlist"]);
                 return View(wishlist);
-            }
+        }
             //geen wishlist dan naar wishlist pagina
             else
             {
@@ -250,10 +248,9 @@ namespace IHFF_Websystem.Controllers
             }
         }
 
-        [HttpPost,ActionName("Reserveren")]
-        public ActionResult ReserverenPost(Wishlist wishlist)
+        [HttpPost]
+        public ActionResult Reserveren(Wishlist wishlist)
         {
-            wishlist = wishlistRepository.GetWishList((int)Session["CurrentWishlist"]);
             wishlistRepository.WishListReserveren(wishlist);
             return RedirectToAction("Index");      
         }

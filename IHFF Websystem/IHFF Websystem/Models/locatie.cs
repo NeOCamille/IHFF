@@ -23,6 +23,12 @@ namespace IHFF_Websystem.Models
         [Required]
         public bool foodFilm { get; set; }
 
+        public string beschrijving { get; set; }
+
+        public string type { get; set; }
+
+        public string image { get; set; }
+
         public Locatie()
         {
 

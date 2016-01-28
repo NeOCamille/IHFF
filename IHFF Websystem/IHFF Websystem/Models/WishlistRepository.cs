@@ -21,6 +21,7 @@ namespace IHFF_Websystem.Models
 
         public void AddDiner(Diner diner)
         {
+            ctx.Wishlists.Find(diner.wishlistID).totaalPrijs = ctx.Wishlists.Find(diner.wishlistID).totaalPrijs + diner.prijs * diner.aantal;
             ctx.Diners.Add(diner);
             ctx.SaveChanges();
         }
@@ -31,6 +32,11 @@ namespace IHFF_Websystem.Models
             //Voeg item toe aan wishlist
             WishlistEvenement wishlistevent = new WishlistEvenement(wishlistID, evenementID, aantal);
             ctx.WishlistEvenements.Add(wishlistevent);
+            try
+            {
+                ctx.Wishlists.Find(wishlistID).totaalPrijs = ctx.Wishlists.Find(wishlistID).totaalPrijs + GetFilm(evenementID).prijs * aantal;
+            }
+            catch { }
             ctx.SaveChanges();
         }
 
@@ -47,6 +53,12 @@ namespace IHFF_Websystem.Models
         public Film GetFilm(int ID)
         {
             return ctx.Films.SingleOrDefault(c => c.evenementID == ID);
+        }
+
+        public IEnumerable<Locatie> GetAllLocaties()
+        {
+            IEnumerable<Locatie> locaties = ctx.Locaties;
+            return locaties;
         }
 
         public IEnumerable<Film> GetAllFilms()
@@ -278,7 +290,7 @@ namespace IHFF_Websystem.Models
             }
             return mywishlistevenement;
         }
-        
+       
         public List<Diner> Getmywishlistdiner(int wishlistID)
         {
             List<Diner> mywishlistdiner = new List<Diner>();
@@ -297,17 +309,32 @@ namespace IHFF_Websystem.Models
             return wishlistevenement;
         }
 
-        public void DeleteWishlistEvenement(int id)
+        public void DeleteWishlistEvenement(WishlistEvenement wishlistEvenement)
         {
-            WishlistEvenement wishlistEvenement = ctx.WishlistEvenements.Find(id);
-            ctx.WishlistEvenements.Remove(wishlistEvenement);
+            WishlistEvenement deletewishlistEvenement = ctx.WishlistEvenements.Find(wishlistEvenement.ID);
+            ctx.WishlistEvenements.Remove(deletewishlistEvenement);
             ctx.SaveChanges();
         }
 
-        public void DeleteDiner(int id)
+        public void DeleteDiner(Diner diner)
         {
-            Diner diner = ctx.Diners.Find(id);
-            ctx.Diners.Remove(diner);
+            Diner deletediner = ctx.Diners.Find(diner.dinerID);
+            ctx.Diners.Remove(deletediner);
+            ctx.SaveChanges();
+        }
+
+        public void DeleteWishlist(Wishlist wishlist)
+        {           
+            foreach(WishlistEvenement wishlistEvenement in GetAllWishlistEvenements(wishlist.wishlistID))
+            {
+                DeleteWishlistEvenement(wishlistEvenement);
+            }
+            foreach (Diner diner in Getmywishlistdiner(wishlist.wishlistID))
+            {
+                DeleteDiner(diner);
+            }
+            Wishlist deletewishlist = ctx.Wishlists.Find(wishlist.wishlistID);
+            ctx.Wishlists.Remove(deletewishlist);
             ctx.SaveChanges();
         }
 
