@@ -38,6 +38,9 @@
         <th>
             Locatie ID
         </th>
+        <th>
+            Aantal personen
+        </th>
     </tr>
     @foreach (var entry in Model)
     {
@@ -68,6 +71,9 @@
             </td>
             <td>
                 @entry.locatieID
+            </td>
+            <td>
+                @entry.aantal
             </td>
         </tr>
     }

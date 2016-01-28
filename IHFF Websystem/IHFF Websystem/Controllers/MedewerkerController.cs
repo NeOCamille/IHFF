@@ -31,6 +31,8 @@ namespace IHFF_Websystem.Controllers
         [Authorize]
         public ActionResult AddMedewerker()
         {
+            //
+            //Meegeven aan view?
             // Zoekt de locaties op die geselecteerd kunnen worden in de dropdownlist bij de registreerpagina
             List<Locatie> dropdownLocaties = medewerkerRepository.getLocaties();
             ViewBag.Locaties = dropdownLocaties;
@@ -74,7 +76,7 @@ namespace IHFF_Websystem.Controllers
             // Checkt de credentials
             if (ModelState.IsValid)
             {
-                Medewerker medewerker = medewerkerRepository.GetMedewerker(loginMedewerker.gebruikersNaam, loginMedewerker.passWord);
+                Medewerker medewerker = medewerkerRepository.GetMedewerker(loginMedewerker);
                 if (medewerker != null)
                 {
                     FormsAuthentication.SetAuthCookie(medewerker.gebruikersNaam, false);
@@ -85,10 +87,6 @@ namespace IHFF_Websystem.Controllers
                 {
                     ModelState.AddModelError("loginError", "Gebruikersnaam en wachtwoordcombinatie is fout");
                 }
-            }
-            else
-            {
-                return View();
             }
             return View(loginMedewerker);
         }

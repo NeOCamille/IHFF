@@ -8,7 +8,7 @@ namespace IHFF_Websystem.Models
     interface IMedewerkerRepository
     {
         void AddMedewerker(Medewerker medewerker);
-        Medewerker GetMedewerker(string gebruikersNaam, string passWord);
+        Medewerker GetMedewerker(Login loginMedewerker);
         List<Wishlist> GetWishlists();
         List<Diner> GetReserveringen(Medewerker medewerker);
         void DeleteWishlist(int wishlistID);
