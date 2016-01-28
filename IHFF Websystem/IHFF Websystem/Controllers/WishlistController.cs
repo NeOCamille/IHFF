@@ -123,6 +123,7 @@ namespace IHFF_Websystem.Controllers
                 IEnumerable<Diner> diners     = new WishlistRepository().GetAllWishlistDiners(wishlistID);
 
                 List<WishlistPopup> myPopups = mergeEvents(films, specials, diners);
+
                 return View(myPopups.OrderBy(x => x.startTijd).ToList());
             }
             else
@@ -238,9 +239,12 @@ namespace IHFF_Websystem.Controllers
 
         public ActionResult Reserveren(int wishlistid)
         {
+            //check of er een wishlist word gebruikt
+            if (Session["CurrentWishlist"] != null)
+            {
                 Wishlist wishlist = wishlistRepository.GetWishList((int)Session["CurrentWishlist"]);
                 return View(wishlist);
-        }
+            }
             //geen wishlist dan naar wishlist pagina
             else
             {

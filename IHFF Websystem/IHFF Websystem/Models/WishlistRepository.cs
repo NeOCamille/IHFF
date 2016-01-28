@@ -309,30 +309,8 @@ namespace IHFF_Websystem.Models
             return wishlistevenement;
         }
 
-        public void DeleteWishlistEvenement(WishlistEvenement wishlistEvenement)
-        {
-            WishlistEvenement deletewishlistEvenement = ctx.WishlistEvenements.Find(wishlistEvenement.ID);
-            ctx.WishlistEvenements.Remove(deletewishlistEvenement);
-            ctx.SaveChanges();
-        }
-
-        public void DeleteDiner(Diner diner)
-        {
-            Diner deletediner = ctx.Diners.Find(diner.dinerID);
-            ctx.Diners.Remove(deletediner);
-            ctx.SaveChanges();
-        }
-
         public void DeleteWishlist(Wishlist wishlist)
         {           
-            foreach(WishlistEvenement wishlistEvenement in GetAllWishlistEvenements(wishlist.wishlistID))
-            {
-                DeleteWishlistEvenement(wishlistEvenement);
-            }
-            foreach (Diner diner in Getmywishlistdiner(wishlist.wishlistID))
-            {
-                DeleteDiner(diner);
-            }
             Wishlist deletewishlist = ctx.Wishlists.Find(wishlist.wishlistID);
             ctx.Wishlists.Remove(deletewishlist);
             ctx.SaveChanges();
