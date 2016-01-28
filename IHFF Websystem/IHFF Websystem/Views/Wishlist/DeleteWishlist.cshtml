@@ -1,10 +1,10 @@
 ﻿@model IHFF_Websystem.Models.Wishlist
 @{
-    ViewBag.Title = "Reserveren";
+    ViewBag.Title = "DeleteWishlist";
 }
 
-<h2>Reserveren</h2>
-<h3>weet u zeker dat u deze wilt reserveren?</h3>
+<h2>DeleteWishlist</h2>
+<h3>weet u zeker dat u deze wilt deleten?</h3>
 <fieldset>
     <legend>Informatie</legend>
     <p><b>CodeWoord</b></p>
@@ -17,7 +17,7 @@
 {
     @Html.AntiForgeryToken()
     <p>
-        <input type="submit" value="Reserveren" /> |
+        <input type="submit" value="DeleteWishlist" /> |
         @Html.ActionLink("Back", "Index")
     </p>
 }

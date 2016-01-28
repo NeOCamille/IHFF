@@ -45,8 +45,8 @@ namespace IHFF_Websystem.Controllers
 
         public ActionResult Dineren()
         {
-            
-            return View();
+            IEnumerable<Locatie> locaties = repository.GetAllLocaties();
+            return View(locaties);
         }
 
         public ActionResult DinerReserveren(int id)

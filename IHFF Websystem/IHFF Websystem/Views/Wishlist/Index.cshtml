@@ -11,7 +11,7 @@
 </div>
 <h2>Wishlist</h2>
 <div id="wishlistArea">
-@if (Model != null) {  
+@if (Model != null) {  //check of het model leeg is of niet
     foreach (WishlistPopup item in Model)
     {
         if (item.eventType == events.film)
@@ -112,9 +112,14 @@
     Wishlist <a href="#" onclick="alert('deze functie is nog niet werkzaam om deze server');">downloaden</a>.<br />
     Print de wishlist om bij de balie te betalen.
 </p>
+    <br />
+<p>
+    @Html.ActionLink("Reserveren", "Reserveren", "Wishlist", new { wishlistID = @ViewData["wishlistid"]},null)
+</p>
+<p>
+    @Html.ActionLink("DeleteWishlist", "DeleteWishlist", "Wishlist", new { wishlistID = @ViewData["wishlistid"] }, null)
+</p>
 </div>
 
-    <p>
-        @Html.ActionLink("Reserveren", "Reserveren", "Wishlist")
-    </p>
+    
 </div>

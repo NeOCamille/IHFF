@@ -23,6 +23,10 @@ namespace IHFF_Websystem.Models
         [Required]
         public double prijs { get; set; }
 
+        public string image { get; set; }
+
+        public string Dag { get; set;}
+
         public int locatieID { get; set; }
 
         public Evenement()

@@ -21,19 +21,30 @@ namespace IHFF_Websystem.Models
 
         public void AddDiner(Diner diner)
         {
+            ctx.Wishlists.Find(diner.wishlistID).totaalPrijs = ctx.Wishlists.Find(diner.wishlistID).totaalPrijs + diner.prijs * diner.aantal;
             ctx.Diners.Add(diner);
             ctx.SaveChanges();
         }
+
+        //Voeg een evenement (film/special) toe aan de wishlist
         public void AddEvenement(int wishlistID, int evenementID, int aantal)
         {
+            //Voeg item toe aan wishlist
             WishlistEvenement wishlistevent = new WishlistEvenement(wishlistID, evenementID, aantal);
             ctx.WishlistEvenements.Add(wishlistevent);
+            try
+            {
+                ctx.Wishlists.Find(wishlistID).totaalPrijs = ctx.Wishlists.Find(wishlistID).totaalPrijs + GetFilm(evenementID).prijs * aantal;
+            }
+            catch { }
             ctx.SaveChanges();
         }
 
-        public Evenement GetEvent(int ID)
+        public Popup GetPopup(int ID)
         {
-            return ctx.Evenementen.SingleOrDefault(c => c.evenementID == ID);   
+            Evenement e = ctx.Evenementen.SingleOrDefault(c => c.evenementID == ID);
+            Popup popup = new Popup(e,GetLocatie(e.locatieID).locatieNaam);
+            return popup;
         }
         public Locatie GetLocatie(int ID)
         {
@@ -44,6 +55,12 @@ namespace IHFF_Websystem.Models
             return ctx.Films.SingleOrDefault(c => c.evenementID == ID);
         }
 
+        public IEnumerable<Locatie> GetAllLocaties()
+        {
+            IEnumerable<Locatie> locaties = ctx.Locaties;
+            return locaties;
+        }
+
         public IEnumerable<Film> GetAllFilms()
         {
             IEnumerable<Film> films = ctx.Films;
@@ -52,34 +69,51 @@ namespace IHFF_Websystem.Models
 
         public IEnumerable<Tuple<Film, int>> GetAllWishlistFilms(int wishlistID)
         {
-            //Using a tuple to get film and aantal
+            //make list for film and aantal
             List<Tuple<Film, int>> lijst = new List<Tuple<Film, int>>();
-            IEnumerable<WishlistEvenement> wishlistevents = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID);
-            foreach (WishlistEvenement wishlistevent in wishlistevents) {
-                //quick fix
+
+            //Get all films in the wishlist in one query
+            var result = (from we in ctx.WishlistEvenements
+                               join f in ctx.Films on we.evenementID equals f.evenementID
+                               where we.wishlistID == wishlistID
+                               select new
+                               {
+                                   f = f,
+                                   aantal = we.aantal
+                               }).ToList();
+
+            //Put result in usable list
+            foreach (var item in result){
                 Tuple<Film, int> lijstItem =
-                    new Tuple<Film, int>(
-                        new WishlistRepository().ctx.Films.SingleOrDefault(f => f.evenementID == wishlistevent.evenementID),
-                        wishlistevent.aantal);
+                    new Tuple<Film, int>(item.f,item.aantal);
                 lijst.Add(lijstItem);
             }
-          
+
             return lijst;
         }
         public IEnumerable<Tuple<Special, int>> GetAllWishlistSpecials(int wishlistID)
         {
+            //make list for Special and aantal
             List<Tuple<Special, int>> lijst = new List<Tuple<Special, int>>();
-            IEnumerable<WishlistEvenement> wishlistevents = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID);
-            foreach (WishlistEvenement wishlistevent in wishlistevents)
+
+            //Get all Specials in the wishlist in one query
+            var result = (from we in ctx.WishlistEvenements
+                          join s in ctx.Specials on we.evenementID equals s.evenementID
+                          where we.wishlistID == wishlistID
+                          select new
+                          {
+                              s = s,
+                              aantal = we.aantal
+                          }).ToList();
+
+            //Put result in usable list
+            foreach (var item in result)
             {
                 Tuple<Special, int> lijstItem =
-                    new Tuple<Special, int>(
-                        new WishlistRepository().ctx.Specials.SingleOrDefault(f => f.evenementID == wishlistevent.evenementID),
-                        wishlistevent.aantal);
+                    new Tuple<Special, int>(item.s, item.aantal);
                 lijst.Add(lijstItem);
             }
 
-            //ctx.Films.Include()
             return lijst;
         }
         public IEnumerable<Diner> GetAllWishlistDiners(int wishlistID)
@@ -89,6 +123,7 @@ namespace IHFF_Websystem.Models
             //ctx.Films.Include()
             return diners;
         }
+
         public IEnumerable<WishlistEvenement> GetAllWishlistEvenements(int wishlistID)
         {
             IEnumerable<WishlistEvenement>wishlistEvenements = ctx.WishlistEvenements.Where(w => w.wishlistID == wishlistID);           
@@ -98,14 +133,6 @@ namespace IHFF_Websystem.Models
         //Check available seats
         public int CheckAvailabilityEvenement(int myEvenementID)
         {
-            //SELECT COUNT (WishlistEvenements.aantal)
-            //FROM Evenements
-            //INNER JOIN WishlistEvenements
-            //ON Evenements.evenementID = WishlistEvenements.evenementID
-            //INNER JOIN Wishlists
-            //ON Wishlists.wishlistID = WishlistEvenements.wishlistID
-            //WHERE Wishlists.isBetaald = '1'
-
             // SQL statement to get all aantals
             var eventAantal = (from e in ctx.Evenementen
                                 join we in ctx.WishlistEvenements on e.evenementID equals we.evenementID
@@ -142,14 +169,6 @@ namespace IHFF_Websystem.Models
         //Check available seats
         public int CheckAvailabilityDiner(int mydinerID)
         {
-            //SELECT COUNT (WishlistEvenements.aantal)
-            //FROM Evenements
-            //INNER JOIN WishlistEvenements
-            //ON Evenements.evenementID = WishlistEvenements.evenementID
-            //INNER JOIN Wishlists
-            //ON Wishlists.wishlistID = WishlistEvenements.wishlistID
-            //WHERE Wishlists.isBetaald = '1'
-
             // SQL statement to get all aantals
             var eventAantal = (from d in ctx.Diners
                                join w in ctx.Wishlists on d.wishlistID equals w.wishlistID
@@ -271,7 +290,7 @@ namespace IHFF_Websystem.Models
             }
             return mywishlistevenement;
         }
-        
+       
         public List<Diner> Getmywishlistdiner(int wishlistID)
         {
             List<Diner> mywishlistdiner = new List<Diner>();
@@ -290,17 +309,10 @@ namespace IHFF_Websystem.Models
             return wishlistevenement;
         }
 
-        public void DeleteWishlistEvenement(int id)
-        {
-            WishlistEvenement wishlistEvenement = ctx.WishlistEvenements.Find(id);
-            ctx.WishlistEvenements.Remove(wishlistEvenement);
-            ctx.SaveChanges();
-        }
-
-        public void DeleteDiner(int id)
-        {
-            Diner diner = ctx.Diners.Find(id);
-            ctx.Diners.Remove(diner);
+        public void DeleteWishlist(Wishlist wishlist)
+        {           
+            Wishlist deletewishlist = ctx.Wishlists.Find(wishlist.wishlistID);
+            ctx.Wishlists.Remove(deletewishlist);
             ctx.SaveChanges();
         }
 
@@ -309,8 +321,6 @@ namespace IHFF_Websystem.Models
             wishlist.isBetaald = true;
             ctx.Wishlists.Find(wishlist.wishlistID).isBetaald = true;
             ctx.SaveChanges();
-
-
         }
 
         public Wishlist GetWishList(string codewoord)
@@ -321,6 +331,42 @@ namespace IHFF_Websystem.Models
         public Wishlist GetWishList(int wishlistID)
         {
             return ctx.Wishlists.SingleOrDefault(w => w.wishlistID == wishlistID);
+        }
+
+        public IEnumerable<Evenement> GetDagprogramma(string dag)
+        {
+            return ctx.Evenementen.Where(e => e.Dag == dag);
+        }
+
+        public double GetWishlistTotalPrice(int wishlistID)
+        {
+            //get alle pijzen van de evenementen
+            var result = (from e in ctx.Evenementen
+                               join we in ctx.WishlistEvenements on e.evenementID equals we.evenementID
+                               where we.wishlistID == wishlistID
+                               select new
+                               {
+                                   price = we.aantal * e.prijs
+                               });
+            //maak een totale prijs
+            double totaal = 0;
+
+            //tel de evenementen uit de wishlist bij de totaalprijs
+            foreach (var item in result)
+            {
+                totaal += item.price;
+            }
+
+            //get alle diners
+            IEnumerable<Diner> diners = ctx.Diners.Where(w => w.wishlistID == wishlistID);
+
+            //voeg de prijzen van de diners toe aan de totaal prijs
+            foreach (var item in diners)
+            {
+                totaal += item.aantal * item.prijs;
+            }
+
+            return totaal;
         }
     }
 }
