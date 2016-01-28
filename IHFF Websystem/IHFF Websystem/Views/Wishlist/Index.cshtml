@@ -114,7 +114,7 @@
 </p>
     <br />
 <p>
-    @Html.ActionLink("Reserveren", "Reserveren", "Wishlist")
+    @Html.ActionLink("Reserveren", "Reserveren", "Wishlist", new { wishlistID = @ViewData["wishlistid"]},null)
 </p>
 </div>
 

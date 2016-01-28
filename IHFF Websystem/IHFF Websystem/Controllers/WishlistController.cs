@@ -30,6 +30,8 @@ namespace IHFF_Websystem.Controllers
                 //voeg alle evenementen samen in een list
                 List<WishlistPopup> myPopups = mergeEvents(films, specials, diners);
 
+                ViewData["wishlistid"] = wishlistID;
+
                 //order de list chronlogish
                 return View(myPopups.OrderBy(x => x.startTijd).ToList());
             }
@@ -235,16 +237,15 @@ namespace IHFF_Websystem.Controllers
             return RedirectToAction("Index");
         }
 
-        public ActionResult Reserveren()
+        public ActionResult Reserveren(int wishlistid)
         {
-                Wishlist wishlist = wishlistRepository.GetWishList((int)Session["CurrentWishlist"]);
+                Wishlist wishlist = wishlistRepository.GetWishList(wishlistid);
                 return View(wishlist);
         }
 
-        [HttpPost,ActionName("Reserveren")]
-        public ActionResult ReserverenPost(Wishlist wishlist)
+        [HttpPost]
+        public ActionResult Reserveren(Wishlist wishlist)
         {
-            wishlist = wishlistRepository.GetWishList((int)Session["CurrentWishlist"]);
             wishlistRepository.WishListReserveren(wishlist);
             return RedirectToAction("Index");      
         }

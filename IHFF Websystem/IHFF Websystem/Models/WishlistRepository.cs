@@ -21,6 +21,7 @@ namespace IHFF_Websystem.Models
 
         public void AddDiner(Diner diner)
         {
+            ctx.Wishlists.Find(diner.wishlistID).totaalPrijs = ctx.Wishlists.Find(diner.wishlistID).totaalPrijs + diner.prijs * diner.aantal;
             ctx.Diners.Add(diner);
             ctx.SaveChanges();
         }
@@ -31,6 +32,7 @@ namespace IHFF_Websystem.Models
             //Voeg item toe aan wishlist
             WishlistEvenement wishlistevent = new WishlistEvenement(wishlistID, evenementID, aantal);
             ctx.WishlistEvenements.Add(wishlistevent);
+            ctx.Wishlists.Find(wishlistID).totaalPrijs = ctx.Wishlists.Find(wishlistID).totaalPrijs + GetFilm(evenementID).prijs * aantal;
             ctx.SaveChanges();
         }
 
@@ -47,6 +49,12 @@ namespace IHFF_Websystem.Models
         public Film GetFilm(int ID)
         {
             return ctx.Films.SingleOrDefault(c => c.evenementID == ID);
+        }
+
+        public IEnumerable<Locatie> GetAllLocaties()
+        {
+            IEnumerable<Locatie> locaties = ctx.Locaties;
+            return locaties;
         }
 
         public IEnumerable<Film> GetAllFilms()
