@@ -365,7 +365,8 @@ namespace IHFF_Websystem.Models
             {
                 totaal += item.aantal * item.prijs;
             }
-
+            ctx.Wishlists.Find(wishlistID).totaalPrijs = totaal;
+            ctx.SaveChanges();
             return totaal;
         }
     }

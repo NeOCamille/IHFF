@@ -226,6 +226,7 @@ namespace IHFF_Websystem.Controllers
         public ActionResult DeleteWishlist(int wishlistid)
         {
             Wishlist wishlist = wishlistRepository.GetWishList(wishlistid);
+            wishlistRepository.GetWishlistTotalPrice(wishlistid);
             return View(wishlist); ;
         }
 
@@ -243,6 +244,7 @@ namespace IHFF_Websystem.Controllers
             if (Session["CurrentWishlist"] != null)
             {
                 Wishlist wishlist = wishlistRepository.GetWishList((int)Session["CurrentWishlist"]);
+                wishlistRepository.GetWishlistTotalPrice(wishlistid);
                 return View(wishlist);
             }
             //geen wishlist dan naar wishlist pagina
