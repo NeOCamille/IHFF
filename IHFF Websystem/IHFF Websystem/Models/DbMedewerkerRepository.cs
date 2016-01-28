@@ -16,9 +16,9 @@ namespace IHFF_Websystem.Models
                ctx.SaveChanges();
        }
 
-        public Medewerker GetMedewerker(string gebruikersNaam, string passWord)
+        public Medewerker GetMedewerker(Login loginMedewerker)
        {
-           Medewerker gevondenMedewerker = ctx.Medewerkers.SingleOrDefault(m => m.gebruikersNaam == gebruikersNaam && m.passWord == passWord);
+           Medewerker gevondenMedewerker = ctx.Medewerkers.SingleOrDefault(m => m.gebruikersNaam == loginMedewerker.gebruikersNaam && m.passWord == loginMedewerker.passWord);
            return gevondenMedewerker;
        }
 
