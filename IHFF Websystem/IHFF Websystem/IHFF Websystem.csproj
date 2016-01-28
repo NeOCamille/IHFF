@@ -196,6 +196,7 @@
     <Compile Include="Models\Film.cs" />
     <Compile Include="Models\IHFFContext.cs" />
     <Compile Include="Models\IMedewerkerRepository.cs" />
+    <Compile Include="Models\IWishlistRepository.cs" />
     <Compile Include="Models\Locatie.cs" />
     <Compile Include="Models\Login.cs" />
     <Compile Include="Models\Medewerker.cs" />

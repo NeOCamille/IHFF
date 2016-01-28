@@ -9,7 +9,7 @@ namespace IHFF_Websystem.Controllers
 {
     public class WishlistController : Controller
     {
-        private WishlistRepository wishlistRepository = new WishlistRepository();
+        private IWishlistRepository wishlistRepository = new WishlistRepository();
         //
         // GET: /Wishlist/
 
@@ -38,21 +38,6 @@ namespace IHFF_Websystem.Controllers
             else
             {
                 return View();
-            }
-        }
-        public ActionResult UpdateEvenementToWishlist(int id, int aantal)
-        {
-            if (Session["CurrentWishlist"] != null)
-            {            
-                int wishlistID = (int)Session["CurrentWishlist"];
-
-
-
-                return new EmptyResult();
-            }
-            else
-            {
-                return new EmptyResult();
             }
         }
         
@@ -96,21 +81,6 @@ namespace IHFF_Websystem.Controllers
                 
             }
             return new EmptyResult();
-        }
-
-        public ActionResult Create()
-        {
-            wishlistRepository.CheckAvailabilityEvenement(8);
-            //if (Session["CurrentWishlist"] == null)
-            //{
-                //test line
-                //int WishlistID = wishlistRepository.NewWishlist().wishlistID; // 1;//new Random().Next(0,100000);
-                //Session["CurrentWishlist"] = WishlistID;
-            //}
-
-            IEnumerable<Film> films = new WishlistRepository().GetAllFilms();
-
-            return View(films);
         }
         public ActionResult WishlistPopUp()
         {
@@ -243,8 +213,9 @@ namespace IHFF_Websystem.Controllers
             //check of er een wishlist word gebruikt
             if (Session["CurrentWishlist"] != null)
             {
-                Wishlist wishlist = wishlistRepository.GetWishList((int)Session["CurrentWishlist"]);
                 wishlistRepository.GetWishlistTotalPrice(wishlistid);
+                Wishlist wishlist = wishlistRepository.GetWishList((int)Session["CurrentWishlist"]);
+
                 return View(wishlist);
             }
             //geen wishlist dan naar wishlist pagina
@@ -333,7 +304,7 @@ namespace IHFF_Websystem.Controllers
                 myPopup.eindTijd = diner.eindTijd;
                 myPopup.foodFilm = diner.foodFilm;
                 myPopup.opNaamVan = diner.opNaamVan;
-                myPopup.prijs = diner.prijs * diner.aantal;
+                myPopup.prijs = diner.prijs;
                 myPopup.wishlistID = diner.wishlistID;
                 myPopup.locatieID = diner.locatieID;
                 myPopup.aantal = diner.aantal;
@@ -348,6 +319,37 @@ namespace IHFF_Websystem.Controllers
                 myPopups.Add(myPopup);
             }
             return myPopups;
-        } 
+        }
+
+        // ## Overige methode
+        public ActionResult UpdateEvenementToWishlist(int id, int aantal)
+        {
+            if (Session["CurrentWishlist"] != null)
+            {
+                int wishlistID = (int)Session["CurrentWishlist"];
+
+
+
+                return new EmptyResult();
+            }
+            else
+            {
+                return new EmptyResult();
+            }
+        }
+        public ActionResult Create()
+        {
+            wishlistRepository.CheckAvailabilityEvenement(8);
+            //if (Session["CurrentWishlist"] == null)
+            //{
+            //test line
+            //int WishlistID = wishlistRepository.NewWishlist().wishlistID; // 1;//new Random().Next(0,100000);
+            //Session["CurrentWishlist"] = WishlistID;
+            //}
+
+            IEnumerable<Film> films = new WishlistRepository().GetAllFilms();
+
+            return View(films);
+        }
     }
 }

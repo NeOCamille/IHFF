@@ -6,7 +6,7 @@ using System.Web.Mvc;
 
 namespace IHFF_Websystem.Models
 {
-    public class WishlistRepository
+    public class WishlistRepository : IWishlistRepository
     {
         public IHFFContext ctx = new IHFFContext();
 
@@ -42,8 +42,20 @@ namespace IHFF_Websystem.Models
 
         public Popup GetPopup(int ID)
         {
-            Evenement e = ctx.Evenementen.SingleOrDefault(c => c.evenementID == ID);
-            Popup popup = new Popup(e,GetLocatie(e.locatieID).locatieNaam);
+            var result = (from e in ctx.Evenementen
+                          join l in ctx.Locaties on e.locatieID equals l.locatieID
+                          where e.evenementID == ID
+                          select new
+                          {
+                              e = e,
+                              locatieNaam = l.locatieNaam
+                          }).SingleOrDefault();
+
+            Popup popup = new Popup(result.e, result.locatieNaam);
+
+
+            //Evenement e = ctx.Evenementen.SingleOrDefault(c => c.evenementID == ID);
+            //Popup popup = new Popup(e,GetLocatie(e.locatieID).locatieNaam);
             return popup;
         }
         public Locatie GetLocatie(int ID)
@@ -245,12 +257,13 @@ namespace IHFF_Websystem.Models
                 var diners = ctx.Diners.Where(d => d.dinerID == dinerID);
                 Diner updated = diners.First();
                 updated.aantal = aantal;
-
+                updated.prijs = aantal * 10;
                 ctx.Diners.Attach(updated);
                 //db.Users.Attach(updatedUser);
                 var entry = ctx.Entry(updated);
                 //var entry = db.Entry(updatedUser);
                 entry.Property(e => e.aantal).IsModified = true;
+                entry.Property(e => e.prijs).IsModified = true;
                 // other changed properties
                 ctx.SaveChanges();
             }
@@ -346,7 +359,7 @@ namespace IHFF_Websystem.Models
                                where we.wishlistID == wishlistID
                                select new
                                {
-                                   price = we.aantal * e.prijs
+                                   price = e.prijs * we.aantal
                                });
             //maak een totale prijs
             double totaal = 0;
@@ -363,7 +376,7 @@ namespace IHFF_Websystem.Models
             //voeg de prijzen van de diners toe aan de totaal prijs
             foreach (var item in diners)
             {
-                totaal += item.aantal * item.prijs;
+                totaal += item.prijs;
             }
             ctx.Wishlists.Find(wishlistID).totaalPrijs = totaal;
             ctx.SaveChanges();
