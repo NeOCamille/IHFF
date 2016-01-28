@@ -227,7 +227,7 @@ namespace IHFF_Websystem.Controllers
         {
             Wishlist wishlist = wishlistRepository.GetWishList(wishlistid);
             wishlistRepository.GetWishlistTotalPrice(wishlistid);
-            return View(wishlist); ;
+            return View(wishlist);
         }
 
         [HttpPost]
