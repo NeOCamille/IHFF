@@ -377,6 +377,7 @@
     <Content Include="Views\Medewerker\ShowAgenda.cshtml" />
     <Content Include="Views\Medewerker\Instellingen.cshtml" />
     <Content Include="Views\Medewerker\DeleteAccount.cshtml" />
+    <Content Include="Views\Wishlist\DeleteWishlist.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

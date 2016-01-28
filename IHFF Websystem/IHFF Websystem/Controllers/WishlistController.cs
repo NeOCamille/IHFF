@@ -222,18 +222,17 @@ namespace IHFF_Websystem.Controllers
             return View();
         }
 
-
-        [HttpPost]
-        public ActionResult DeleteEvenement(int id)
+        public ActionResult DeleteWishlist(int wishlistid)
         {
-            wishlistRepository.DeleteWishlistEvenement(id);
-            return RedirectToAction("Index"); 
+            Wishlist wishlist = wishlistRepository.GetWishList(wishlistid);
+            return View(wishlist); ;
         }
 
         [HttpPost]
-        public ActionResult DeleteDiner(int id)
+        public ActionResult DeleteWishlist(Wishlist wishlist)
         {
-            wishlistRepository.DeleteDiner(id);
+            Session["CurrentWishlist"] = null;
+            wishlistRepository.DeleteWishlist(wishlist);
             return RedirectToAction("Index");
         }
 

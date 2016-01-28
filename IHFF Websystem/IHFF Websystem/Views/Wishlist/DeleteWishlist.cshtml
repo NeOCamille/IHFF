@@ -1,0 +1,23 @@
+﻿@model IHFF_Websystem.Models.Wishlist
+@{
+    ViewBag.Title = "DeleteWishlist";
+}
+
+<h2>DeleteWishlist</h2>
+<h3>weet u zeker dat u deze wilt deleten?</h3>
+<fieldset>
+    <legend>Informatie</legend>
+    <p><b>CodeWoord</b></p>
+    <p>@Html.DisplayFor(model => model.codeWoord)</p>
+    <p><b>TotaalPrijs</b></p>
+    <p>€:@Html.DisplayFor(model => model.totaalPrijs)</p>
+
+</fieldset>
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <p>
+        <input type="submit" value="DeleteWishlist" /> |
+        @Html.ActionLink("Back", "Index")
+    </p>
+}
